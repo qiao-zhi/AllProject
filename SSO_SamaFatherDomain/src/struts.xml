@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 配置常量 -->
+	<!-- 字符集 -->
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<!-- 开发模式 -->
+	<constant name="struts.devMode" value="true"></constant>
+	<!-- 主题 -->
+	<constant name="struts.ui.theme" value="simple"></constant>
+	<!-- 扩展名 -->
+	<constant name="struts.action.extension" value="action"></constant>
+
+	<!-- 通用package -->
+	<package name="sso" namespace="/sso" extends="struts-default">
+		<action name="login" class="check.x.com.LoginAction">
+			<result name="success" type="redirect">${gotoUrl}</result>
+		</action>
+
+		<action name="checkCookie" class="check.x.com.LoginAction" method="checkCookie">
+		</action>
+	</package>
+
+	<package name="demo1" namespace="/demo1" extends="struts-default">
+		<action name="main" class="demo1.x.com.Demo1Action">
+			<result name="success">/Demo1Index.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+	</package>
+
+	<package name="demo2" namespace="/demo2" extends="struts-default">
+		<action name="main" class="demo2.x.com.Demo2Action">
+			<result name="success">/Demo2Index.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkPro.steap.db.mapper.material.IPictureMapper">
+	
+	<!-- 插入图片 -->
+	<insert id="addPicture" parameterType="Picture">
+		insert into t_pictures_index(projectId,pictureType,originalName,currentName,uploadTime,pictureSize,remark)
+		values(#{projectId},#{pictureType},#{originalName},#{currentName},DATE_FORMAT(#{uploadTime},'%Y-%m-%d %H:%i:%S'),#{pictureSize},#{remark})
+	</insert>
+	
+	<!-- 根据图片类型和项目编号查询项目中图片资料 -->
+	<select id="getPicture" parameterType="Map"  resultType="Picture">
+		select pictureId,projectId,pictureType,originalName,currentName,DATE_FORMAT(uploadTime,'%Y-%m-%d %H:%i:%S') as uploadTime,pictureSize,remark from t_pictures_index
+		where projectId=#{projectId} and pictureType=#{pictureType}
+		order by pictureId
+	</select>
+	
+	<!-- 删除图片 -->
+	<delete id="deletePictureByPidAndCName">
+		delete from t_pictures_index where projectId = #{projectId} and currentName LIKE CONCAT(CONCAT('%', #{currentName}),'%');
+	</delete>
+	
+	<!-- Start making by yachao -->
+	<!-- 根据项目编号和图片类型获取图片信息 -->
+	<select id="getPictureSet" parameterType="map" resultType="map">
+		 select pictureType, originalName, currentName
+		 from t_pictures_index pic, dic_system_dictionary
+		 where projectId=#{projectId} and pictureType=dictionaryOptionId 
+		 and dictionaryOptionName=#{pictureType}
+	</select>
+	
+	<!-- 根据项目编号和图片类型查询图片信息 -->
+	<select id="getPictureByIf" parameterType="map" resultType="Picture">
+		select * 
+		from t_pictures_index pic, dic_system_dictionary dic
+		where projectId=#{projectId} and pictureType=dictionaryOptionId
+		and dictionaryOptionName=#{pictureType}
+	</select>
+</mapper>

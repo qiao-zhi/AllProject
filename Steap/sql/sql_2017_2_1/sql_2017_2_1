@@ -1,0 +1,4 @@
+#添加字段，企业接待人
+ALTER TABLE enterprise_inspect ADD enterpriseReceiver VARCHAR(30);
+ALTER TABLE inspect_audit ADD enterpriseReceiver2 VARCHAR(30);
+

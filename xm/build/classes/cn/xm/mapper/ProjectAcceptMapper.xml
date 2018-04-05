@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.xm.mapper.ProjectAcceptMapper" >
+  <resultMap id="BaseResultMap" type="cn.xm.pojo.ProjectAccept" >
+    <id column="acceptId" property="acceptid" jdbcType="VARCHAR" />
+    <result column="projectId" property="projectid" jdbcType="VARCHAR" />
+    <result column="recordDate" property="recorddate" jdbcType="DATE" />
+    <result column="recordPerson" property="recordperson" jdbcType="VARCHAR" />
+    <result column="chargeUnit" property="chargeunit" jdbcType="VARCHAR" />
+    <result column="chargePerson" property="chargeperson" jdbcType="VARCHAR" />
+    <result column="distributionDate" property="distributiondate" jdbcType="DATE" />
+    <result column="receiveDate" property="receivedate" jdbcType="DATE" />
+    <result column="receivePerson" property="receiveperson" jdbcType="VARCHAR" />
+    <result column="remark1" property="remark1" jdbcType="VARCHAR" />
+    <result column="remark2" property="remark2" jdbcType="VARCHAR" />
+    <result column="remark3" property="remark3" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.xm.pojo.ProjectAccept" extends="BaseResultMap" >
+    <result column="receiveResult" property="receiveresult" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    acceptId, projectId, recordDate, recordPerson, chargeUnit, chargePerson, distributionDate, 
+    receiveDate, receivePerson, remark1, remark2, remark3
+  </sql>
+  <sql id="Blob_Column_List" >
+    receiveResult
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="cn.xm.pojo.ProjectAcceptExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from project_accept
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.xm.pojo.ProjectAcceptExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from project_accept
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from project_accept
+    where acceptId = #{acceptid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from project_accept
+    where acceptId = #{acceptid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.xm.pojo.ProjectAcceptExample" >
+    delete from project_accept
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.xm.pojo.ProjectAccept" >
+    insert into project_accept (acceptId, projectId, recordDate, 
+      recordPerson, chargeUnit, chargePerson, 
+      distributionDate, receiveDate, receivePerson, 
+      remark1, remark2, remark3, 
+      receiveResult)
+    values (#{acceptid,jdbcType=VARCHAR}, #{projectid,jdbcType=VARCHAR}, #{recorddate,jdbcType=DATE}, 
+      #{recordperson,jdbcType=VARCHAR}, #{chargeunit,jdbcType=VARCHAR}, #{chargeperson,jdbcType=VARCHAR}, 
+      #{distributiondate,jdbcType=DATE}, #{receivedate,jdbcType=DATE}, #{receiveperson,jdbcType=VARCHAR}, 
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, 
+      #{receiveresult,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xm.pojo.ProjectAccept" >
+    insert into project_accept
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="acceptid != null" >
+        acceptId,
+      </if>
+      <if test="projectid != null" >
+        projectId,
+      </if>
+      <if test="recorddate != null" >
+        recordDate,
+      </if>
+      <if test="recordperson != null" >
+        recordPerson,
+      </if>
+      <if test="chargeunit != null" >
+        chargeUnit,
+      </if>
+      <if test="chargeperson != null" >
+        chargePerson,
+      </if>
+      <if test="distributiondate != null" >
+        distributionDate,
+      </if>
+      <if test="receivedate != null" >
+        receiveDate,
+      </if>
+      <if test="receiveperson != null" >
+        receivePerson,
+      </if>
+      <if test="remark1 != null" >
+        remark1,
+      </if>
+      <if test="remark2 != null" >
+        remark2,
+      </if>
+      <if test="remark3 != null" >
+        remark3,
+      </if>
+      <if test="receiveresult != null" >
+        receiveResult,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="acceptid != null" >
+        #{acceptid,jdbcType=VARCHAR},
+      </if>
+      <if test="projectid != null" >
+        #{projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="recorddate != null" >
+        #{recorddate,jdbcType=DATE},
+      </if>
+      <if test="recordperson != null" >
+        #{recordperson,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeunit != null" >
+        #{chargeunit,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeperson != null" >
+        #{chargeperson,jdbcType=VARCHAR},
+      </if>
+      <if test="distributiondate != null" >
+        #{distributiondate,jdbcType=DATE},
+      </if>
+      <if test="receivedate != null" >
+        #{receivedate,jdbcType=DATE},
+      </if>
+      <if test="receiveperson != null" >
+        #{receiveperson,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveresult != null" >
+        #{receiveresult,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.xm.pojo.ProjectAcceptExample" resultType="java.lang.Integer" >
+    select count(*) from project_accept
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update project_accept
+    <set >
+      <if test="record.acceptid != null" >
+        acceptId = #{record.acceptid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectid != null" >
+        projectId = #{record.projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recorddate != null" >
+        recordDate = #{record.recorddate,jdbcType=DATE},
+      </if>
+      <if test="record.recordperson != null" >
+        recordPerson = #{record.recordperson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chargeunit != null" >
+        chargeUnit = #{record.chargeunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chargeperson != null" >
+        chargePerson = #{record.chargeperson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.distributiondate != null" >
+        distributionDate = #{record.distributiondate,jdbcType=DATE},
+      </if>
+      <if test="record.receivedate != null" >
+        receiveDate = #{record.receivedate,jdbcType=DATE},
+      </if>
+      <if test="record.receiveperson != null" >
+        receivePerson = #{record.receiveperson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null" >
+        remark1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null" >
+        remark2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null" >
+        remark3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveresult != null" >
+        receiveResult = #{record.receiveresult,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update project_accept
+    set acceptId = #{record.acceptid,jdbcType=VARCHAR},
+      projectId = #{record.projectid,jdbcType=VARCHAR},
+      recordDate = #{record.recorddate,jdbcType=DATE},
+      recordPerson = #{record.recordperson,jdbcType=VARCHAR},
+      chargeUnit = #{record.chargeunit,jdbcType=VARCHAR},
+      chargePerson = #{record.chargeperson,jdbcType=VARCHAR},
+      distributionDate = #{record.distributiondate,jdbcType=DATE},
+      receiveDate = #{record.receivedate,jdbcType=DATE},
+      receivePerson = #{record.receiveperson,jdbcType=VARCHAR},
+      remark1 = #{record.remark1,jdbcType=VARCHAR},
+      remark2 = #{record.remark2,jdbcType=VARCHAR},
+      remark3 = #{record.remark3,jdbcType=VARCHAR},
+      receiveResult = #{record.receiveresult,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update project_accept
+    set acceptId = #{record.acceptid,jdbcType=VARCHAR},
+      projectId = #{record.projectid,jdbcType=VARCHAR},
+      recordDate = #{record.recorddate,jdbcType=DATE},
+      recordPerson = #{record.recordperson,jdbcType=VARCHAR},
+      chargeUnit = #{record.chargeunit,jdbcType=VARCHAR},
+      chargePerson = #{record.chargeperson,jdbcType=VARCHAR},
+      distributionDate = #{record.distributiondate,jdbcType=DATE},
+      receiveDate = #{record.receivedate,jdbcType=DATE},
+      receivePerson = #{record.receiveperson,jdbcType=VARCHAR},
+      remark1 = #{record.remark1,jdbcType=VARCHAR},
+      remark2 = #{record.remark2,jdbcType=VARCHAR},
+      remark3 = #{record.remark3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xm.pojo.ProjectAccept" >
+    update project_accept
+    <set >
+      <if test="projectid != null" >
+        projectId = #{projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="recorddate != null" >
+        recordDate = #{recorddate,jdbcType=DATE},
+      </if>
+      <if test="recordperson != null" >
+        recordPerson = #{recordperson,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeunit != null" >
+        chargeUnit = #{chargeunit,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeperson != null" >
+        chargePerson = #{chargeperson,jdbcType=VARCHAR},
+      </if>
+      <if test="distributiondate != null" >
+        distributionDate = #{distributiondate,jdbcType=DATE},
+      </if>
+      <if test="receivedate != null" >
+        receiveDate = #{receivedate,jdbcType=DATE},
+      </if>
+      <if test="receiveperson != null" >
+        receivePerson = #{receiveperson,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null" >
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null" >
+        remark3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveresult != null" >
+        receiveResult = #{receiveresult,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where acceptId = #{acceptid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.xm.pojo.ProjectAccept" >
+    update project_accept
+    set projectId = #{projectid,jdbcType=VARCHAR},
+      recordDate = #{recorddate,jdbcType=DATE},
+      recordPerson = #{recordperson,jdbcType=VARCHAR},
+      chargeUnit = #{chargeunit,jdbcType=VARCHAR},
+      chargePerson = #{chargeperson,jdbcType=VARCHAR},
+      distributionDate = #{distributiondate,jdbcType=DATE},
+      receiveDate = #{receivedate,jdbcType=DATE},
+      receivePerson = #{receiveperson,jdbcType=VARCHAR},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR},
+      remark3 = #{remark3,jdbcType=VARCHAR},
+      receiveResult = #{receiveresult,jdbcType=LONGVARCHAR}
+    where acceptId = #{acceptid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xm.pojo.ProjectAccept" >
+    update project_accept
+    set projectId = #{projectid,jdbcType=VARCHAR},
+      recordDate = #{recorddate,jdbcType=DATE},
+      recordPerson = #{recordperson,jdbcType=VARCHAR},
+      chargeUnit = #{chargeunit,jdbcType=VARCHAR},
+      chargePerson = #{chargeperson,jdbcType=VARCHAR},
+      distributionDate = #{distributiondate,jdbcType=DATE},
+      receiveDate = #{receivedate,jdbcType=DATE},
+      receivePerson = #{receiveperson,jdbcType=VARCHAR},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR},
+      remark3 = #{remark3,jdbcType=VARCHAR}
+    where acceptId = #{acceptid,jdbcType=VARCHAR}
+  </update>
+</mapper>

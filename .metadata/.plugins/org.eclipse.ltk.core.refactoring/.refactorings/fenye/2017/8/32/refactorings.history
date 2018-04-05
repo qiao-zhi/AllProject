@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Extract local variable &apos;query&apos; from expression &apos;runner.query(sql,new BeanListHandler&lt;User&gt;(User.class),index,currentCount)&apos;&#x0D;&#x0A;- Original project: &apos;fenye&apos;&#x0D;&#x0A;- Variable name: &apos;query&apos;&#x0D;&#x0A;- Destination method: &apos;dao.UserDao.findUserListForPageBean()&apos;&#x0D;&#x0A;- Variable expression: &apos;runner.query(sql,new BeanListHandler&lt;User&gt;(User.class),index,currentCount)&apos;&#x0D;&#x0A;- Replace occurrences of expression with variable" description="Extract local variable &apos;query&apos;" final="false" id="org.eclipse.jdt.ui.extract.temp" input="/src&lt;dao{UserDao.java" name="query" replace="true" selection="1890 0" stamp="1502103746694" version="1.0"/>
+</session>

@@ -1,0 +1,53 @@
+.block{
+	padding-left:6%;
+}
+.block .label_left{
+	width:45%;
+	height:36px;
+	line-height:36px;
+}
+.block .label_right{
+	width:55%;
+	height:36px;
+	line-height:36px;
+}
+.block .zuoce{
+	width:30%
+}
+.block .youce{
+	width:70%
+}
+.commit{
+	padding-left:80%;
+	margin-top:8%;
+}
+.commit button{
+	width:50px;
+	height:32px;
+	margin-left:18%;
+	background:#5CA7BA;
+	color:#FFFFFF;
+}
+.modal_bar .search_bar_input{
+	width:38%;
+}
+.modal_bar button{
+	width:15%;
+}
+.mytable{
+	width:90%;
+	margin:0 auto;
+}
+.ligth_book{
+	padding-top:10px;
+	background:#EEEEEE;
+	padding-bottom:10px;
+	padding-left:10px;
+}
+.ligth_book img{
+	width:25%;
+	height:180px;
+	margin-left:3px;
+	margin-right:3px;
+}
+

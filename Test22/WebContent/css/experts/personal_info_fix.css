@@ -1,0 +1,133 @@
+@CHARSET "UTF-8";
+
+.personal_detail_info , .profession_detail_info , .relation_detail_info , .signature_info{
+	width: 700px;
+	margin: 0 auto;
+	background-color: #E3EBEE;
+	/*border-bottom: 2px solid #AED7ED;*/
+	/*padding-bottom: 10px;*/
+}
+.signature_info{
+/*	height: 330px;*/
+	position: relative;
+}
+.left_title{
+	width: 50px;
+	float: left;
+	font-size: 22px;
+	padding: 15px 0;
+	color: white;
+	background-color: #5CA7BA;
+	position: relative;
+}
+.word_box{
+	width: 50px;
+	height: 125px;
+	padding: 0 10px;
+	margin: auto 0;
+	position: absolute;
+	top: -1px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+	font-weight: bold;
+}
+.right_body{
+	width: 650px;
+	float: left;
+	padding: 15px 10px 15px 10px;
+}
+.box_margin_right_textarea{
+	resize: none;
+	height: 75px;
+	width: 400px;	
+	padding: 5px 10px;
+}
+.none_border_radius{
+	border-radius: 0;
+}
+.signature_info{
+	margin-top: 20px;
+}
+.signature_pic{
+	padding: 15px;
+	width: 400px;
+	height: 200px;
+	background-color: white;
+	float: left;
+	margin: 10px;
+	position: relative;
+	text-align: center;
+	border-radius: 4px;
+}
+.signature_btn{
+	float: left;	
+	margin-left: 4px;
+}
+.signature_btn button{
+	display: block;
+	width: 150px;
+	margin: 20px 0;
+}
+.signature_operate{
+	/*width: 400px;
+	height: 200px;*/
+	margin: 10px auto;
+	position: relative;
+	top: 10;
+	left: 100;
+		
+}
+.signature_operate img{
+/*	margin: 0 auto;*/
+}
+.signature_operate button{
+	
+	
+	/*width: 130px;
+	text-align: center;*/
+}
+.personal_save_btn{
+	margin-left: 760px;
+	margin-top: 10px;
+}
+.remove_icon{
+	display: block;
+	width: 22px;
+	height: 22px;
+	background: rgba(0,0,0,0.3);
+	border-bottom-left-radius: 100%;
+	text-align: right;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.remove_icon:hover{
+	cursor: pointer;
+	background: rgba(0,0,0,0.1);
+}
+.column4{
+	
+}
+.fix_hide{
+	/*display: none;*/
+	/*position: absolute;
+	top: 60px;
+	left: 60px;
+	background-color: #EEEEEE;
+	z-index: 999;*/
+}
+
+input[type='file'] {
+	margin-left: 10px;
+}
+
+
+
+
+
+/* 0816 */
+.err_show{
+	width:120px;height:34px;line-height:34px;padding-left:5px;font-size:12px;color:red;
+}

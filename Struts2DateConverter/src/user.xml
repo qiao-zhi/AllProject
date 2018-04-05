@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+     <!-- 
+     package的名字必须唯一！只能拦截.action请求
+        默认值:class:com.opensymphony.xwork2.ActionSupport
+         method:execute         
+         result的name属性:success   方法中返回success即可跳转到结果对应的页面
+        
+        
+ -->
+ 
+
+
+    <package name="product" extends="struts-default" namespace="/product">
+        <!-- 有多个结果的Action，根据结果与调用方法跳到不同页面 -->
+        <action name="product_*" class="ss.productAction" method="{1}">
+            <result name="add">/1.jsp</result>
+            <result name="delete">/2.jsp</result>
+        </action>
+
+        
+        <!-- 动态调用的第二个方法，用(actionName!funName.action) -->
+        <action name="product1" class="ss.productAction">
+            <result name="add">/1.jsp</result>
+            <result name="delete">/2.jsp</result>
+        </action>
+        
+       
+        
+        <!-- 获取表单属性的Action -->
+        <action name="getAttr" class="ss.User">
+            <result>/1.jsp</result>
+        </action>
+        
+        
+        <!-- 获取表单属性的Action -->
+        <action name="getAttr1" class="ss.User1">
+            <result>/1.jsp</result>
+        </action>        
+        
+               
+        
+        
+    </package>
+    
+
+    
+ 
+  
+</struts>

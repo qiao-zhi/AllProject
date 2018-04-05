@@ -1,0 +1,43 @@
+package serviceImpl;
+
+import org.junit.Test;
+
+import bean.Emp;
+import daoImpl.EmpDaoImpl;
+import service.EmpService;
+import utils.Page;
+
+public class EmpServiceImpl implements EmpService {
+
+	private EmpDaoImpl edi = new EmpDaoImpl(); 
+	@Override
+	public Page show(int currentPage) throws Exception {
+		Page<Emp> page = new Page<Emp>();
+//		当前页
+		page.setCurrentPage(currentPage);
+//		页大小
+		Integer pageSize = 5;
+		page.setPageSize(pageSize);
+//		总记录数
+		Integer totalRecord = edi.findAllRecord();
+		page.setTotalRecord(totalRecord);
+//		总页数
+		Integer totalPage=null;
+		if(totalRecord % pageSize==0){
+			totalPage = totalRecord / pageSize;
+		}else{
+			totalPage = totalRecord / pageSize+1;
+		}
+		
+		page.setTotalPage(totalPage);
+		
+		
+		return page;
+	}
+	@Test
+	public void fn1(){
+		EmpServiceImpl empServiceImpl=new EmpServiceImpl();
+		
+	}
+
+}

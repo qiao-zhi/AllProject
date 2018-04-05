@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkPro.steap.db.mapper.sys.unit.IUnitMapper">
+	
+	<!-- 得到所有的员工编号，部门编号 -->
+	<select id="getAllUsers" resultType="hashMap">
+		select userId, unitName, name
+		from t_user_base_info ,t_unit_base_info
+		where t_user_base_info.unitId=t_unit_base_info.unitId
+		ORDER BY t_user_base_info.unitId,userId asc;
+	</select>
+	
+	<!-- 获得部门树 -->
+	<select id="getUnitTree" resultType="TBaseUnitInfo">
+		select unitId,unitName,upUnitId from t_unit_base_info;
+	</select>
+	
+	<!-- 查询部门树信息 -->
+	<select id="getUnitTree2" resultType="Map">
+		select unitId, upUnitId,unitName from t_unit_base_info;
+	</select>
+	
+	<!-- 添加部门 -->
+	<insert id="addUnit" parameterType="TBaseUnitInfo">
+		INSERT INTO
+		t_unit_base_info
+		VALUES(#{unitId},#{unitName},#{upUnitId},#{description})
+	</insert>
+	
+	<!-- 根据部门id删除部门 -->
+	<delete id="deleteUnit" parameterType="String">
+		DELETE FROM
+		t_unit_base_info WHERE unitId=#{unitId}
+	</delete>
+	
+	<!-- 修改部门信息 -->
+	<update id="updateUnit" parameterType="TBaseUnitInfo">
+	update t_unit_base_info
+		<set>
+			<!-- <if test="unitId!=null">
+				unitId=#{unitId},
+			</if> -->
+			<if test="unitName!=null">
+				unitName=#{unitName},
+			</if>
+			<!-- <if test="upUnitId!=null">
+				upUnitId=#{upUnitId},
+			</if> -->
+			<if test="description!=null">
+				description=#{description},
+			</if>
+			</set>
+				where unitId=#{unitId}
+	</update>
+	
+	<!-- 根据unitId查询部门信息 -->
+	<select id="getUnitByUnitId" parameterType="String" resultType="TBaseUnitInfo">
+		SELECT unitId,unitName,upUnitId,description
+		FROM t_unit_base_info where unitId=#{unitId}
+	</select>
+
+	<!-- 根据upUnitId查询部门信息 -->
+	<select id="getUnitByUpUnitId" parameterType="String" resultType="TBaseUnitInfo">
+		SELECT unitId,unitName,upUnitId,description
+		FROM t_unit_base_info where upUnitId=#{upUnitId}
+	</select>
+	
+	<!-- 按条件查询部门 -->
+	<select id="getUnitByConditon" parameterType="map" resultType="TBaseUnitInfo">
+		SELECT unitId,unitName,upUnitId,description
+		FROM t_unit_base_info
+		<where>
+			<if test="unitId!=null &amp;&amp; unitId !='' ">
+				unitId=#{unitId}
+			</if>
+			<if test="unitName!=null &amp;&amp; unitName!=''">
+				AND unitName LIKE concat(concat('%',#{unitName}),'%');
+			</if>
+		</where>
+	</select>
+	
+	<!-- 根据上级部门Id查询下一个要插入的下一级部门Id -->
+	<select id="getNextUnitId" parameterType="String" resultType="String">
+		SELECT MAX(unitId) FROM t_unit_base_info WHERE
+		upUnitId=#{upUnitId}
+	</select>
+</mapper>

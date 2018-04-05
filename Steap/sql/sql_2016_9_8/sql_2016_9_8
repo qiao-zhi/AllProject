@@ -1,0 +1,12 @@
+/**
+ * alter by yachao at 09:49
+ */
+#修改图片当前名称的长度(40->50)
+ALTER TABLE t_pictures_index MODIFY COLUMN currentName VARCHAR(50);
+
+#修改会议名称长度(30->60)
+ALTER TABLE t_meeting_base_info MODIFY COLUMN meetingName VARCHAR(60);
+#修改会议通知索引(40->50)
+ALTER TABLE t_meeting_base_info MODIFY COLUMN meetingNotice VARCHAR(50);
+#修改会议地点长度(30->60)
+ALTER TABLE t_meeting_base_info MODIFY COLUMN meetingPlace VARCHAR(60);

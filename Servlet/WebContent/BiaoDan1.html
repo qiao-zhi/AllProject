@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript">
+function dosubmit(){
+    var in=document().getElementById("ss");
+    in.disabled="disabled";
+	return true;
+}
+</script>
+</head>
+<body>
+<form action=""  method="post" onsubmit="return dosubmit()">
+用户名 :<input type="text" name="name"><br/><br/>
+<input id="ss" type="submit" value="提交" / >
+</form>
+</body>
+</html>

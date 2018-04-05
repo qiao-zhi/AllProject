@@ -1,0 +1,44 @@
+.block{
+	padding-left:7%;
+}
+.block .label_left{
+	width:40%;
+}
+.block .label_right{
+	width:50%;
+}
+.commit{
+	/* margin-right: 122px; */
+		padding-right:8%;
+}
+.commit button{
+	width:100px;
+	height:32px;
+	margin-left:18px;
+}
+.modal_bar .search_bar_input{
+	width:38%;
+}
+.modal_bar button{
+	width:15%;
+}
+.modal-dialog{
+	width:800px;
+	height:1200px;
+}
+.select{
+	margin-bottom:5px;
+	padding-right:8%;
+}
+.select button{
+	width:100px;
+	margin: 4px;
+}
+.mytable{
+	width:84%;
+	margin:0 auto;
+}
+.modal .mytable{
+	width:94%;
+	margin:0 auto;
+}

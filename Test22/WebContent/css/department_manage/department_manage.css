@@ -1,0 +1,9 @@
+.left_tree_info{
+	width: 17%;height: 300px;background-color: #FBFBFB; margin-right: 1%;border: 1px solid #CCCCCC;float: left;
+}
+.left_tree_info_title{
+	font-size: 18px; font-weight: 500 ;padding: 10px 0 0 10px;margin-bottom: -10px;
+}
+.right_table_show{
+	width: 82%; background-color: #FBFBFB;padding: 0 10px;border: 1px solid #CCCCCC;float: left;
+}

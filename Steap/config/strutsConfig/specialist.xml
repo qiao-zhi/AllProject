@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="specialist" extends="json-default">
+		
+		<action name="selectSpecAccountById" class="com.thinkPro.steap.action.specialist.SpecialistAction" method="selectSpecAccountById">
+			<result type="json" />
+		</action>
+		
+		<action name="addAccountForSpec" class="com.thinkPro.steap.action.specialist.SpecialistAction" method="addAccountForSpec">
+			<result type="json" />
+		</action>
+		
+		<action name="deleteAccountForSpec" class="com.thinkPro.steap.action.specialist.SpecialistAction" method="deleteAccountForSpec">
+			<result type="json" />
+		</action>
+		
+		<action name="showSpecialist" class="com.thinkPro.steap.action.specialist.SpecialistAction" method="ShowSpecialist">
+			<result type="json">
+				<param name="root">specialistList</param>
+			</result>
+		</action>
+		
+		<action name="getdomain" class="com.thinkPro.steap.action.specialist.SpecialistAction" method="getdomain">
+			<result type="json">
+				<param name="root">domains</param>
+			</result>
+		</action>
+		
+		<action name="addSpecialist" class="com.thinkPro.steap.action.specialist.SpecialistAction" method="addSpecialist">
+			<result type="json">
+				<param name="root">specialistId</param>
+			</result>
+		</action>
+		
+		<action name="updateSpecialist" class="com.thinkPro.steap.action.specialist.SpecialistAction" method="updateSpecialist">
+			<result type="json" />
+		</action>
+		
+		<action name="backupSignature" class="com.thinkPro.steap.action.specialist.SpecialistAction" method="backupSignature">
+			<result type="json">
+				<param name="root">signatureCount</param>
+			</result>
+		</action>
+		
+		<action name="deleteSpecialist" class="com.thinkPro.steap.action.specialist.SpecialistAction" method="deleteSpecialist">
+			<result type="json" />
+		</action>
+		
+		<action name="setPassword" class="com.thinkPro.steap.action.specialist.SpecialistAction" method="setPassword">
+			<result type="json" />
+		</action>
+	
+		<action name="searchPageCount" class="com.thinkPro.steap.action.specialist.SpecialistAction" method="searchPageCount">
+			<result type="json">
+				<param name="root">pageCount</param>
+			</result>
+		</action>
+		
+		<action name="isLibrarySpecialist" class="com.thinkPro.steap.action.specialist.SpecialistAction" method="isLibrarySpecialist">
+			<result type="json" />
+		</action>
+		
+		<action name="isSetInitialPass" class="com.thinkPro.steap.action.specialist.SpecialistAction" method="isSetInitialPass">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+	
+</struts>

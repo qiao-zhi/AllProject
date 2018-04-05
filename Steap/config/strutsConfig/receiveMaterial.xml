@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="receiveM" extends="json-default">
+		
+		<!--  第一个模块  登记验收资料  -->
+		
+		<!-- 查询总页数 共用  -->
+		<action name="getPages" class="com.thinkPro.steap.action.receiveMeterial.CommonRM" method="getPages">
+			<result type="json">
+				<param name="root">pageNums</param>
+			</result>		
+		</action>
+		
+		<!-- 第一个界面查询某一页的数据  共用  这是使用ajax查询时使用的-->
+		<action name="searchProjectA" class="com.thinkPro.steap.action.receiveMeterial.CommonRM" method="searchProject">
+			<result type="json">
+				<param name="root">projects</param>
+			</result>	
+		</action>
+		<!-- 这是使用form表单是使用的方法 -->
+		<action name="searchProjectF" class="com.thinkPro.steap.action.receiveMeterial.CommonRM" method="searchProject">
+			<result>/admin/receiveMaterial/registerConfirm.jsp</result>
+		</action>
+		
+		<!-- 第二个个界面查询某一页的数据  共用  这是使用ajax查询时使用的-->
+		<action name="searchProjectC" class="com.thinkPro.steap.action.receiveMeterial.CommonRM" method="projectInAddPage">
+			<result type="json">
+				<param name="root">projectsList</param>
+			</result>	
+		</action>
+		
+		<!-- 条件查询得出总页数 -->
+		<action name="searchPaging" class="com.thinkPro.steap.action.receiveMeterial.CommonRM" method="getpPageNums">
+			<result type="json">
+				<param name="root">totalPage</param>
+			</result>	
+		</action>
+		
+		<!-- 后两个页面查询某一页的数据 共用  这是使用 ajax查询使用的-->		
+		<action name="searchProject2A" class="com.thinkPro.steap.action.receiveMeterial.CommonRM" method="searchProject2">
+			<result type="json">
+				<param name="root">result</param>
+			</result>	
+		</action>
+		<!-- 这是使用form表单查询的方法 -->
+		<action name="searchProject2F" class="com.thinkPro.steap.action.receiveMeterial.CommonRM" method="searchProject2">
+			<result>/admin/receiveMaterial/getInvestigate.jsp</result>
+		</action>
+		<!-- 这是最后一个查询某一页的数据 这是使用 ajax查询使用的-->
+		<action name="searchProject3A" class="com.thinkPro.steap.action.receiveMeterial.CommonRM" method="searchProject3">
+			<result type="json">
+				<param name="root">result</param>
+			</result>	
+		</action>
+		<!-- 这是使用form表单查询的方法 -->
+		<action name="searchProject3F" class="com.thinkPro.steap.action.receiveMeterial.CommonRM" method="searchProject3">
+			<result>/admin/receiveMaterial/EnterpriseInvestigate.jsp</result>
+		</action>
+		
+		
+		<!-- 保存登记资料 -->
+		<!-- <action name="saveMaterial" class="com.thinkPro.steap.action.receiveMeterial.RegisterMaterial">
+			<result>/admin/receiveMaterial/registerConfirm.jsp</result>
+		</action> -->
+		<action name="saveMaterial" class="com.thinkPro.steap.action.receiveMeterial.RegisterMaterial">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<!-- 通过项目Id删除当前项目 -->
+		<action name="deleteCurrentP" class="com.thinkPro.steap.action.receiveMeterial.RegisterMaterial" method="deleteProject">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<!-- 查询项目Id是否重复 -->
+		<action name="isRepeats" class="com.thinkPro.steap.action.receiveMeterial.RegisterMaterial" method="isProjectIdRepeat">
+			<result type="json">
+				<param name="root">isRepeat</param>
+			</result>
+		</action>
+		
+		<!-- 确定负责部门 -->
+		<!-- <action name="saveDepartment" class="com.thinkPro.steap.action.receiveMeterial.ConfirmDepartment">
+			<interceptor-ref name="defaultStack" />
+            <interceptor-ref name="token" />
+			<result name="invalid.token">/error.jsp</result> 
+			<result>/admin/receiveMaterial/registerConfirm.jsp</result>
+		</action> -->
+		<action name="saveDepartment" class="com.thinkPro.steap.action.receiveMeterial.ConfirmDepartment">
+			<result type="json">
+				<param name="root">save</param>
+			</result>
+		</action>
+		
+		<!-- 查询负责部门 -->
+		<action name="searchCharge" class="com.thinkPro.steap.action.receiveMeterial.ConfirmDepartment" method="getCharge">
+			<result type="json">
+    			<param name="root">result</param>  
+    		</result>		
+		</action>
+		<!-- 查找当前的部门树 -->
+		<action name="searchDepartTree" class="com.thinkPro.steap.action.receiveMeterial.ConfirmDepartment" method="searchTree">
+			<result type="json">
+    			<param name="root">unitInfos</param>  
+    		</result>
+		</action>
+		<!-- 查找当前部门的所有员工 -->
+		<action name="searchUsers" class="com.thinkPro.steap.action.receiveMeterial.ConfirmDepartment" method="searchUsers">
+			<result type="json">
+    			<param name="root">userList</param>  
+    		</result>
+    	</action>
+		
+		<!-- 领取验收资料 -->
+		<action name="getMaterial" class="com.thinkPro.steap.action.receiveMeterial.GetMaterial">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<!-- 审查验收资料 -->		
+		<action name="getInvestiogateM" class="com.thinkPro.steap.action.receiveMeterial.InvestigateMaterial">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<!-- 提交企业现场考察文字信息 -->		
+		<action name="enterpriseInvestigate" class="com.thinkPro.steap.action.receiveMeterial.EnterpriseInvestigate" method="saveEnterpriseInfo">
+			<result>/admin/receiveMaterial/EnterpriseInvestigate.jsp</result>
+			<result name="error">/admin/receiveMaterial/EnterpriseInvestigate.jsp</result>
+		</action>
+		
+		<!-- 保存考察图片 -->
+		<action name="investigatePicture" class="com.thinkPro.steap.action.receiveMeterial.EnterpriseInvestigate" method="saveInvestigatePicture">
+			<result>/admin/receiveMaterial/EnterpriseInvestigate.jsp</result>
+		</action>
+		
+		<!-- 保存审计图片 -->
+		<action name="auditPicture" class="com.thinkPro.steap.action.receiveMeterial.EnterpriseInvestigate" method="saveAuditPicture">
+			<result>/admin/receiveMaterial/EnterpriseInput.jsp</result>
+		</action>
+		
+		<!-- 跳转到录入企业考察信息的页面 -->
+		<action name="enteringInfo" class="com.thinkPro.steap.action.receiveMeterial.EnterpriseInvestigate" method="goToEntering">
+			<result>/admin/receiveMaterial/EnterpriseInput.jsp</result>
+		</action>
+		
+		<!-- 查询 -->
+		<action name="viewInvestigate" class="com.thinkPro.steap.action.receiveMeterial.SaveInvestigate">
+			<result>/admin/receiveMaterial/EnterpriseInput.jsp</result>
+		</action>
+		
+		<!-- 删除企业推荐的专家 -->
+		<action name="deleteSpecialistRe" class="com.thinkPro.steap.action.receiveMeterial.SaveInvestigate" method="deleteSpecialistRe">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<!-- 将专家保存到专家库 -->
+		<action name="addSpecialistLib" class="com.thinkPro.steap.action.receiveMeterial.AddSpecialistLib">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="getAllUsers" class="com.thinkPro.steap.action.receiveMeterial.ChooseUser">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="findDomainL" class="com.thinkPro.steap.action.receiveMeterial.FindDomain" >
+			<result type="json">
+				<param name="root">domains</param>
+			</result>
+		</action>
+		
+		<!-- 删除图片 -->
+		<action name="deletePicture" class="com.thinkPro.steap.action.receiveMeterial.SaveInvestigate" method="deletePicture">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<!-- 2017/3/15 新添加的页面，可以查询所有项目的详情 -->
+		<action name="searchAllProject" class="com.thinkPro.steap.action.receiveMeterial.QuickQuery" method="searchAllProject">
+			<result type="json">
+				<param name="root">resultList</param>
+			</result>
+		</action>
+		
+		<!-- 2017/3/15 新添加的页面，可以查询所有项目的总页数 -->
+		<action name="searchAllPageNum" class="com.thinkPro.steap.action.receiveMeterial.QuickQuery" method="searchPageNum">
+			<result type="json">
+				<param name="root">totalPage</param>
+			</result>
+		</action>
+		
+		<!-- 查询项目状态 通过上级编号 -->
+		<action name="getAllStatus"
+			class="com.thinkPro.steap.action.receiveMeterial.QuickQuery" method="getAllStatus">
+			<result type="json">
+				<param name="root">statusList</param>
+			</result>
+		</action>
+	</package>
+</struts>

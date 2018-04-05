@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<!-- <constant name="struts.devMode" value="true"></constant> -->
+    <package name="test2" extends="struts-default">
+		<!-- <action name="formRepeatSub" class="FormRepeat.FormRepeatSub">
+			使用token拦截器
+			<interceptor-ref name="token"></interceptor-ref>
+			使用系统默认拦截
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			正常提交跳转的页面
+        	<result>/message.jsp</result>
+        	重复提交后跳转的页面
+        	<result name="invalid.token">/TokenError.jsp</result>
+        </action> -->
+        
+        
+       <action name="formRepeatSub" class="FormRepeat.FormRepeatSub">
+       		<!-- 改为tokenSession拦截器，这个一般放在前面。出错后不会执行后续拦截器，提高性能 -->
+			<interceptor-ref name="tokenSession"></interceptor-ref>
+			<!-- 使用默认拦截器 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<!-- 跳转的页面，不会做处理，相当于只提交一次 -->
+        	<result>/message.jsp</result>
+        </action> 
+        
+    </package>
+</struts>

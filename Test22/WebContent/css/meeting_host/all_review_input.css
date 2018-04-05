@@ -1,0 +1,66 @@
+.jqte_editor{
+	height: 350px;
+}
+.project_information ,.idea_input ,.personal_idea{
+	width: 910px;
+	padding: 10px 15px;
+	margin: 10px auto;
+	background: #AFD8EE;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+}
+.project_information{
+
+}
+.project_information h4{
+	margin-bottom: 10px;
+}
+
+.info_show label{
+	height: 34px;
+	line-height: 34px;
+	text-align: center;
+	border-bottom: 1px solid #AFD8EE;
+}
+.show_left{
+	width: 140px;
+	background-color: #5CA7BA;
+	float: left;
+	color: white;
+}
+.show_rigth{
+	width: 300px;
+	float: left;
+	background-color: white;
+}
+
+.idea_input{
+	margin-top: 10px;
+}
+.idea_input button{
+	float: right;
+	margin-left: 10px;
+}
+.header_info{
+	height: 36px;
+	line-height: 36px;
+	font-size: 18px;
+	margin-bottom: 5px;
+}
+.title_label{
+	width: 880px;
+	font-size: 16px;
+/*	margin: 15px auto 8px auto; */
+	background-color: #5CA7BA;
+	color: white;
+	text-align: center;
+}
+.opinion_modal{
+	resize: none;
+	width: 880px;
+	height: 160px;
+	padding: 10px 16px;
+}
+.experts_personal{
+	margin-bottom: 15px;
+	border-top: 2px solid #5CA7BA;
+}

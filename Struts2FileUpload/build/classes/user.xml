@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<!-- <constant name="struts.devMode" value="true"></constant> -->
+	
+    <package name="test1" extends="json-default">
+    
+		<action name="jsontest" class="StrutsJSON.JSONtest">
+			<result type="json">
+				<param name="root">map</param>
+			</result>
+		</action>
+			
+        
+    </package>
+    
+    
+ 
+  
+</struts>

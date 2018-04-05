@@ -1,0 +1,115 @@
+@CHARSET "UTF-8";
+
+.strong{
+	font-size: 18px;
+}
+.sign_btn{
+	width: 120px;
+	background-color: #5CA7BA;
+	color: white;
+	float: right;
+	margin-left: 10px;
+	margin-bottom: 8px;
+}
+.wait_review{
+	width: 1024px;
+	background-color: ;
+	margin: 0 auto;
+	padding: 10px 0;
+}
+.meeting_info , .experts_list ,.waiting_review_porject{
+	background-color: #FBFBFB;
+	margin: 10px 30px 30px 30px;
+	padding: 10px;	
+	/*box-shadow: 0 1px 3px rgba(0,0,0,0.35);	*/
+	/*border-radius: 5px;*/
+}
+.experts_list table th{
+	/*border: 1px solid grey;*/
+}
+.experts_list table{
+	margin-top: 20px;
+	border-radius: 5px;
+	
+}
+.wait_review table thead{
+	background-color: #5CA7BA;
+	color: white;
+}
+.experts_list  table tbody{
+	background-color: white;
+}
+.waiting_review_porject table tbody{
+	background-color: white;
+}
+.meeting_information{
+	margin-top: 20px;
+}
+.meeting_information label{
+	height: 34px;
+	line-height: 34px;
+	text-align: center;
+}
+.experts_label_left{
+	width: 320px;
+	
+	/*color: white;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	background-color: #5CA7BA;
+	border: 1px solid #AFD8EE;
+	margin-right: 0;
+	display: inline-block;
+	float: left;*/
+}
+.experts_label_right{
+	width: 620px;
+
+	/*margin-left: 0;	
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border: 1px solid #AFD8EE;
+	display: inline-block;
+	float: left;
+	background-color: white;*/
+}
+
+
+
+.sign_commit{
+	width: 979px;
+	/*background-color: #AFD8EE;*/
+	background-color: #FBFBFB;
+	padding: 30px;
+	margin: 0 auto;
+}
+.sign_commit_pic{
+	width: 909px;
+	height: 700px;
+	overflow: auto;
+	border: 1px solid #CCCCCC;
+}
+.sign_commit input {
+	margin-left: 20px;
+}
+.sign_commit button{
+	margin-right: 10px;
+}
+
+
+/***********ready_host**************/
+
+.chos_active{
+	background-color: #FFFFCC;
+	font-size: 15px;
+}
+.tba_chos{
+	background-color: #AFC1DB;
+}
+
+
+/* by yachao 2016/8/27 at 23:35*/
+a.reviewAndEvaluate:hover {
+	text-decoration : underline;
+	color : #000
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<package name="com.thinkPro.steap.bean.evaluation"/>
+		<package name="com.thinkPro.steap.bean.material"/>
+		<package name="com.thinkPro.steap.bean.meeting"/>  
+		<package name="com.thinkPro.steap.bean.project"/>
+		<package name="com.thinkPro.steap.bean.specialist"/>
+		<package name="com.thinkPro.steap.bean.sys.dic"/>
+		<package name="com.thinkPro.steap.bean.sys.log"/>
+		<package name="com.thinkPro.steap.bean.sys.module"/>
+		<package name="com.thinkPro.steap.bean.sys.unit"/>
+		<package name="com.thinkPro.steap.bean.sys.user"/>
+	</typeAliases>
+</configuration>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;bean.emp&apos; to &apos;Emp&apos;&#x0D;&#x0A;- Original project: &apos;Oraclefenye&apos;&#x0D;&#x0A;- Original element: &apos;bean.emp&apos;&#x0D;&#x0A;- Renamed element: &apos;bean.Emp&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Rename similarly named elements&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;emp&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;bean{emp.java[emp" matchStrategy="1" name="Emp" qualified="false" references="true" similarDeclarations="true" stamp="1499997537978" textual="true" version="1.0"/>
+</session>

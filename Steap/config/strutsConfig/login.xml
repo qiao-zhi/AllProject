@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="login" extends="struts-default">
+		<!-- 定义验证码拦截器 -->
+		<interceptors>
+			<interceptor name="verifyInterceptor" class="com.thinkPro.steap.action.login.VerifyInterceptor"></interceptor>
+		</interceptors>
+		
+		<!-- 向页面传送一个验证码 -->
+		<action name="verify" class="com.thinkPro.steap.action.login.ProduceVerify">
+			<result name="success" type="stream">
+				 <param name="inputName">imageStream</param>  
+			</result>
+		</action>
+		
+		<!-- 验证用户名密码 -->
+		<action name="login" class="com.thinkPro.steap.action.login.Login">
+			<interceptor-ref name="defaultStack"/>
+			<interceptor-ref name="verifyInterceptor"></interceptor-ref>
+			<result>admin/home/home.jsp</result>
+			<result name="specialist">admin/evaluation/specialist_evaluation.jsp</result>
+			<!-- <result name="hostMeeting">admin/host/host_meeting.jsp</result> -->
+			<result name="login">admin/login/login.jsp</result>
+			
+		</action>
+		
+		<action name="logout" class="com.thinkPro.steap.action.login.Login" method="logout">
+			<result>admin/login/login.jsp</result>
+		</action>
+	</package>
+</struts>

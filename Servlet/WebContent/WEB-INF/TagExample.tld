@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd" >
+<taglib>
+  <tlib-version>tlib-version</tlib-version>
+  <jsp-version>2.2</jsp-version>
+  <short-name>short-name</short-name>
+  
+  
+    <!-- 防盗链标签（控制某些页面是否输出） -->
+  <tag>
+    <name>referer</name>
+    <tag-class>TagExample.fangdaolian</tag-class>
+    <body-content>scriptless</body-content>
+    <attribute>
+        <name>site</name>
+        <required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    
+    <attribute>
+        <name>page</name>
+        <required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>    
+  </tag>
+  
+  
+    <!-- if判断标签(判断某些标签是否输出)-->
+  <tag>
+    <name>if</name>
+    <tag-class>TagExample.IfTag</tag-class>
+    <body-content>scriptless</body-content>
+    <attribute>
+        <name>test</name>
+        <required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>   
+  </tag>  
+  
+  
+  
+    <!-- if...else(带父标签)标签定义 -->
+  <tag>
+    <name>choose</name>
+    <tag-class>TagExample.Choose</tag-class>
+    <body-content>scriptless</body-content>
+    <attribute>
+        <name>isDo</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>   
+  </tag>  
+  
+  <tag>
+    <name>ChooseIf</name>
+    <tag-class>TagExample.ChooseIfTag</tag-class>
+    <body-content>scriptless</body-content>
+    <attribute>
+        <name>test</name>
+        <required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>   
+  </tag>  
+  
+  <tag>
+    <name>else</name>
+    <tag-class>TagExample.ChooseElse</tag-class>
+    <body-content>scriptless</body-content>  
+  </tag>  
+  
+  <tag>
+    <name>IteratorList</name>
+    <tag-class>TagExample.IteratorList</tag-class>
+    <body-content>scriptless</body-content>  
+    <attribute>
+       <name>items</name>
+       <required>true</required>
+       <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    
+    <attribute>
+       <name>var</name>
+       <required>true</required>
+       <rtexprvalue>true</rtexprvalue>
+    </attribute>    
+  </tag>    
+  
+  
+  <!-- 循环遍历集合，数组与对象数组 （重复输出标签）-->
+  <tag>
+    <name>foreach</name>
+    <tag-class>TagExample.IteratorAll</tag-class>
+    <body-content>scriptless</body-content>  
+    <attribute>
+       <name>items</name>
+       <required>true</required>
+       <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    
+    <attribute>
+       <name>var</name>
+       <required>true</required>
+       <rtexprvalue>true</rtexprvalue>
+    </attribute>    
+  </tag>   
+  
+  
+  <!-- HTML转义(修改标签体) -->
+  <tag>
+    <name>html</name>
+    <tag-class>TagExample.HTMLbiaoqian</tag-class>
+    <body-content>scriptless</body-content>     
+  </tag>      
+  
+  
+  
+  
+</taglib>

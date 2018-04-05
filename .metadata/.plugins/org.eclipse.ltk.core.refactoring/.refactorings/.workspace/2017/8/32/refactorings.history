@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;solr_websolr&apos; to &apos;lucene_solr_websolr&apos;" description="Rename resource &apos;solr_websolr&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/solr_websolr" name="lucene_solr_websolr" stamp="1502375435298" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;solrJ&apos; to &apos;lucene&amp;solrJ&apos;" description="Rename resource &apos;solrJ&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/solrJ" name="lucene&amp;solrJ" stamp="1502461142578" updateReferences="true"/>
+</session>

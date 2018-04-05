@@ -1,0 +1,36 @@
+#div1{
+	width: 200px;
+	height: 300px;
+	border: 0px solid gray;
+	box-shadow: 2px 2px gray;
+	float: left;
+	margin: 10px;
+/*	background: red;*/
+}
+#div1:hover{box-shadow: 5px 5px gray;}
+#person{
+	
+	width: 200px;
+	height: 150px;
+/*	background: yellow;*/
+	text-align: center;
+	line-height: 150px;
+	
+	
+}
+#img{Border-radius:50px 50px;    
+	margin-top: 25px
+
+	
+	
+}
+#biaoti{
+	text-align: center;
+    padding-top:0px ;}
+    p{font-size: 15px;}
+#duanluo{margin-left:75px ;
+margin-top:-15px ;
+display: block;}
+#neirong{font-size: 12px;
+     display: block;
+     margin-left:5px ;}

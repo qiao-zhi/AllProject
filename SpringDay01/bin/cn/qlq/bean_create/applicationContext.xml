@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd ">
+	
+	<!-- 第一种创建对象方法的配置 （空参构造创建）-->
+	<bean name="user" class="cn.qlq.bean.User" scope="singleton" 
+	init-method="init" destroy-method="destroy"></bean>
+	
+		<!-- 第二种创建对象方法的配置 （工厂静态方法创建）-->
+	<bean name="user2" class="cn.qlq.bean_create.UserFactory" factory-method="userCreate"></bean>
+
+
+		<!-- 第三种创建对象方法的配置 （工厂对象的方法创建）-->
+	<bean name="userFactory" class="cn.qlq.bean_create.UserFactory"></bean>	
+	<bean name="user3" factory-bean="userFactory" factory-method="userCreate1"></bean>
+
+	<!-- 引入其他配置文件 -->
+    <import resource="cn/qlq/bean_create/applicationContext.xml"/>
+</beans>

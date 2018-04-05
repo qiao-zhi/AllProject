@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:p="http://www.springframework.org/schema/p"
+ xmlns="http://www.springframework.org/schema/beans" 
+ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd ">
+	
+	<!-- 将User对象添加到配置文件 -->
+	<!-- bean元素:配置交给spring容器的对象
+	        name:给被管理对象起的名字，获得对象时可以直接使用
+	                               可以重复，支持特殊字符。
+	        class:对象的完整类名，用于映射 对象	
+	        id：与name作用一样，不能重复，不支持特殊字符（、-%&）
+	 -->
+	 <!-- set方法注入，每个属性都有对应的get与set方法 -->
+	<bean name="user" class="cn.qlq.injection.User" >
+		<!-- 普通数值类型 -->
+		<property name="name" value="QLQ"></property>
+		<property name="age" value="18"></property>
+		<!-- 对象类型，ref指向下面配置的bean元素 -->
+		<property name="car" ref="car"></property>
+	</bean>
+	
+	<bean name="car" class="cn.qlq.injection.Car">
+		<property name="name" value="兰博基尼"></property>
+		<property name="color" value="屎黄"></property>
+	</bean>
+	
+	<!-- =====================构造方法注入========================== -->
+	<bean name="user1" class="cn.qlq.injection.User">
+		<!-- 基本类型参数 -->
+		<!-- name:参数名字 -->
+		<!-- index:参数索引 -->
+		<!-- value:参数值 -->
+		<!-- type:参数类型 -->
+		<constructor-arg name="name" value="1995" index="1" type="java.lang.Integer"></constructor-arg>
+		<!-- 对象参数 -->
+		<constructor-arg name="car" ref="car"></constructor-arg>
+	</bean>
+	
+	<!-- =====================p名称命名空间注入========================== -->
+	<bean name="user2" class="cn.qlq.injection.User" p:name="WJY" p:age="25" p:car-ref="car">
+	</bean>
+	
+	
+	<!-- =====================spel spring expression language注入========================== -->
+	<bean name="user3" class="cn.qlq.injection.User" >
+		<property name="name" value="#{user.name}"></property>
+		<property name="age" value="#{user2.age}"></property>
+		<!-- 引用型属性不支持spel -->
+		<property name="car" ref="car"></property>
+	</bean>
+	
+	
+	
+	<!-- =====================集合类型注入========================== -->
+	<bean name="cb" class="cn.qlq.injection.CollectionBean">
+		<!-- 单个值的数组注入方式
+		<property name="arr" value="单个值的数组"></property>
+		 -->
+		<property name="arr">
+			<array>
+				<value>aaaa</value>
+				<value>bbbb</value>
+				<ref bean="car"/>      <!-- 数组中加入对象值 -->
+			</array>
+		</property> 
+		
+		<!-- 注入List集合, -->
+		<!-- 单个值的数组注入方式
+		<property name="list" value="单个值的list"></property>
+		 -->
+		<property name="list">
+			<list>
+				<value>AAAA</value>
+				<value>BBBB</value>
+				<ref bean="car"/>      <!-- 数组中加入对象值 -->
+			</list>
+		</property>
+		
+		<!-- Map注入 -->
+		<property name="map">
+			<map>
+				<entry key="AAA" value="3个A"></entry>
+				<entry key="引用" value-ref="car"></entry>
+				<entry key-ref="user1" value-ref="user3"></entry>
+			</map>
+		</property>
+		
+		<!-- properties注入方式 -->
+		<property name="prop">
+			<props>
+				<prop key="URL">jdbc</prop>
+				<prop key="name">sa</prop>
+				<prop key="password">123456</prop>
+			</props>
+		</property>
+		
+		
+	</bean>
+	
+	
+</beans>

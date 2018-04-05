@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.action.extension" value="action" />
+	<constant name="struts.objectFactory" value="spring"></constant>
+
+	<package name="liuyan" namespace="/" extends="struts-default,json-default">
+
+		<action name="liu_*" class="liuyanAction" method="{1}">
+			<result name="chaxun">/liuyan.jsp </result>
+			<result type="json" name="add">
+				<param name="root">addResult</param>
+			</result>
+		</action>
+
+
+
+
+
+	</package>
+
+
+
+
+</struts>

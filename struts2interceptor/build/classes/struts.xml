@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+     <!-- 
+     package的名字必须唯一！只能拦截.action请求
+        默认值:class:com.opensymphony.xwork2.ActionSupport
+         method:execute         
+         result的name属性:success   方法中返回success即可跳转到结果对应的页面
+        
+        
+ -->
+   
+    
+    
+    <!-- 第一个package命名空间 -->
+    <package name="intercept" namespace="/" extends="struts-default">
+
+        <!-- 拦截器 -->
+        <interceptors>
+        	<!-- 定义刚才的拦截器 -->
+            <interceptor name="permission" class="Action.PrivelegeInterceptor"></interceptor>
+            <!-- 定义拦截器栈 -->
+            <interceptor-stack name="permissionStack">
+                 <!-- 拦截器栈里面可以引用另外一个拦截器，也可以引用另外一个拦截器栈 -->
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+                <interceptor-ref name="permission"></interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <action name="user_*" class="Action.UserAction" method="{1}">
+           <result>/index.jsp</result> 
+           <result name="logon">/msg.jsp</result>
+           <!-- 使用拦截器栈 -->
+           <interceptor-ref name="permissionStack"></interceptor-ref>
+        </action>
+    </package> 
+    
+    
+ 
+  
+</struts>

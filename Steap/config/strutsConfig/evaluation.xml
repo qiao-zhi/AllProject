@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.multipart.maxSize" value="524288000" />
+	
+	<package name="evaluation" namespace="/" extends="json-default" >
+		<action name="updateSystemLoginPassAction" class="com.thinkPro.steap.action.evaluation.specialist.UpdateSystemLoginPassAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="findEvaluatedCountAction" class="com.thinkPro.steap.action.evaluation.current.FindEvaluatedCountAction">
+			<result type="json">
+				<param name="root">count</param>
+			</result>
+		</action>
+		
+		<action name="findSpecialistInfoAction" class="com.thinkPro.steap.action.evaluation.specialist.FindSpecialistInfoAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="getSignatureAction" class="com.thinkPro.steap.action.evaluation.specialist.FindSpecialistInfoAction"
+			method="getSignature">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="updateSpecialistInfoAction" class="com.thinkPro.steap.action.evaluation.specialist.UpdateSpecialistInfoAction">
+			<result>admin/evaluation/specialistInfo.jsp</result>
+		</action>
+		
+		<action name="updateSignatureAction" class="com.thinkPro.steap.action.evaluation.specialist.UpdateSignatureAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="updateSignaturePassAction" class="com.thinkPro.steap.action.evaluation.specialist.UpdateSignaturePassAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="findEvaluationMeetingInfoAction" class="com.thinkPro.steap.action.evaluation.current.FindEvaluationMeetingInfoAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="findSpecialistListAction" class="com.thinkPro.steap.action.evaluation.current.FindSpecialistListAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="findEvaluatedProjectAction" class="com.thinkPro.steap.action.evaluation.project.FindEvaluatedProjectAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="getProjectNamesAction" class="com.thinkPro.steap.action.evaluation.project.FindEvaluatedProjectAction"
+			method="getProjectNames">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="checkIfExistSignatureAction" class="com.thinkPro.steap.action.evaluation.current.CheckIfExistSignatureAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="checkIfExistSignPassAction" class="com.thinkPro.steap.action.evaluation.current.CheckIfExistSignatureAction"
+			method="checkIfExistSignPass">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="getSignaturePass" class="com.thinkPro.steap.action.evaluation.specialist.FindSpecialistInfoAction" method="getSignaturePass">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="signCommitmentAction" class="com.thinkPro.steap.action.evaluation.current.SignCommitmentAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="findProjectMaterialAction" class="com.thinkPro.steap.action.evaluation.current.FindProjectMaterialAction">
+			<result>admin/evaluation/evaluation_main.jsp</result>
+		</action>
+		
+		<action name="findEvaluationInfoAction" class="com.thinkPro.steap.action.evaluation.current.FindEvaluationInfoAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+ 		<action name="entryEvaluationInfoAction" class="com.thinkPro.steap.action.evaluation.current.EntryEvaluationInfoAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+ 		<action name="findPastProjectAction" class="com.thinkPro.steap.action.evaluation.past.FindPastProjectAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>		
+		</action>
+
+	</package>
+	
+		
+ 	<package name="host-main" namespace="/" extends="json-default">
+ 		<action name="updateHostLoginPassAction" class="com.thinkPro.steap.action.host.pass.UpdateHostLoginPassAction">
+ 			<result type="json">
+ 				<param name="root">result</param>
+ 			</result>
+ 		</action>
+ 	
+ 		<action name="reveneMeetingListAction" class="com.thinkPro.steap.action.host.revene.ReveneMeetingAction" method="reveneMeetingList">
+ 			<result type="json">
+ 				<param name="root">result</param>
+ 			</result>
+ 		</action>
+ 		
+ 		<action name="checkReveneMeetingCountAction" class="com.thinkPro.steap.action.host.revene.ReveneMeetingAction" method="checkReveneMeetingCount">
+ 			<result type="json">
+ 				<param name="root">result</param>
+ 			</result>
+ 		</action>
+ 		
+ 		<action name="reveneMeetingAction" class="com.thinkPro.steap.action.host.revene.ReveneMeetingAction">
+ 			<result type="json">
+ 				<param name="root">result</param>
+ 			</result>
+ 		</action>
+ 	
+ 		<action name="findMeetingInfoAction" class="com.thinkPro.steap.action.host.meeting.FindMeetingInfoAction">
+ 			<result type="json">
+ 				<param name="root">result</param>
+ 			</result>
+ 		</action>
+ 	
+		<action name="findSpecialistGroupAction" class="com.thinkPro.steap.action.host.current.FindSpecialistGroupAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+ 		<action name="findProjectEvaluationInfoAction" class="com.thinkPro.steap.action.host.current.FindProjectEvaluationInfoAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>					
+		</action>
+		
+		<action name="findProjectPartInfoAction" class="com.thinkPro.steap.action.host.current.FindProjectPartInfoAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+		<action name="entryEvaluationResultAction" class="com.thinkPro.steap.action.host.current.EntryEvaluationResultAction">
+			<result>admin/evaluation/evaluatedProject.jsp</result>
+		</action>
+		
+		<action name="findEvaluationResultAction" class="com.thinkPro.steap.action.host.current.FindEvaluationResultAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+		<action name="findPresidedMeetingAction" class="com.thinkPro.steap.action.host.past.FindPresidedMeetingAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+			
+	<package name="host-sub" namespace="/" extends="json-default">
+		<action name="setLeaderAction" class="com.thinkPro.steap.action.host.current.SetLeaderAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="generatePassAction" class="com.thinkPro.steap.action.host.current.GeneratePassAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="finishMeetingAction" class="com.thinkPro.steap.action.host.current.FinishMeetingAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="findProjectCurrentStatusAction" class="com.thinkPro.steap.action.host.current.FindProjectCurrentStatusAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>		
+		</action>
+		
+	</package>
+</struts>

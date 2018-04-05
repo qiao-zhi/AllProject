@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkPro.steap.db.mapper.verify.VerifyMapper">
+
+	<!-- 根据项目编号查询审核资料完善说明 -->
+	<select id="getCompleteDescription" parameterType="String"
+		resultType="String">
+		select completeDescription from project_verify where
+		projectId=#{projectId};
+	</select>
+	<!-- 根据项目编号获得完善资料的信息 -->
+	<select id="getMaterial" parameterType="String" resultType="Material">
+		SELECT originalName,uploadTime,fileSize,fileId,dictionaryOptionName
+			   fileType,currentName,remark
+		FROM v_complete_material_file cmf, dic_system_dictionary dic
+		WHERE projectId=#{projectId}
+			 AND cmf.fileType=dic.dictionaryOptionId
+			 AND (cmf.fileType between '300002' and '300008') 
+		order by uploadTime DESC;
+	</select>
+
+	<!-- 根据项目编号查询最新的审核信息 -->
+	<select id="getLastVerifyInfoByPid" parameterType="String"
+		resultType="map">
+		select verifyId,completeDescription, (
+		SELECT NAME
+		FROM t_user_base_info
+		WHERE userId = project_verify.verifyPerson
+		) AS verifyPerson,verifyDate,verifyResult,remark from project_verify
+		where verifyId IN(SELECT max(verifyId) FROM project_verify WHERE
+		projectId=#{projectId});
+	</select>
+	
+	<select id="getVerifyInfoList" parameterType="String" resultType="map">
+		 select completeDescription,verifyId
+ 		 from project_verify
+  		 where projectId=#{projectId}
+	     GROUP BY verifyId ASC
+	</select>
+
+	<!-- 查询指定项目上传的最新完善资料 -->
+	<select id="getLastCompleteMnum" parameterType="String"
+		resultType="String">
+		select verifyFileNum from project_verify where verifyId in
+		(select max(verifyId) from project_verify where projectId =
+		#{projectId});
+	</select>
+	<!-- 查询指定项目上传的最新完善资料 -->
+	<select id="getLastCompleteMByPid" parameterType="Map"
+		resultType="map">
+		SELECT originalName,uploadTime,fileSize,cm.fileId fileId,
+			(SELECT dictionaryOptionName
+			 FROM dic_system_dictionary
+			 WHERE dictionaryOptionId = f.fileType) AS fileType,
+			currentName, remark
+		FROM complete_material cm, t_files_index f
+		WHERE cm.fileId = f.fileId 
+			AND cm.projectId = #{projectId}
+			AND f.remark=0
+		ORDER BY cm.fileId DESC
+	</select>
+
+	<!-- 插入完善资料的审核信息 -->
+	<update id="updateVerify" parameterType="ProjectVerify">
+		UPDATE project_verify SET
+		verifyPerson=#{verifyPerson},verifyDate=DATE_FORMAT(#{verifyDate},'%Y-%m-%d
+		%H:%i:%S'),verifyResult=#{verifyResult}
+		WHERE verifyId=#{verifyId} and
+		projectId=#{projectId}
+	</update>
+
+	<!-- 插入完善资料的审核信息 -->
+	<insert id="insertVerify" parameterType="ProjectVerify">
+		insert into project_verify(projectId,verifyPerson,verifyDate,verifyResult)
+		values(#{projectId},#{verifyPerson},DATE_FORMAT(#{verifyDate},'%Y-%m-%d
+		%H:%i:%S'),#{verifyResult});
+	</insert>
+	
+	<!-- 新增表结构后的sql语句针对审核进行的操作 -->
+	<!-- by yachao 2016/9/14 at 01:22 -->
+	<!-- 录入完善审核关联集合 -->
+	<insert id="insertCompleteVerify" parameterType="map">
+		insert into complete_verify(verifyId, completeId)
+			values(#{verifyId}, #{completeId})
+	</insert>
+	
+	<!-- 根据材料Id删除完善资料审核记录 -->
+	<delete id="deleteCompleteVerifyByMaterialId" parameterType="String">
+		delect from complete_verify where completeId=#{completeId}
+	</delete>
+	
+	<!-- 根据审核Id删除全部完善资料文件审核记录 -->
+	<delete id="deleteCompleteVerifyByVerifyId" parameterType="String">
+		delete from complete_verify where verifyId=#{verifyId}
+	</delete>	
+	
+	<!-- 根据项目Id获取最新的项目审核材料 -->
+	<select id="getLatestVMByProjectId" parameterType="String" resultType="map">
+		select originalName, currentName, uploadTime, fileSize, fileId, 
+			   (select dictionaryOptionName from dic_system_dictionary dic where dictionaryOptionId=vcmf.fileType )as fileType, remark
+		from v_complete_material_file vcmf
+		where completeId in 
+			(select completeId 
+			 from complete_verify cv, project_verify pv 
+			 where cv.verifyId=pv.verifyId and pv.verifyId=
+			 (select MAX(verifyId) from project_verify where projectId=#{projectId})) 
+	</select>	
+	
+	<!-- 根据项目Id查询出来全部项目审核记录 -->
+	<select id="getAllVerifyInfoByProjectId" parameterType="String" resultType="map">
+		select verifyId, completeDescription, 
+			  (select name from t_user_base_info where userId=verifyPerson) as verifyPerson,
+			   DATE_FORMAT(verifyDate, '%Y-%m-%d') as verifyDate, verifyResult
+	    from project_verify
+	    where projectId=#{projectId}
+	</select>
+	
+	<!-- 根据项目Id查询出来全部项目审核材料 -->
+	<select id="getAllVMByProjectId" parameterType="String" resultType="map">
+		select originalName, currentName, uploadTime, fileSize, 
+			  (select dictionaryOptionName from dic_system_dictionary where dictionaryOptionId=cm.fileType) as fileType,
+			  (select verifyId from complete_verify cv where cv.completeId=cm.completeId) as verifyId 
+		from v_complete_material_file cm
+		where cm.projectId=#{projectId}
+	</select>
+</mapper>

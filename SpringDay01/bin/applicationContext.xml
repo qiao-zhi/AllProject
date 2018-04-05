@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd ">
+	
+	<!-- 将User对象添加到配置文件 -->
+	<!-- bean元素:配置交给spring容器的对象
+	        name:给被管理对象起的名字，获得对象时可以直接使用
+	                               可以重复，支持特殊字符。
+	        class:对象的完整类名，用于映射 对象	
+	        id：与name作用一样，不能重复，不支持特殊字符（、-%&）
+	 -->
+	<bean name="user" class="cn.qlq.bean.User"></bean>
+
+</beans>

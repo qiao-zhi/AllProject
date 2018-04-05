@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+<constant name="struts.i18n.encoding" value="UTF-8" />
+    
+	<package name="meetingPrepare" extends="json-default">
+		<!--点击“验收会议管理”时，默认的action ，查询全部会议信息-->
+		<action name="toMeetingManagePage" class="com.thinkPro.steap.action.meeting.MeetingManage"
+			method="toMeetingManagePage">
+			<result>/admin/meeting/meetingManage.jsp</result>
+		</action>
+		
+		<!-- 跳转到资料编制主页面 -->
+		<action name="toMeetingManagePage2" class="com.thinkPro.steap.action.meeting.MeetingManage2"
+			method="toMeetingManagePage2">
+			<result>/admin/meeting/meetingManage2.jsp</result>
+		</action>
+		
+		
+		<!-- 通知企业 -->
+		<action name="enterNotify" class="com.thinkPro.steap.action.meeting.MeetingManage2"
+			method="enterNotify">
+			<result>/admin/meeting/enterNotify.jsp</result>
+		</action>
+		
+		
+		<!-- 企业准备资料上传 -->
+		<action name="enterPreMaterial" class="com.thinkPro.steap.action.meeting.MeetingManage2"
+			method="enterPreMaterial">
+			<result>/admin/meeting/enterPreMaterial.jsp</result>
+		</action>
+		
+		<!-- 资料方面根据条件查询会议基本信息 -->
+		<action name="searchMeetingInfo2" class="com.thinkPro.steap.action.meeting.MeetingManage2"
+			method="searchMeetingInfo2">
+			<result>/admin/meeting/meetingManage2.jsp</result>
+		</action>
+		
+
+       <!-- 根据条件查询会议基本信息 -->
+		<action name="searchMeetingInfo"
+			class="com.thinkPro.steap.action.meeting.SearchMeetingInfo" method="searchMeetingInfo">
+			<result>/admin/meeting/meetingManage.jsp</result>
+		</action>
+		
+		
+       <!-- 根据分页条件查询会议 -->
+		<action name="searchMeetingForPage"
+			class="com.thinkPro.steap.action.meeting.SearchMeetingInfo" method="searchMeetingForPage">
+			<result>/admin/meeting/meetingManage2.jsp</result>
+		</action>
+		
+		
+		 <!-- 根据分页条件查询会议 -->
+		<action name="searchMeetingForPage2"
+			class="com.thinkPro.steap.action.meeting.MeetingManage" method="searchMeetingForPage2">
+			<result>/admin/meeting/meetingManage.jsp</result>
+		</action>
+		
+
+		<!-- 点击创建会议按钮 -->
+		<action name="toChooseProjectPage"
+			class="com.thinkPro.steap.action.meeting.ToChooseProjectPage" method="toChooseProjectPage">
+			<result>/admin/meeting/chooseProject.jsp</result>
+		</action>
+		
+		<!-- 查看项目信息的分页 -->
+		<action name="searchProjectForPage"
+			class="com.thinkPro.steap.action.meeting.ToChooseProjectPage" method="searchProjectForPage">
+			<result type="json">
+				<param name="root">projectInfoResultList</param>
+			</result>
+		</action>
+		
+		
+
+		<action name="searchProjectInfo2"
+			class="com.thinkPro.steap.action.meeting.ToChooseProjectPage" method="searchProjectInfo2">
+			<!-- <result>/admin/meeting/chooseProject.jsp</result> -->
+			<result type="json">
+				<param name="root">map</param>
+			</result>
+		</action>
+
+		<action name="saveMeeting" class="com.thinkPro.steap.action.meeting.CreatMeeting"
+			method="saveMeeting">
+			<result type="json">
+				<param name="root">status</param>
+			</result>
+
+		</action>
+
+		<!--创建会议时，选择项目页面的 “查看” 按钮action -->
+		<action name="LookProjectInfo"
+			class="com.thinkPro.steap.action.meeting.LookProjectInfo" method="lookProjectInfo">
+			<result>/admin/meeting/lookProjectInfo.jsp</result>
+		</action>
+
+       <!-- 查看会议信息 -->
+		<action name="lookMeetingInfo"
+			class="com.thinkPro.steap.action.meeting.SearchMeetingInfo" method="lookMeetingInfo">
+			<result>/admin/meeting/meetingInfo.jsp</result>
+		</action>
+		
+		<!-- 查看会议时的查询项目信息 -->
+		<action name="lookMeetingProjectInfo"
+			class="com.thinkPro.steap.action.meeting.SearchMeetingInfo" method="lookMeetingProjectInfo">
+			<result type="json">
+				<param name="root">mapInfo</param>
+			</result> 
+		</action>
+
+     <!-- “确定专家”按钮 -->
+		<action name="toChooseSpecialistPage"
+			class="com.thinkPro.steap.action.meeting.ConfirmSpecialist" method="toChooseSpecialistPage">
+			<result>/admin/meeting/confirmSpecialist.jsp</result>
+			
+		</action>
+
+     <!-- 查看单个项目的推荐专家 -->
+		<action name="lookSpecialist"
+			class="com.thinkPro.steap.action.meeting.ConfirmSpecialist" method="lookSpecialist">
+			<!-- <result>/admin/meeting/confirmSpecialist.jsp</result> -->
+			<result type="json">
+				<param name="root">listSpecialist</param>
+			</result> 
+		</action>
+       <!-- 查看企业专家组名单 -->
+		<action name="recommendSpecialist"
+			class="com.thinkPro.steap.action.meeting.ConfirmSpecialist" method="recommendSpecialist">
+			<result type="json">
+				<param name="root">specialistMap</param>
+			</result>
+		</action>
+       <!-- 从库中抽取专家 -->
+		<action name="searchSpecialist"
+			class="com.thinkPro.steap.action.meeting.ConfirmSpecialist" method="searchSpecialist">
+			 <result type="json">
+				<param name="root">infoMap</param>
+			</result> 
+			<!-- <result>/admin/meeting/confirmSpecialist.jsp</result> -->
+		</action>
+		
+		<!-- 分页，从库中抽取专家的 -->
+		<action name="searchSpecForPage"
+			class="com.thinkPro.steap.action.meeting.ConfirmSpecialist" method="searchSpecForPage">
+			 <result type="json">
+				<param name="root">infoMap</param>
+			</result> 
+			<!-- <result>/admin/meeting/confirmSpecialist.jsp</result> -->
+		</action>
+		
+		<!-- 保存专家组名单 -->
+		<action name="saveSpecialistRoster"
+			class="com.thinkPro.steap.action.meeting.ConfirmSpecialist" method="saveSpecialistRoster">
+			<result type="json">
+				<param name="root">status</param>
+			</result>
+		</action>
+        <!-- 删除验收名单中的专家 -->
+        <action name="delSpecialist"
+			class="com.thinkPro.steap.action.meeting.ConfirmSpecialist" method="delSpecialist">
+			<result type="json">
+				<param name="root">status</param>
+			</result>
+		</action>
+        
+        <!-- 删除企业推荐中的专家 -->
+        <action name="deleteRecommendSpecialist"
+			class="com.thinkPro.steap.action.meeting.ConfirmSpecialist" method="deleteRecommendSpecialist">
+			<result type="json">
+				<param name="root">status</param>
+			</result>
+		</action>
+        
+        
+        <!-- 删除专家库中的专家 -->
+        <action name="deleteLibrarySpecialist"
+			class="com.thinkPro.steap.action.meeting.ConfirmSpecialist" method="deleteLibrarySpecialist">
+			<result type="json">
+				<param name="root">status</param>
+			</result>
+		</action>
+        
+        
+
+		<action name="institutionNotify"
+			class="com.thinkPro.steap.action.meeting.InstitutionNotifyAction"
+			method="institutionNotify">
+			<result>/admin/meeting/institutionNotify.jsp</result>
+		</action>
+      <!-- 保存通知 -->
+		<action name="saveNotice2"
+			class="com.thinkPro.steap.action.meeting.InstitutionNotifyAction"
+			method="saveNotice2">
+		<result type="json">
+				<param name="root">status</param>
+			</result>
+		</action>
+		
+		<!-- 资料编制 -->
+		<action name="toMaterialManagePage"
+			class="com.thinkPro.steap.action.meeting.MaterialManage"
+			method="toMaterialManagePage">
+			<result>/admin/meeting/materialManage.jsp</result>
+		</action>
+		<!--资料编制模块 查询项目信息 -->
+		<action name="searchProjectInfo"
+			class="com.thinkPro.steap.action.meeting.MaterialManage"
+			method="searchProjectInfo">
+			<result type="json">
+				<param name="root">mapInfo</param>
+			</result>
+		</action>
+		
+		<!-- 资料的删除 -->
+		<action name="deleteFile"
+			class="com.thinkPro.steap.action.meeting.MaterialManage"
+			method="deleteFile">
+			<result type="json">
+				<param name="root">status</param>
+			</result>
+		</action>
+		
+		
+		
+		<!-- 到起草会议通知页面 -->
+		<action name="toCreateNotifyPage"
+			class="com.thinkPro.steap.action.meeting.MeetingNotify"
+			method="toCreateNotifyPage">
+			<result>/admin/meeting/writeNotice.jsp</result>
+		</action>
+		
+		<!-- 保存会议通知 -->
+		<action name="saveMeetingNotice"
+			class="com.thinkPro.steap.action.meeting.MeetingNotify"
+			method="saveMeetingNotice">
+			<result type="json">
+				<param name="root">status</param>
+			</result>
+		</action>
+		
+			<!-- 得到会议通知模板-->
+		<action name="getTemplate"
+			class="com.thinkPro.steap.action.meeting.MeetingNotify"
+			method="getTemplate">
+			<result type="json">
+				<param name="root">htmlContent</param>
+			</result>
+		</action>
+		
+		 <!-- 上传 -->
+		<!-- <action name="Upload" class="com.thinkPro.steap.action.meeting.Upload">
+			<result>/admin/meeting/upload.jsp</result>
+			
+		</action>  -->
+		
+		
+	            <!-- 下载 -->
+		<!-- <action name="Download" class="com.thinkPro.steap.action.meeting.Download">
+			<result type="stream">			
+				<param name="inputName">inputStream</param>				
+				<param name="contentDisposition">attachment;filename=${fileName}</param>				
+				<param name="contentType">application/octet-stream</param>
+			</result>
+		</action>  -->
+		
+		
+		<!-- 通过项目id 查询出验收意见初稿 -->
+		<action name="getMaterials" class="com.thinkPro.steap.action.meeting.MeetingManage2"
+			method="getMaterialInfo">
+			<result type="json">
+				<param name="root">material</param>
+			</result>
+		</action>
+		
+		<!-- 通过项目id 查询出真实性承诺书 -->
+		<action name="getPictures" class="com.thinkPro.steap.action.meeting.MeetingManage2"
+			method="getPictures">
+			<result type="json">
+				<param name="root">pictureListMap</param>
+			</result>
+		</action>
+		
+		<action name="deletePictures" class="com.thinkPro.steap.action.meeting.MeetingManage2"
+			method="deletePictures">
+			<result type="json">
+				<param name="root">status</param>
+			</result>
+		</action>
+		
+		<!-- 保存通知方式 -->
+		<action name="saveNotice" class="com.thinkPro.steap.action.meeting.MeetingManage2"
+			method="saveNotice">
+			<result type="json">
+				<param name="root">saveResult</param>
+			</result>
+		</action>
+		
+		<!-- 召开会议-->
+		<action name="conveneMeeting" class="com.thinkPro.steap.action.meeting.MeetingManage2"
+			method="conveneMeeting">
+			<result type="json">
+				<param name="root">listMap</param>
+			</result>
+		</action>
+		
+		<!-- 资料编制的上传资料 -->
+		<action name="saveMaterialFile"
+			class="com.thinkPro.steap.action.meeting.MaterialManage"
+			method="saveMaterialFile">
+			<result type="json">
+				<param name="root">status</param>
+			</result>
+		</action>
+		
+		<!-- 资料编制上传资料后的添加文件信息 -->
+		<action name="searchMaterialForAjax"
+			class="com.thinkPro.steap.action.meeting.MaterialManage"
+			method="searchMaterialForAjax">
+			<result type="json">
+				<param name="root">materialList</param>
+			</result>
+		</action>
+		
+		<!-- 到达专家意见修改审核界面-->
+		<action name="UpdateVerify"
+			class="com.thinkPro.steap.action.meeting.UpdateVerify" method="execute">
+			<result>/admin/meeting/updateExpertOpinion.jsp</result>
+		</action>
+		
+		<!-- 添加专家意见修改审核 -->
+		<action name="AddVerify"
+			class="com.thinkPro.steap.action.meeting.UpdateVerify" method="AddVerify">
+			<result type="json">
+				<param name="root">status</param>
+			</result>
+		</action>
+		
+		<!-- 企业准备资料上传的上传验收意见初稿 -->
+		<action name="saveOpinionFile"
+			class="com.thinkPro.steap.action.meeting.MeetingManage2" method="saveOpinionFile">
+			<result type="json">
+				<param name="root">saveResult</param>
+			</result>
+		</action>
+		
+		<!-- 企业准备资料上传的删除验收意见初稿 -->
+		<action name="delateMaterial"
+			class="com.thinkPro.steap.action.meeting.MeetingManage2" method="delateMaterial">
+			<result type="json">
+				<param name="root">delateStatus</param>
+			</result>
+		</action>
+		
+		<!-- 企业准备资料上传的上传真实性承诺书 -->
+		<action name="saveCommitment"
+			class="com.thinkPro.steap.action.meeting.MeetingManage2" method="saveCommitment">
+			<result type="json">
+				<param name="root">saveResult</param>
+			</result>
+		</action>
+		
+			<!-- 修改会议信息 -->
+		<action name="updateMeetingInfo"
+			class="com.thinkPro.steap.action.meeting.MeetingManage" method="updateMeetingInfo">
+			 <result type="json">
+				<param name="root">status</param>
+			</result> 
+			<!-- <result>/admin/meeting/meetingManage.jsp</result> -->
+		</action>
+		
+		
+		<!-- 专家意见修改审核 -->
+		<action name="searchPerfect" class="com.thinkPro.steap.action.meeting.SearchProject">
+			<result>/admin/meeting/ProjectSearch.jsp</result>
+		</action>
+		
+		
+		<!-- 点击修改会议信息按钮的事件-->
+		<action name="getMeetingInfoById" class="com.thinkPro.steap.action.meeting.MeetingManage" method="getMeetingInfoById">
+			 <result type="json">
+				<param name="root">map</param>
+			</result> 
+		</action>
+		
+		<!-- 进入待验收项目管理的空查询 -->
+		<action name="toProjectManagePage" class="com.thinkPro.steap.action.meeting.WaitProjectManage" method="toProjectManagePage">
+			 <result type="json">
+				<param name="root">map</param>
+			</result> 
+		</action>
+		
+		<action name="ProjectManage" class="com.thinkPro.steap.action.meeting.WaitProjectManage" method="ProjectManage">
+				<result type="json">
+				<param name="root">map</param>
+			    </result>
+		</action>
+		
+		<action name="auditReport" class="com.thinkPro.steap.action.meeting.AuditReport">
+			<result>/admin/meeting/auditsInfoUpload.jsp</result>		    
+		</action>
+		
+		<action name="dumpAuditReport" class="com.thinkPro.steap.action.meeting.DumpAuditReport">
+		    <result>/admin/meeting/auditsInfoUpload.jsp</result>
+		</action>
+		
+		<action name="getInstitutionList" class="com.thinkPro.steap.action.meeting.GetInstitution" >
+			<result type="json">
+				<param name="root">institutionList</param>
+			</result>
+		</action>
+		
+		<!-- 删除一条 通知记录 -->
+		<action name="deleteNotify" class="com.thinkPro.steap.action.meeting.InstitutionNotifyAction" method="deleteNotify">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="pictureToPdf" class="com.thinkPro.steap.action.meeting.AuditReport" method="pictureToPdf">
+		        <result type="json">
+		           
+				<param name="root">pdfPath</param>
+			    </result>
+		</action>
+		
+		
+		
+		
+	</package>
+	
+	<!-- 
+		@author Zychaowill
+		@date 2017/03/22
+		@description 修改验收意见初稿相关操作
+	 -->
+	<package name="opinion" extends="json-default">
+		<action name="insertOpinionContentAction" class="com.thinkPro.steap.action.meeting.opinion.InsertOpinionContentAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="findCheckOpinionContent" class="com.thinkPro.steap.action.meeting.opinion.InsertOpinionContentAction" method="findCheckOpinionContent">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="deleteCheckOpinionContent" class="com.thinkPro.steap.action.meeting.opinion.InsertOpinionContentAction" method="deleteCheckOpinionContent">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+</struts>

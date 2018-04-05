@@ -1,0 +1,42 @@
+# 修改专家安排表结构以及重新录入数据 (by yachao 2016/8/21 at 15:15)
+
+SET NAMES utf8;
+SET FOREIGN_KEY_CHECKS = 0;
+
+DROP TABLE IF EXISTS `specialist_arrangement`;
+CREATE TABLE specialist_arrangement (
+	meetingId varchar(7) not null comment '会议编号',
+	specialistId varchar(8) not null,
+	leader varchar(8) default null comment '会议组长',
+	isAgree bit(1) default null,
+	source varchar(50) default null,
+	
+	primary key(meetingId, specialistId),
+	constraint FK_Reference_12 FOREIGN KEY(meetingId) REFERENCES t_meeting_base_info(meetingId) on delete cascade on update cascade 
+) engine=InnoDB DEFAULT CHARSET=utf8;
+
+BEGIN;
+INSERT INTO specialist_arrangement VALUES ('M100001', 'SL100010', null, 1, '专家库');
+INSERT INTO specialist_arrangement VALUES ('M100001', 'SR100005', null, 1, '太原理工大学'); 
+INSERT INTO specialist_arrangement VALUES ('M100001', 'SR100006', null, 1, '太原科技大学');
+INSERT INTO specialist_arrangement VALUES ('M100001', 'SR100013', null, 1, '太原理工大学'); 
+INSERT INTO specialist_arrangement VALUES ('M100001', 'SR100014', null, 1, '太原科技大学'); 
+INSERT INTO specialist_arrangement VALUES ('M100002', 'SL100002', '组长', 1, '专家库');
+INSERT INTO specialist_arrangement VALUES ('M100002', 'SR100001', null, 1, '中北大学'); 
+INSERT INTO specialist_arrangement VALUES ('M100002', 'SR100004', null, 1, '中北大学'); 
+INSERT INTO specialist_arrangement VALUES ('M100002', 'SR100011', null, 1, '中北大学'); 
+INSERT INTO specialist_arrangement VALUES ('M100002', 'SR100012', null, 1, '中北大学'); 
+INSERT INTO specialist_arrangement VALUES ('M100003', 'P1000006', '组长', 1, '专家库'); 
+INSERT INTO specialist_arrangement VALUES ('M100003', 'P1000007', null, 1, '专家库'); 
+INSERT INTO specialist_arrangement VALUES ('M100003', 'SR100008', null, 1, '太原理工大学'); 
+INSERT INTO specialist_arrangement VALUES ('M100003', 'SR100009', null, 1, '太原科技大学'); 
+INSERT INTO specialist_arrangement VALUES ('M100003', 'SR100015', null, 1, '太原大学'); 
+INSERT INTO specialist_arrangement VALUES ('M100004', 'SL100002', null, 1, '专家库');
+INSERT INTO specialist_arrangement VALUES ('M100004', 'SL100003', '组长', 1, '专家库'); 
+INSERT INTO specialist_arrangement VALUES ('M100004', 'SL100006', null, 1, '专家库'); 
+INSERT INTO specialist_arrangement VALUES ('M100004', 'SR100002', null, 1, '太原理工大学'); 
+INSERT INTO specialist_arrangement VALUES ('M100004', 'SR100017', null, 1, '中北大学'); 
+INSERT INTO specialist_arrangement VALUES ('M100004', 'SR100019', null, 1, '山西医科大学第一医院');
+COMMIT;
+
+SET FOREIGN_KEY_CHECKS = 1; 

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.xm.mapper.SpecialistArrangementMapper" >
+  <resultMap id="BaseResultMap" type="cn.xm.pojo.SpecialistArrangement" >
+    <id column="meetingId" property="meetingid" jdbcType="VARCHAR" />
+    <id column="specialistId" property="specialistid" jdbcType="VARCHAR" />
+    <result column="leader" property="leader" jdbcType="VARCHAR" />
+    <result column="isAgree" property="isagree" jdbcType="BIT" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="isPromise" property="ispromise" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    meetingId, specialistId, leader, isAgree, source, isPromise
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.xm.pojo.SpecialistArrangementExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from specialist_arrangement
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="cn.xm.pojo.SpecialistArrangementKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from specialist_arrangement
+    where meetingId = #{meetingid,jdbcType=VARCHAR}
+      and specialistId = #{specialistid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="cn.xm.pojo.SpecialistArrangementKey" >
+    delete from specialist_arrangement
+    where meetingId = #{meetingid,jdbcType=VARCHAR}
+      and specialistId = #{specialistid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.xm.pojo.SpecialistArrangementExample" >
+    delete from specialist_arrangement
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.xm.pojo.SpecialistArrangement" >
+    insert into specialist_arrangement (meetingId, specialistId, leader, 
+      isAgree, source, isPromise)
+    values (#{meetingid,jdbcType=VARCHAR}, #{specialistid,jdbcType=VARCHAR}, #{leader,jdbcType=VARCHAR}, 
+      #{isagree,jdbcType=BIT}, #{source,jdbcType=VARCHAR}, #{ispromise,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xm.pojo.SpecialistArrangement" >
+    insert into specialist_arrangement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="meetingid != null" >
+        meetingId,
+      </if>
+      <if test="specialistid != null" >
+        specialistId,
+      </if>
+      <if test="leader != null" >
+        leader,
+      </if>
+      <if test="isagree != null" >
+        isAgree,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="ispromise != null" >
+        isPromise,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="meetingid != null" >
+        #{meetingid,jdbcType=VARCHAR},
+      </if>
+      <if test="specialistid != null" >
+        #{specialistid,jdbcType=VARCHAR},
+      </if>
+      <if test="leader != null" >
+        #{leader,jdbcType=VARCHAR},
+      </if>
+      <if test="isagree != null" >
+        #{isagree,jdbcType=BIT},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="ispromise != null" >
+        #{ispromise,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.xm.pojo.SpecialistArrangementExample" resultType="java.lang.Integer" >
+    select count(*) from specialist_arrangement
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update specialist_arrangement
+    <set >
+      <if test="record.meetingid != null" >
+        meetingId = #{record.meetingid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialistid != null" >
+        specialistId = #{record.specialistid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leader != null" >
+        leader = #{record.leader,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isagree != null" >
+        isAgree = #{record.isagree,jdbcType=BIT},
+      </if>
+      <if test="record.source != null" >
+        source = #{record.source,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ispromise != null" >
+        isPromise = #{record.ispromise,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update specialist_arrangement
+    set meetingId = #{record.meetingid,jdbcType=VARCHAR},
+      specialistId = #{record.specialistid,jdbcType=VARCHAR},
+      leader = #{record.leader,jdbcType=VARCHAR},
+      isAgree = #{record.isagree,jdbcType=BIT},
+      source = #{record.source,jdbcType=VARCHAR},
+      isPromise = #{record.ispromise,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xm.pojo.SpecialistArrangement" >
+    update specialist_arrangement
+    <set >
+      <if test="leader != null" >
+        leader = #{leader,jdbcType=VARCHAR},
+      </if>
+      <if test="isagree != null" >
+        isAgree = #{isagree,jdbcType=BIT},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="ispromise != null" >
+        isPromise = #{ispromise,jdbcType=BIT},
+      </if>
+    </set>
+    where meetingId = #{meetingid,jdbcType=VARCHAR}
+      and specialistId = #{specialistid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xm.pojo.SpecialistArrangement" >
+    update specialist_arrangement
+    set leader = #{leader,jdbcType=VARCHAR},
+      isAgree = #{isagree,jdbcType=BIT},
+      source = #{source,jdbcType=VARCHAR},
+      isPromise = #{ispromise,jdbcType=BIT}
+    where meetingId = #{meetingid,jdbcType=VARCHAR}
+      and specialistId = #{specialistid,jdbcType=VARCHAR}
+  </update>
+</mapper>

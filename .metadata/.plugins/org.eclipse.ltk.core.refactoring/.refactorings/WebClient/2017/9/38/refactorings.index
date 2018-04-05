@@ -1,0 +1,5 @@
+1505877530568	Extract local variable 'phoneService'
+1505877552345	Extract local variable 'phoneInfo'
+1505878637359	Copy compilation unit
+1505981636908	Extract local variable 'jobServiceImplPort'
+1505981650697	Extract local variable 'job'

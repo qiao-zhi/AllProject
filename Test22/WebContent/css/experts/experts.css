@@ -1,0 +1,104 @@
+@CHARSET "UTF-8";
+
+#personal_textarea{
+	resize: none;
+	width: 560px;
+	border: 1px solid #EEEEEE;
+}
+.textarea_bef{	
+	background-color: #EEEEEE;
+}
+
+.experts_form{
+	width: 900px;
+	background: #AED7ED;
+	margin: 0 auto 30px auto;
+}
+.experts_personal_info, .profession_info, .contact_info{
+	width: 600px;
+	/*padding: 10px 20px;*/
+	background-color: #ffffff;
+	margin: 0 auto;
+	border-radius: 5px;
+}
+.experts_personal_info_left{
+	margin-right: 10px;
+	width: 330px;
+	float: left;
+}
+.experts_personal_info_right{
+	width: 210px;
+	height: 150px;
+	background-color: #EEEEEE;
+	float: right;
+}
+.box_margin{
+	margin: 15px auto;
+}
+.margin_left{
+	width: 90px;
+	float: left;
+	height: 34px;
+	line-height: 34px;
+	text-align: right;
+	padding-right: 15px;
+}
+.margin_right{
+	width: 220px;
+	float: left;
+}
+.box_margin_left{
+	margin-left: 10px;
+	width: 100px;
+	float: left;
+	height: 34px;
+	line-height: 34px;
+	text-align: right;
+	padding-right: 15px;
+}
+.box_margin_right{
+	width: 400px;
+	float: left;
+}
+
+/*.profession_info{
+	width: 600px;
+	margin: 0 auto;
+	background-color: white;
+	padding: 10px 20px;
+}
+
+.contact_info{
+	width: 600px;
+	margin: 0 auto;
+	background-color: white;
+	padding: 10px 20px;
+}*/
+
+
+.btn-border{
+	border-radius: 30px;
+}
+.input_title{
+	background-color: #5CA7BA;
+	color: white;
+	padding: 10px 20px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+.input_title_left{
+	height: 42px;line-height: 42px;float: left;width: 15%;font-size: 20px;font-family: ;
+}
+.input_title_middle{
+	width: 76%; float: left;
+}
+.input_title_right{
+	height: 42px;line-height: 42px;float: left;width: 8%;
+}
+.form_body{
+	padding: 10px 20px;
+}
+
+em {
+	color: red;
+}

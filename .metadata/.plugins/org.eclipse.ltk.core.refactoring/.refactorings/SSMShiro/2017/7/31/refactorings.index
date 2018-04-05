@@ -1,0 +1,57 @@
+1501374680703	Rename resource 'struts.xml'
+1501374687731	Copy file
+1501376386964	Copy file
+1501377975430	Copy file
+1501378976082	Copy file
+1501382608227	Move file
+1501382611253	Move file
+1501382612903	Move file
+1501382615062	Move file
+1501382624721	Move file
+1501383235505	Move file
+1501383238345	Move file
+1501383240387	Move file
+1501383241933	Move file
+1501383266264	Copy file
+1501383434261	Delete element
+1501383696665	Delete element
+1501385291536	Rename resource 'jsp'
+1501385314466	Move folder
+1501385356863	Move folder
+1501385613520	Move folder
+1501386993065	Copy file
+1501387056447	Copy file
+1501387061289	Delete elements
+1501387096553	Rename resource 'struts1.xml'
+1501387164802	Copy file
+1501387396672	Move compilation unit
+1501389703544	Move compilation unit
+1501389914827	Delete element
+1501389919145	Delete element
+1501392860612	Extract local variable 'findSysUserByUserCode'
+1501393749980	Copy file
+1501393756962	Rename resource 'applicationContext-ashiro.xml'
+1501394080371	Rename type 'LoginController'
+1501400050964	Copy file
+1501400848743	Delete element
+1501403640750	Delete elements
+1501409529183	Copy file
+1501409544050	Rename resource 'login.jsp'
+1501411418414	Copy compilation unit
+1501411512315	Rename resource 'zjtk.jsp'
+1501416428119	Copy file
+1501416663475	Copy file
+1501416679313	Copy file
+1501416688484	Copy file
+1501416929070	Copy file
+1501417188822	Rename resource 'chaxun.jsp'
+1501417202549	Rename resource 'shanchu.jsp'
+1501417212812	Rename resource 'xiugai.jsp'
+1501417227565	Rename resource 'zengjia.jsp'
+1501423466027	Copy folder
+1501423482550	Rename resource 'addPaper.jsp'
+1501423494693	Rename resource 'deletePaper.jsp'
+1501423504582	Rename resource 'findPaper.jsp'
+1501423512563	Rename resource 'paperList.jsp'
+1501423528014	Rename resource 'updatePaper.jsp'
+1501426954593	Rename resource 'deleteUserjsp'

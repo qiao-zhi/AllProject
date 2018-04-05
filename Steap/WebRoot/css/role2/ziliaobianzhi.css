@@ -1,0 +1,33 @@
+.block{
+	padding-left:8%;
+}
+.block .label_left{
+	width:40%;
+	height:36px;
+	line-height:36px;
+}
+.block .label_right{
+	width:51%;
+	height:36px;
+	line-height:36px;s
+}
+.mytable{
+	width:84%;
+	margin:0 auto;
+}
+#material{
+	width:15%;
+	margin-left:49%;
+}
+#uploadMaterial{
+	width:5%;
+	height:29px;
+}
+.selectfile{
+	width:15%;
+	margin-left:8%;
+}
+.uploader{
+	padding:0;
+	width:90%
+}

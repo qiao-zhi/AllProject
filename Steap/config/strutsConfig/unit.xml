@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="unit" extends="json-default">
+	
+		<action name="searchUnitByUpId"
+			class="com.thinkPro.steap.action.unit.SearchUnitAction"
+			method="searchUnitByUpId">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="searchNextUnitId"
+			class="com.thinkPro.steap.action.unit.SearchUnitAction"
+			method="searchNextUnitId">
+			<result type="json">
+				<param name="root">nextId</param>
+			</result>
+		</action>
+	
+		<action name="searchUnitByCondition"
+			class="com.thinkPro.steap.action.unit.SearchUnitAction"
+			method="searchUnitByCondition">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="getUpdateUnit"
+			class="com.thinkPro.steap.action.unit.UpdateUnitAction"
+			method="getUpdateUnit">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="updateUnit"
+			class="com.thinkPro.steap.action.unit.UpdateUnitAction"
+			method="updateUnit">
+			<result type="json">
+				<param name="root">updateResult</param>
+			</result>
+		</action>
+		
+		<action name="addUnitAction"
+			class="com.thinkPro.steap.action.unit.AddUnitAction"
+			method="addUnit">
+			<result type="json">
+				<param name="root">addResult</param>
+			</result>
+		</action>
+		
+		<action name="deleteUnitAction"
+			class="com.thinkPro.steap.action.unit.DeleteUnitAction"
+			method="deleteUnit">
+			<result type="json">
+				<param name="root">treeList2</param>
+			</result>
+		</action>
+		
+		<action name="searchTreeAction2"
+			class="com.thinkPro.steap.action.unit.SearchTreeAction" method="searchTree">
+			<result type="json">
+				<param name="root">treeList2</param>
+			</result>
+		</action>
+		
+	</package>
+</struts>

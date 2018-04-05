@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<excel id="student" code="student" name="判断题">
+    <colgroup>
+        <col index="A" width='20em'></col>
+        <col index="B" width='10em'></col>
+        <col index="C" width='10em'></col>        
+        <col index="D" width='20em'></col>        
+    </colgroup>
+    <title>
+        <tr height="16px">
+            <td rowspan="1" colspan="4" value="判断题模板" />
+        </tr>
+    </title>
+    <thead>
+        <tr height="16px">
+        	<th value="题干" />
+            <th value="类型" />
+            <th value="答案" />   
+            <th value="解析" />   
+        </tr>
+    </thead>
+    <tbody>
+        <tr height="16px" firstrow="2" firstcol="0" repeat="5">
+            <td type="string" isnullable="false" maxlength="200" /><!--题干 -->
+            <td type="String" isnullable="false" value="判断"/><!--类型 -->
+            <td type="String"  isnullable="false" /><!--解析 -->
+        </tr>
+    </tbody>
+</excel>

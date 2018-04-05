@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+	<head>
+		<title>动态</title>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" type="text/css" href="themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="themes/icon.css">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+		<script src="js/easyui-lang-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+
+		<ul id="ttt"></ul>
+		<script type="text/javascript">
+			$("#ttt").tree({
+				url: "/Oraclefenye/tree_data.json",
+				lines: true
+			});
+		</script>
+		<script type="text/javascript">
+			$("#ttt").tree({
+				onClick: function(node) {
+					alert(node.text);
+				}
+			});
+		</script>
+
+	</body>
+
+</html>

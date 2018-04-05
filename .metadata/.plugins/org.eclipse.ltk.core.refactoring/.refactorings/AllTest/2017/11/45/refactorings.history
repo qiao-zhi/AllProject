@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Extract local variable &apos;keys&apos; from expression &apos;jedis.keys(&quot;*&quot;)&apos;&#x0D;&#x0A;- Original project: &apos;AllTest&apos;&#x0D;&#x0A;- Variable name: &apos;keys&apos;&#x0D;&#x0A;- Destination method: &apos;RedisTest.RedisDemo.test1()&apos;&#x0D;&#x0A;- Variable expression: &apos;jedis.keys(&quot;*&quot;)&apos;&#x0D;&#x0A;- Replace occurrences of expression with variable" description="Extract local variable &apos;keys&apos;" final="false" id="org.eclipse.jdt.ui.extract.temp" input="/src&lt;RedisTest{RedisDemo.java" name="keys" replace="true" selection="427 0" stamp="1510110616304" version="1.0"/>
+</session>

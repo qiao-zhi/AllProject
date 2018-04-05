@@ -1,0 +1,30 @@
+.block{
+	padding-left:7%;
+}
+.block .label_left{
+	width:40%;
+}
+.block .label_right{
+	width:52%;
+}
+.commit{
+	padding-left:80%;
+	margin-top:8%;
+}
+.commit button{
+	width:50px;
+	height:32px;
+	margin-left:18%;
+	background:#5CA7BA;
+	color:#FFFFFF;
+}
+.modal_bar .search_bar_input{
+	width:38%;
+}
+.modal_bar button{
+	width:15%;
+}
+.mytable{
+	width:86%;
+	margin:5px auto;
+}

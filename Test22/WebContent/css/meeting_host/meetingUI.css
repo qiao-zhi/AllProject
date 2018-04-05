@@ -1,0 +1,22 @@
+.banner_bg{
+	/* width: 990px; */
+	height: 770px;
+	background: url(../../img/56cac22885f5a_1024.jpg) no-repeat;
+	background-size:100% 100%;
+	margin: 0 auto;
+	padding-top: 280px;
+}
+.host_box{
+	width: 245px;
+	height: 310px;
+	background: rgba(0,0,0,0.3);
+	padding-top: 20px;
+}
+.host_box_left{
+	float: left;
+	margin-left: 320px;
+}
+.host_box_right{
+	float: right;
+	margin-right: 320px;
+}

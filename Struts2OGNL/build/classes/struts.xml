@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- package的名字必须唯一！只能拦截.action请求 默认值:class:com.opensymphony.xwork2.ActionSupport 
+		method:execute result的name属性:success 方法中返回success即可跳转到结果对应的页面 -->
+	<constant name="struts.custom.i18n.resources" value="aa"></constant>
+
+
+	<!-- 第一个package命名空间 -->
+	<package name="ognl" namespace="/" extends="struts-default">
+
+		<!-- 添加考试 -->
+		<action name="test" class="Action.FangzhichongfuAction">
+			<!-- 使用token拦截器 -->
+			<interceptor-ref name="tokenSession"></interceptor-ref>
+			<!-- 使用系统默认拦截 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<!-- 重复提交后跳转的页面 -->
+			<result name="invalid.token">/TokenError.jsp</result>
+			<result name="success">/index.jsp</result>
+		</action>
+
+	</package>
+
+
+
+
+</struts>

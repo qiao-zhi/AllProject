@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.xm.mapper.ProjectVerifyMapper" >
+  <resultMap id="BaseResultMap" type="cn.xm.pojo.ProjectVerify" >
+    <id column="verifyId" property="verifyid" jdbcType="INTEGER" />
+    <result column="projectId" property="projectid" jdbcType="VARCHAR" />
+    <result column="verifyFileNum" property="verifyfilenum" jdbcType="INTEGER" />
+    <result column="verifyPerson" property="verifyperson" jdbcType="VARCHAR" />
+    <result column="verifyDate" property="verifydate" jdbcType="DATE" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.xm.pojo.ProjectVerifyWithBLOBs" extends="BaseResultMap" >
+    <result column="completeDescription" property="completedescription" jdbcType="LONGVARCHAR" />
+    <result column="verifyResult" property="verifyresult" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    verifyId, projectId, verifyFileNum, verifyPerson, verifyDate, remark
+  </sql>
+  <sql id="Blob_Column_List" >
+    completeDescription, verifyResult
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="cn.xm.pojo.ProjectVerifyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from project_verify
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.xm.pojo.ProjectVerifyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from project_verify
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from project_verify
+    where verifyId = #{verifyid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from project_verify
+    where verifyId = #{verifyid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.xm.pojo.ProjectVerifyExample" >
+    delete from project_verify
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.xm.pojo.ProjectVerifyWithBLOBs" >
+    insert into project_verify (verifyId, projectId, verifyFileNum, 
+      verifyPerson, verifyDate, remark, 
+      completeDescription, verifyResult
+      )
+    values (#{verifyid,jdbcType=INTEGER}, #{projectid,jdbcType=VARCHAR}, #{verifyfilenum,jdbcType=INTEGER}, 
+      #{verifyperson,jdbcType=VARCHAR}, #{verifydate,jdbcType=DATE}, #{remark,jdbcType=VARCHAR}, 
+      #{completedescription,jdbcType=LONGVARCHAR}, #{verifyresult,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xm.pojo.ProjectVerifyWithBLOBs" >
+    insert into project_verify
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="verifyid != null" >
+        verifyId,
+      </if>
+      <if test="projectid != null" >
+        projectId,
+      </if>
+      <if test="verifyfilenum != null" >
+        verifyFileNum,
+      </if>
+      <if test="verifyperson != null" >
+        verifyPerson,
+      </if>
+      <if test="verifydate != null" >
+        verifyDate,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="completedescription != null" >
+        completeDescription,
+      </if>
+      <if test="verifyresult != null" >
+        verifyResult,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="verifyid != null" >
+        #{verifyid,jdbcType=INTEGER},
+      </if>
+      <if test="projectid != null" >
+        #{projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyfilenum != null" >
+        #{verifyfilenum,jdbcType=INTEGER},
+      </if>
+      <if test="verifyperson != null" >
+        #{verifyperson,jdbcType=VARCHAR},
+      </if>
+      <if test="verifydate != null" >
+        #{verifydate,jdbcType=DATE},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="completedescription != null" >
+        #{completedescription,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="verifyresult != null" >
+        #{verifyresult,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.xm.pojo.ProjectVerifyExample" resultType="java.lang.Integer" >
+    select count(*) from project_verify
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update project_verify
+    <set >
+      <if test="record.verifyid != null" >
+        verifyId = #{record.verifyid,jdbcType=INTEGER},
+      </if>
+      <if test="record.projectid != null" >
+        projectId = #{record.projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verifyfilenum != null" >
+        verifyFileNum = #{record.verifyfilenum,jdbcType=INTEGER},
+      </if>
+      <if test="record.verifyperson != null" >
+        verifyPerson = #{record.verifyperson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verifydate != null" >
+        verifyDate = #{record.verifydate,jdbcType=DATE},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.completedescription != null" >
+        completeDescription = #{record.completedescription,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.verifyresult != null" >
+        verifyResult = #{record.verifyresult,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update project_verify
+    set verifyId = #{record.verifyid,jdbcType=INTEGER},
+      projectId = #{record.projectid,jdbcType=VARCHAR},
+      verifyFileNum = #{record.verifyfilenum,jdbcType=INTEGER},
+      verifyPerson = #{record.verifyperson,jdbcType=VARCHAR},
+      verifyDate = #{record.verifydate,jdbcType=DATE},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      completeDescription = #{record.completedescription,jdbcType=LONGVARCHAR},
+      verifyResult = #{record.verifyresult,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update project_verify
+    set verifyId = #{record.verifyid,jdbcType=INTEGER},
+      projectId = #{record.projectid,jdbcType=VARCHAR},
+      verifyFileNum = #{record.verifyfilenum,jdbcType=INTEGER},
+      verifyPerson = #{record.verifyperson,jdbcType=VARCHAR},
+      verifyDate = #{record.verifydate,jdbcType=DATE},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xm.pojo.ProjectVerifyWithBLOBs" >
+    update project_verify
+    <set >
+      <if test="projectid != null" >
+        projectId = #{projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyfilenum != null" >
+        verifyFileNum = #{verifyfilenum,jdbcType=INTEGER},
+      </if>
+      <if test="verifyperson != null" >
+        verifyPerson = #{verifyperson,jdbcType=VARCHAR},
+      </if>
+      <if test="verifydate != null" >
+        verifyDate = #{verifydate,jdbcType=DATE},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="completedescription != null" >
+        completeDescription = #{completedescription,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="verifyresult != null" >
+        verifyResult = #{verifyresult,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where verifyId = #{verifyid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.xm.pojo.ProjectVerifyWithBLOBs" >
+    update project_verify
+    set projectId = #{projectid,jdbcType=VARCHAR},
+      verifyFileNum = #{verifyfilenum,jdbcType=INTEGER},
+      verifyPerson = #{verifyperson,jdbcType=VARCHAR},
+      verifyDate = #{verifydate,jdbcType=DATE},
+      remark = #{remark,jdbcType=VARCHAR},
+      completeDescription = #{completedescription,jdbcType=LONGVARCHAR},
+      verifyResult = #{verifyresult,jdbcType=LONGVARCHAR}
+    where verifyId = #{verifyid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xm.pojo.ProjectVerify" >
+    update project_verify
+    set projectId = #{projectid,jdbcType=VARCHAR},
+      verifyFileNum = #{verifyfilenum,jdbcType=INTEGER},
+      verifyPerson = #{verifyperson,jdbcType=VARCHAR},
+      verifyDate = #{verifydate,jdbcType=DATE},
+      remark = #{remark,jdbcType=VARCHAR}
+    where verifyId = #{verifyid,jdbcType=INTEGER}
+  </update>
+</mapper>

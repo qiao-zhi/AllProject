@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+
+function fun1() {
+	$.get(
+			"/Ajax/ajaxServlet2",    //请求地址
+			//"name=qlq&password=qlq",   //请求参数
+			{"name":"qlq","password":"nicai"},  //请求传递的参数，也可以是JSON
+			function(data){     //data表示传递回来的数据，只有在成功的时候才有
+				alert(data);
+				},
+				"text"         //表示返回内容的格式,json会将传回来的自动解析成json对象
+	);
+}
+
+
+
+
+function fun2() {
+	$.post(
+			"/Ajax/ajaxServlet2",    //请求地址
+			//"name=qlq&password=qlq",   //请求参数
+			{"name":"qlq","password":"nicai"},  //请求传递的参数，也可以是JSON
+			function(data){     //data表示传递回来的数据，只有在成功的时候才有
+				alert(data);
+				},
+				"text"         //表示返回内容的格式,json会将传回来的自动解析成json对象
+	);
+}
+
+
+
+function fun3() {
+	$.ajax(
+			{
+				url:"/Ajax/ajaxServlet2",
+				async:true,
+				type:"POST",
+				data:{"name":"wwwwwwwww","password":5895115},
+				success: function(data){
+					alert(data);},
+				error:function(){
+					alert("请求失败");},
+				dataType:"text"
+				}
+	);
+}
+
+
+
+</script>
+</head>
+<body>
+<input type="button" value="get方法的" onclick="fun1();"/><span id="span1"></span>
+<br/>
+<br/>
+<input type="button" value="post方法" onclick="fun2();"/><span id="span2"></span>
+<br/>
+<input type="button" value="ajax方法" onclick="fun3();"/><span id="span2"></span>
+</body>
+</html>

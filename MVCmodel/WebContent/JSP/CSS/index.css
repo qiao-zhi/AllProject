@@ -1,0 +1,105 @@
+body{
+				margin: 0px auto;
+				padding: 0px;
+				font-size: 12px;  
+				color: #364f56;  
+				background-color: #FFFFFF;  
+				text-align: center;
+				
+							}
+			#container{
+			position: relative;  
+				margin: 0px auto;
+				text-align: left;
+				width: 1240px;   
+				height: 640px;
+				overflow: hidden;
+			}
+			#d2{position: absolute;
+				left: 80px;
+				top: 3px;
+		
+			}
+			#name{
+				color: rgb(0,102,255);
+				font-size: 25px;		
+			}
+			#d1{position: absolute;
+			left:30px ;
+			top: 100px;
+			}
+a{text-decoration: none;}  /*****鍘绘帀杩炴帴鐨勪笅鍒掔嚎*****/  
+ul li{
+ 	list-style-type: none;   /***璁剧疆鏃犻渶鍒楄〃鐨勫墠闈笉甯︽爣蹇�*/
+ 	float: left;            /*****璁剧疆涓烘í鍚戝鑸�****/
+ 	height: 40px;           /**  褰撹楂樼瓑浜庡厓绱犻珮鏃舵枃鏈瀭鐩村眳涓�***/
+ 	padding-left: 10px;    
+ 	text-align: center;
+ 	width: 120px;
+ 	background: rgb(2,125,225);
+ 	font-size: 20px;
+ 	color: black;
+ 	border: dashed 1px green;
+ 	line-height: 40px;
+ }
+
+#d3{margin-top: -20px;
+	position: absolute;
+   height: 400px;
+	left: 80px;
+	top: 200px;
+	border: 1px dashed green;
+	text-align: center;
+}
+
+td{
+		height: 40px;
+	text-align: center;
+}
+#fenjie{
+	border-bottom: 1px dashed green;
+}
+#sousuo:hover{
+	cursor: hand;
+}
+#d32{
+	margin: 0 auto;
+	border: 1px green dashed;
+	width: 190px;
+	height: 160px;
+}
+#table2 td{height: 30px;
+text-align: left;}
+
+#d4{position: absolute;
+	height: 400px;
+	width: 700px;
+	text-align: left;
+	left: 250px;
+	top: 0px;
+	font-size: 20px;
+}
+#logo1{float: left;
+}
+/*#d42{
+	background: black;
+	height: 100px;
+	width: 700px;
+	position: absolute;
+	left: 0px;
+	top: 230px;
+}*/
+#d5{
+	background: grey;
+	height: 100px;
+	width: 700px;
+	position: absolute;
+	left: 200px;
+	top: 400px;
+}
+.loginBtn{
+	margin-left: 800px;
+	margin-bottom: 20px;
+	float:left;
+		
+}

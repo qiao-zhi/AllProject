@@ -1,0 +1,21 @@
+			body{
+				margin: 0px ;
+				padding: 0px;
+				font-size: 12px;  /****锟斤拷锟斤拷一锟斤拷锟斤拷9,14锟斤拷锟斤拷12**/
+				color: #364f56;  /****锟斤拷锟斤拷锟斤拷色**/
+				background-color: #FFFFFF;   /**锟斤拷锟斤拷色*****/
+				text-align: center;
+				
+							}
+			#container{
+			background-color:#FF9598;
+				margin: 0px auto;
+				border: 1px solid green;
+				text-align: left;/****锟斤拷锟斤拷锟斤拷页锟叫碉拷锟斤拷锟捷撅拷锟斤拷**/
+				width: 1024px;   /*****   1024-1440锟斤拷锟斤拷锟斤拷锟叫的碉拷锟皆匡拷锟�;***/
+				height: 600px;
+				border:  1px dashed green;
+			}
+			span{
+				color: red;
+			}

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20120203" releaseVersion="7.0.0">
+<TableDataMap>
+<TableData name="ds1" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="meetingId" isAutoInc="false"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JDBC2]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select sa.specialistId, name, workUnit, title, leader
+from specialist_arrangement sa, specialist_library sl, t_meeting_base_info m
+where sa.meetingId=m.meetingId and sa.specialistId=sl.specialistId and sa.meetingId='${meetingId}'
+order by leader DESC]]></Query>
+</TableData>
+</TableDataMap>
+<ReportWebAttr/>
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[2133600,1152000,1152000,1152000,1152000,1152000,723900,723900,723900,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[1981200,2743200,2743200,2743200,4754880,2743200,1257300,5334000,2743200,2743200,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="8" s="0">
+<O>
+<![CDATA[会议评审专家安排表]]></O>
+<CellGUIAttr/>
+<CellPageAttr/>
+<Expand/>
+</C>
+<C c="0" r="1" cs="3" s="1">
+<O>
+<![CDATA[会议名称]]></O>
+<CellGUIAttr/>
+<CellPageAttr/>
+<Expand/>
+</C>
+<C c="3" r="1" cs="5" s="2">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=meetingName]]></Attributes>
+</O>
+<CellGUIAttr/>
+<CellPageAttr/>
+<Expand/>
+</C>
+<C c="0" r="2" cs="3" s="1">
+<O>
+<![CDATA[会议时间]]></O>
+<CellGUIAttr/>
+<CellPageAttr/>
+<Expand/>
+</C>
+<C c="3" r="2" cs="5" s="2">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=meetingTime]]></Attributes>
+</O>
+<CellGUIAttr/>
+<CellPageAttr/>
+<Expand/>
+</C>
+<C c="0" r="3" cs="3" s="1">
+<O>
+<![CDATA[会议地点]]></O>
+<CellGUIAttr/>
+<CellPageAttr/>
+<Expand/>
+</C>
+<C c="3" r="3" cs="5" s="2">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=meetingPlace]]></Attributes>
+</O>
+<CellGUIAttr/>
+<CellPageAttr/>
+<Expand/>
+</C>
+<C c="0" r="4" s="1">
+<O>
+<![CDATA[序号]]></O>
+<CellGUIAttr/>
+<CellPageAttr/>
+<Expand/>
+</C>
+<C c="1" r="4" s="1">
+<O>
+<![CDATA[姓名]]></O>
+<CellGUIAttr/>
+<CellPageAttr/>
+<Expand/>
+</C>
+<C c="2" r="4" cs="2" s="3">
+<O>
+<![CDATA[工作单位]]></O>
+<CellGUIAttr/>
+<CellPageAttr/>
+<Expand/>
+</C>
+<C c="4" r="4" s="3">
+<O>
+<![CDATA[职称]]></O>
+<CellGUIAttr/>
+<CellPageAttr/>
+<Expand/>
+</C>
+<C c="5" r="4" cs="2" s="3">
+<O>
+<![CDATA[专家组职务]]></O>
+<CellGUIAttr/>
+<CellPageAttr/>
+<Expand/>
+</C>
+<C c="7" r="4" s="3">
+<O>
+<![CDATA[签字]]></O>
+<CellGUIAttr/>
+<CellPageAttr/>
+<Expand/>
+</C>
+<C c="0" r="5" s="2">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=&B6]]></Attributes>
+</O>
+<CellGUIAttr/>
+<CellPageAttr/>
+<Expand leftParentDefault="false" left="B6"/>
+</C>
+<C c="1" r="5" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="name"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<CellGUIAttr/>
+<CellPageAttr/>
+<Expand dir="0"/>
+</C>
+<C c="2" r="5" cs="2" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="workUnit"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<CellGUIAttr/>
+<CellPageAttr/>
+<Expand dir="0"/>
+</C>
+<C c="4" r="5" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="title"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<CellGUIAttr/>
+<CellPageAttr/>
+<Expand dir="0"/>
+</C>
+<C c="5" r="5" cs="2" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="leader"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<CellGUIAttr/>
+<CellPageAttr/>
+<Expand dir="0"/>
+</C>
+<C c="7" r="5" s="2">
+<CellGUIAttr/>
+<CellPageAttr/>
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings isHorizontalCenterOnPage="true" headerHeight="0" footerHeight="0">
+<PaperSetting>
+<Margin top="986400" left="2743200" bottom="986400" right="2743200"/>
+</PaperSetting>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+</Report>
+<ReportParameterAttr>
+<Attributes showWindow="true" delayPlaying="false" windowPosition="1" align="0"/>
+<PWTitle>
+<![CDATA[参数]]></PWTitle>
+<Parameter>
+<Attributes name="meetingId" isAutoInc="false"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</ReportParameterAttr>
+<StyleList>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="1" size="128"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="1" size="96"/>
+<Background name="ColorBackground" color="-1"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="1" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+</StyleList>
+</WorkBook>

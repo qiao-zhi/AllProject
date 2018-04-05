@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="role" extends="json-default">
+		<action name="showRole" class="com.thinkPro.steap.action.sys.user.RoleAction" method="showRole">
+			<result type="json">
+				<param name="root">roleInfos</param>
+			</result>
+		</action>
+		
+		<action name="addRole" class="com.thinkPro.steap.action.sys.user.RoleAction" method="addRole">
+			<result type="json">
+				<param name="root">roleId</param>
+			</result>
+		</action>
+		
+		<action name="updateRole" class="com.thinkPro.steap.action.sys.user.RoleAction" method="updateRole">
+			<result type="json" />
+		</action>
+		
+		<action name="deleteInfo" class="com.thinkPro.steap.action.sys.user.RoleAction" method="deleteInfo">
+			<result type="json" />
+		</action>
+		
+		<action name="getTree" class="com.thinkPro.steap.action.sys.user.RoleAction" method="getTree">
+			<result type="json">
+				<param name="root">moduleTree</param>
+			</result>
+		</action>
+		
+		<action name="getRoleModule" class="com.thinkPro.steap.action.sys.user.RoleAction" method="getRoleModule">
+			<result type="json">
+				<param name="root">moduleIds</param>
+			</result>
+		</action>
+		
+		<action name="saveRoleModule" class="com.thinkPro.steap.action.sys.user.RoleAction" method="saveRoleModule">
+			<result type="json" />
+		</action>
+	</package>
+</struts>

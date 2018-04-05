@@ -1,0 +1,1129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.thinkPro.steap.db.mapper.project.IProjectMapper">
+
+	<!-- 获得进入登记项目页面时，需要显示的项目信息 -->
+	<select id="getProjectInAddPage" parameterType="ProjectCondition"
+		resultType="Map">
+		select
+		projectName,projectId,applicant,DATE_FORMAT(applicationDate,
+		'%Y-%m-%d') as applicationDate,domain,
+		(select dictionaryOptionName
+		from dic_system_dictionary where `status` =
+		dictionaryOptionId)status,chargeUnit,
+		(select name from
+		t_user_base_info where userId = v_project_accept_info.chargePerson) as
+		chargePerson,
+		DATE_FORMAT(distributionDate, '%Y-%m-%d') as
+		distributionDate
+		from v_project_accept_info
+		<where>
+			<if test="projectName!=null">
+				and projectName LIKE CONCAT(CONCAT('%',
+				#{projectName}),'%')
+			</if>
+			<if test="applicant!=null">
+				and applicant LIKE CONCAT(CONCAT('%', #{applicant}),'%')
+			</if>
+			<if test="domain!=null">
+				and domain=#{domain}
+			</if>
+			<if test="recordDate!=null">
+				and recordDate>=DATE_FORMAT(#{recordDate}, '%Y-%m-%d')
+			</if>
+			<if test="recordPerson!=null">
+				and recordPerson=#{recordPerson}
+			</if>
+		</where>
+		order by recordDate desc
+		<!-- limit #{pageBegin},#{pageSize}; -->
+		<if test="pageBegin != null and pageSize != 0">
+			LIMIT #{pageBegin},#{pageSize};
+		</if>
+	</select>
+	<!-- 查询项目ID是否存在 -->
+	<select id="isProjectId" parameterType="Map" resultType="String">
+		SELECT
+		projectId from t_project_base_info where projectId=#{projectId}
+	</select>
+	<!-- 添加项目信息 -->
+	<insert id="addProject" parameterType="Project">
+		insert into
+		t_project_base_info(projectId,projectName,applicant,applicationDate,endDate,contactPerson,telephone,domain,projectFunds,remark)
+		values(#{projectId},#{projectName},#{applicant},DATE_FORMAT(#{applicationDate},
+		'%Y-%m-%d'),DATE_FORMAT(#{endDate}, '%Y-%m-%d'),
+		#{contactPerson},#{telephone},#{domain},#{projectFunds},#{remark});
+	</insert>
+
+	<!-- 修改项目信息 -->
+	<update id="updateProject" parameterType="Project">
+		update t_project_base_info
+		<set>
+			<if test="projectName!=null and projectName!=''">projectName=#{projectName},</if>
+			<if test="applicant!=null and applicant!=''">applicant=#{applicant},</if>
+			<if test="applicationDate!=null and applicationDate!=''">applicationDate=#{applicationDate},</if>
+			<if test="contactPerson!=null and contactPerson!=''">contactPerson=#{contactPerson},</if>
+			<if test="telephone!=null and telephone!=''">telephone=#{telephone},</if>
+			<if test="domain!=null and domain!=''">domain=#{domain},</if>
+			<if test="projectFunds!=null and projectFunds!=''">projectFunds=#{projectFunds},</if>
+			<if test="remark!=null and remark!=''">remark=#{remark},</if>
+		</set>
+		where projectId=#{projectId}
+	</update>
+
+	<!-- 删除项目信息 -->
+	<delete id="deleteProject" parameterType="String">
+		DELETE FROM
+		t_project_base_info WHERE projectId=#{projectId}
+	</delete>
+	<!-- 添加项目接收信息中的项目登记信息 -->
+	<insert id="addProjectRecord" parameterType="ProjectRecord">
+		<selectKey keyProperty="acceptId" order="BEFORE" resultType="String">
+			select uuid();
+		</selectKey>
+		insert into
+		project_accept(acceptId,projectId,recordDate,recordPerson)
+		values(#{acceptId},#{projectId},DATE_FORMAT(#{recordDate},
+		'%Y-%m-%d'),#{recordPerson});
+	</insert>
+
+	<!-- 添加项目接收信息中的项目确认负责部门信息 -->
+	<update id="addProjectCharge" parameterType="ProjectCharge">
+		update
+		project_accept set
+		chargeUnit=#{chargeUnit},chargePerson=#{chargePerson}
+		,distributionDate=DATE_FORMAT(#{destributionDate}, '%Y-%m-%d')
+		where
+		projectId=#{projectId};
+	</update>
+
+	<!-- 添加项目接收信息中的项目领取项目资料信息 -->
+	<update id="addProjectReceive" parameterType="ProjectReceive">
+		update
+		project_accept set
+		receiveDate=#{receiveDate},receivePerson=#{receivePerson},receiveResult=#{receiveResult}
+		where projectId=#{projectId};
+	</update>
+
+	<!-- 添加项目审查信息 -->
+	<insert id="addProjectCensor" parameterType="ProjectCensor">
+		<selectKey keyProperty="censorId" order="BEFORE" resultType="java.lang.String">
+			select uuid();
+		</selectKey>
+		insert into
+		project_censor
+		values(#{censorId},#{projectId},DATE_FORMAT(#{censorDate},
+		'%Y-%m-%d'),#{censorPerson},#{censorResult});
+	</insert>
+
+	<!-- 更新项目审查信息 -->
+	<update id="updateProjectCensor" parameterType="ProjectCensor">
+		UPDATE
+		project_censor
+		SET censorDate=DATE_FORMAT(#{censorDate},
+		'%Y-%m-%d'),censorPerson=#{censorPerson},
+		censorResult=#{censorResult}
+		WHERE projectId=#{projectId};
+	</update>
+
+	<select id="getNextInspectId" parameterType="String" resultType="String">
+		SELECT CONCAT(SUBSTR(MAX(inspectId),1,2),SUBSTR(MAX(inspectId), 3) +
+		1) FROM enterprise_inspect;
+	</select>
+
+	<!-- 添加企业现场考察信息 -->
+	<insert id="addEnterpriseInspect" parameterType="EnterpriseInspect">
+		insert into
+		enterprise_inspect
+		values(#{inspectId},#{projectId},#{inspectPerson},DATE_FORMAT(#{inspectDate},
+		'%Y-%m-%d'),#{inspectResult},#{isAudit},#{inspectStatus},#{enterpriseReceiver})
+		<selectKey resultType="String" keyProperty="inspectId"
+			order="AFTER">
+			SELECT inspectId from enterprise_inspect where projectId =
+			#{projectId};
+		</selectKey>
+	</insert>
+
+	<!-- 添加审计信息 -->
+	<insert id="addAuditInfo" parameterType="AuditInfo">
+		<selectKey keyProperty="auditId" order="BEFORE" resultType="java.lang.String">
+			select uuid();
+		</selectKey>
+		insert into
+		inspect_audit
+		values(#{auditId},#{inspectId},#{financeUnit},#{auditingPerson},DATE_FORMAT(#{auditDate},
+		'%Y-%m-%d'),#{enterpriseReceiver2});
+	</insert>
+
+	<!-- 修改项目的状态 -->
+	<update id="updateProjectStatus" parameterType="hashmap">
+		update
+		t_project_base_info set status=#{status} where projectId=#{projectId};
+	</update>
+
+	<!-- 根据项目Id查询认定负责部门信息 -->
+	<select id="getChargeByProjectId" parameterType="String"
+		resultType="ProjectCharge">
+		select chargeUnit,(select name from t_user_base_info where
+		userId = project_accept.chargePerson) as chargePerson,distributionDate
+		destributionDate from project_accept where projectId=#{projectId};
+	</select>
+
+	<!-- 根据项目Id查询企业现场考察信息 -->
+	<select id="getInspectByProjectId" parameterType="String"
+		resultType="EnterpriseInspect">
+		select inspectPerson,inspectDate,inspectResult from
+		enterprise_inspect
+		where projectId=#{projectId};
+	</select>
+
+	<!-- 根据项目Id查询审计信息 -->
+	<select id="getAuditInfoByProjectId" parameterType="String"
+		resultType="AuditInfo">
+		SELECT financeUnit,auditingPerson,auditDate from
+		inspect_audit,enterprise_inspect
+		where inspect_audit.inspectId =
+		enterprise_inspect.inspectId
+		and
+		enterprise_inspect.projectId=#{projectId};
+	</select>
+
+	<!-- 返回项目信息记录数 -->
+	<select id="getProjectCount" parameterType="ProjectCondition"
+		resultType="Integer">
+		select count(*) from v_project_accept_info v, dic_system_dictionary
+		dic,project_meeting,t_meeting_base_info
+		<where>
+			v.status=dic.dictionaryOptionId and
+			dic.dictionaryOptionId>=#{projectStatus}
+			<if test="projectName!=null">
+				and projectName LIKE CONCAT(CONCAT('%',
+				#{projectName}),'%')
+			</if>
+			<if test="applicant!=null">
+				and applicant LIKE CONCAT(CONCAT('%', #{applicant}),'%')
+			</if>
+			<if test="domain!=null">
+				and domain=#{domain}
+			</if>
+			<if test="recordDate!=null">
+				and recordDate>=DATE_FORMAT(#{recordDate}, '%Y-%m-%d')
+			</if>
+			<if test="recordPerson!=null">
+				and recordPerson=#{recordPerson}
+			</if>
+			<if test="chargePerson!=null">
+				and chargePerson=#{chargePerson}
+			</if>
+			and project_meeting.projectId = v.projectId
+			and
+			project_meeting.meetingId = t_meeting_base_info.meetingId
+			and
+			meetingStatus='200003'
+		</where>
+	</select>
+	
+	<select id="getMeetingProjectCount" parameterType="ProjectCondition" resultType="Integer">
+		SELECT COUNT(projectId)
+		FROM
+		v_project_accept_info vpai,
+		dic_system_dictionary dic
+		WHERE
+		vpai. STATUS = dic.dictionaryOptionId
+		AND dic.dictionaryOptionName = #{projectStatus}
+		<if test="projectName!=null">
+			AND projectName LIKE CONCAT(CONCAT('%',
+			#{projectName}),'%')
+		</if>
+		<if test="applicant!=null and applicant!=''">
+			and applicant LIKE CONCAT(CONCAT('%', #{applicant}),'%')
+		</if>
+		<if test="domain!=null and domain!=''">
+			AND domain=#{domain}
+		</if>
+		<choose>
+			<when test="projectFunds!=null and projectFunds==1">
+				AND projectFunds>=#{projectStandard}
+			</when>
+			<when test="projectFunds!=null and projectFunds==2">
+				AND projectFunds<![CDATA[<]]>#{projectStandard}
+			</when>
+		</choose>
+		ORDER BY recordDate DESC
+		<if test="pageBegin != null and pageSize != 0">
+			LIMIT #{pageBegin},#{pageSize}
+		</if>
+	</select>
+	
+	<!-- 返回项目信息记录数 -->
+	<select id="getProjectCount2" parameterType="ProjectCondition"
+		resultType="Integer">
+		select count(*) from v_project_accept_info
+		<where>
+			<if test="projectName!=null">
+				and projectName LIKE CONCAT(CONCAT('%',
+				#{projectName}),'%')
+			</if>
+			<if test="applicant!=null">
+				and applicant LIKE CONCAT(CONCAT('%', #{applicant}),'%')
+			</if>
+			<if test="domain!=null">
+				and domain=#{domain}
+			</if>
+			<if test="recordDate!=null">
+				and recordDate>=DATE_FORMAT(#{recordDate}, '%Y-%m-%d')
+			</if>
+			<if test="recordPerson!=null">
+				and recordPerson=#{recordPerson}
+			</if>
+			<if test="chargePerson!=null">
+				and chargePerson=#{chargePerson}
+			</if>
+		</where>
+	</select>
+
+	<resultMap type="Project" id="ProjectMap">
+		<id property="projectId" column="projectId" />
+		<result property="projectName" column="projectName" />
+		<result property="applicant" column="applicant" />
+		<result property="applicationDate" column="applicationDate" />
+		<result property="contactPerson" column="contactPerson" />
+		<result property="telephone" column="telephone" />
+		<result property="domain" column="domain" />
+		<result property="projectFunds" column="projectFunds" />
+		<result property="status" column="status" />
+		<result property="certificate" column="certificate" />
+		<result property="remark" column="remark" />
+	</resultMap>
+	<!-- 分页查询接收验收项目资料信息 -->
+	<select id="getProjectInfoByIf" parameterType="ProjectCondition"
+		resultMap="ProjectMap">
+		select
+		projectName,
+		v.projectId,applicant,applicationDate,domain,status,contactPerson,v.projectFunds,v.telephone
+		from v_project_accept_info v , dic_system_dictionary
+		dic,project_meeting,t_meeting_base_info
+		<where>
+			v.status=dic.dictionaryOptionId and
+			dic.dictionaryOptionId>=#{projectStatus}
+			<if test="projectName!=null">
+				and projectName LIKE CONCAT(CONCAT('%',
+				#{projectName}),'%')
+			</if>
+			<if test="applicant!=null">
+				and applicant LIKE CONCAT(CONCAT('%', #{applicant}),'%')
+			</if>
+			<if test="domain!=null">
+				and domain=#{domain}
+			</if>
+			<if test="recordDate!=null">
+				and recordDate>=DATE_FORMAT(#{recordDate}, '%Y-%m-%d')
+			</if>
+			<if test="recordPerson!=null">
+				and recordPerson=#{recordPerson}
+			</if>
+			<if test="chargePerson!=null">
+				and chargePerson=#{chargePerson}
+			</if>
+			and project_meeting.projectId = v.projectId
+			and
+			project_meeting.meetingId = t_meeting_base_info.meetingId
+			and
+			meetingStatus='200003'
+		</where>
+		order by recordDate desc
+		<!-- limit #{pageBegin},#{pageSize}; -->
+		<if test="pageBegin != null and pageSize != 0">
+			LIMIT #{pageBegin},#{pageSize};
+		</if>
+	</select>
+
+	<resultMap type="ProjectAccept" id="ProjectAcceptMap">
+		<id property="projectId" column="projectId" />
+		<result property="projectName" column="projectName" />
+		<result property="applicant" column="applicant" />
+		<result property="domain" column="domain" />
+		<result property="status" column="status" />
+		<result property="projectFunds" column="projectFunds" />
+		<result property="projectRecord.recordDate" column="recordDate" />
+		<result property="projectRecord.recordPerson" column="recordPerson" />
+		<result property="projectCharge.chargeUnit" column="chargeUnit" />
+		<result property="projectCharge.chargePerson" column="chargePerson" />
+		<result property="projectCharge.destributionDate" column="distributionDate" />
+		<result property="projectReceive.receiveDate" column="receiveDate" />
+		<result property="projectReceive.receivePerson" column="receivePerson" />
+		<result property="projectReceive.receiveResult" column="receiveResult" />
+		<result property="projectCensor.censorDate" column="censorDate" />
+		<result property="projectCensor.censorPerson" column="censorPerson" />
+		<result property="projectCensor.censorResult" column="censorResult" />
+	</resultMap>
+
+	<!-- 根据条件分页查询接收验收项目资料信息 -->
+	<select id="getProjectAcceptInfoByIf" parameterType="ProjectCondition"
+		resultMap="ProjectAcceptMap">
+		select
+		projectId,projectName,applicant,domain,status,projectFunds,(select
+		name from t_user_base_info where userId =
+		v_project_accept_info.recordPerson) as
+		recordPerson,recordDate,chargeUnit,(select name from t_user_base_info
+		where userId = v_project_accept_info.chargePerson) as chargePerson,
+		distributionDate,receiveDate,(select name from t_user_base_info where
+		userId = v_project_accept_info.receivePerson) as
+		receivePerson,receiveResult,censorDate,(select name from
+		t_user_base_info where userId = v_project_accept_info.censorPerson) as
+		censorPerson,censorResult
+		from v_project_accept_info
+		<where>
+			<if test="projectName!=null">
+				and projectName LIKE CONCAT(CONCAT('%',
+				#{projectName}),'%')
+			</if>
+			<if test="applicant!=null">
+				and applicant LIKE CONCAT(CONCAT('%', #{applicant}),'%')
+			</if>
+			<if test="domain!=null">
+				and domain=#{domain}
+			</if>
+			<if test="recordDate!=null">
+				and recordDate>=DATE_FORMAT(#{recordDate}, '%Y-%m-%d')
+			</if>
+			<if test="chargePerson!=null">
+				and chargePerson=#{chargePerson}
+			</if>
+		</where>
+		order by recordDate desc
+		<!-- limit #{pageBegin},#{pageSize}; -->
+		<if test="pageBegin != null and pageSize != 0">
+			LIMIT #{pageBegin},#{pageSize};
+		</if>
+	</select>
+
+	<!-- 第一个页面分页查询接收验收项目资料信息 -->
+	<select id="getProjectInfoByIf2" parameterType="ProjectCondition"
+		resultMap="ProjectMap">
+		select
+		projectName,projectId,applicant,applicationDate,domain,status,contactPerson,telephone,(select
+		name from t_user_base_info where userId =
+		v_project_accept_info.recordPerson) as recordPerson
+		from
+		v_project_accept_info
+		<where>
+			<if test="projectName!=null">
+				and projectName LIKE CONCAT(CONCAT('%',
+				#{projectName}),'%')
+			</if>
+			<if test="applicant!=null">
+				and applicant LIKE CONCAT(CONCAT('%', #{applicant}),'%')
+			</if>
+			<if test="domain!=null">
+				and domain=#{domain}
+			</if>
+			<if test="recordDate!=null">
+				and recordDate>=DATE_FORMAT(#{recordDate}, '%Y-%m-%d')
+			</if>
+			<if test="recordPerson!=null">
+				and recordPerson=#{recordPerson}
+			</if>
+		</where>
+		order by recordDate desc
+		<!-- limit #{pageBegin},#{pageSize}; -->
+		<if test="pageBegin != null and pageSize != 0">
+			LIMIT #{pageBegin},#{pageSize};
+		</if>
+	</select>
+
+	<!-- 根据项目Id查询接收验收项目资料信息 -->
+	<select id="getAcceptInfoByProjectId" parameterType="String"
+		resultMap="ProjectAcceptMap">
+		select
+		projectId,projectName,applicant,domain,status,projectFunds,(select
+		name from t_user_base_info where userId =
+		v_project_accept_info.recordPerson) as
+		recordPerson,recordDate,chargeUnit,(select name from t_user_base_info
+		where userId = v_project_accept_info.chargePerson) as chargePerson,
+		distributionDate,receiveDate,(select name from t_user_base_info where
+		userId = v_project_accept_info.receivePerson) as
+		receivePerson,receiveResult,censorDate,(select name from
+		t_user_base_info where userId = v_project_accept_info.censorPerson) as
+		censorPerson,censorResult
+		from v_project_accept_info
+		where projectId =
+		#{projectId};
+	</select>
+
+	<!-- 添加发放证书信息 -->
+	<insert id="addCertificate" parameterType="IssueCertificate">
+		<selectKey keyProperty="issueId" order="BEFORE" resultType="String">
+			select uuid();
+		</selectKey>
+		insert into
+		issue_certificate(issueId,projectId,issuePerson,issueDate,remark)
+		values(#{issueId},#{projectId},#{issuePerson},DATE_FORMAT(#{issueDate},
+		'%Y-%m-%d'),#{remark})
+	</insert>
+
+	<!-- START BY HaoShaSha -->
+
+	<!-- 某一个会议涉及到的所有项目的信息 主要是针对项目信息+验收意见初稿+真实性承诺书 -->
+	<resultMap id="ProjectPreMaterialInfoMap" type="ProjectPreMaterialInfo">
+		<result property="projectId" column="projectId" />
+		<result property="projectName" column="projectName" />
+		<result property="applicant" column="applicant" />
+		<result property="domain" column="domain" />
+		<result property="projectFunds" column="projectFunds" />
+		<association property="material" javaType="Material">
+			<id property="fileId" column="fileId" />
+			<result property="projectId" column="projectId" />
+			<result property="originalName" column="fileName" />
+			<result property="uploadTime" column="fileUploadTime" />
+			<result property="fileSize" column="fileSize" />
+			<result property="currentName" column="filePath" />
+			<result property="fileType" column="fileType" />
+		</association>
+		<collection property="pictureList" ofType="Picture">
+			<id property="pictureId" column="pictureId" />
+			<result property="projectId" column="projectId" />
+			<result property="originalName" column="pictureName" />
+			<result property="uploadTime" column="pictureUploadTime" />
+			<result property="pictureSize" column="pictureSize" />
+			<result property="currentName" column="picturePath" />
+			<result property="pictureType" column="pictureType" />
+		</collection>
+	</resultMap>
+
+
+	<!-- 根据meetingId查询某一个会议涉及到的项目的信息 主要是针对项目信息+验收意见初稿+真实性承诺书 -->
+	<select id="getProjectPreMaterialInfo" parameterType="map"
+		resultMap="ProjectPreMaterialInfoMap">
+		SELECT
+		vpmn.projectId,vpmn.projectName,vpmn.applicant,vpmn.domain,vpmn.projectFunds,
+		chargePerson,
+		notifyDate,notifyMethod,
+		vpmf.originalName
+		fileName,vpmf.uploadTime fileUploadTime,vpmf.fileSize,vpmf.currentName
+		filePath,vpmf.fileId,fileType, vpmf.opinionContent,
+		pi.originalName
+		pictureName,pi.uploadTime
+		pictureUploadTime,pi.pictureSize,pi.currentName
+		picturePath,pi.pictureId,pictureType
+		FROM
+		v_project_accept_info vpai,
+		v_project_meeting_notify vpmn,
+		v_project_material_file vpmf,
+		t_pictures_index pi
+		WHERE
+		vpmn.meetingId=#{meetingId}
+		AND vpai.projectId
+		= vpmn.projectId
+		AND vpmn.projectId = vpmf.projectId
+		AND vpmf.fileType =
+		(SELECT d.dictionaryOptionId FROM dic_system_dictionary d
+		WHERE
+		dictionaryOptionName=#{acceptance})
+		AND vpmn.projectId = pi.projectId
+		AND pi.pictureType = (SELECT d.dictionaryOptionId FROM
+		dic_system_dictionary d
+		WHERE
+		dictionaryOptionName=#{authenticityCommitment});
+	</select>
+
+	<select id="getProjectPreMaterialInfo2" parameterType="map"
+		resultType="map">
+		select p.projectId, projectName, applicant, domain, projectFunds,
+		(select COUNT(*) as checkOpinion from v_project_material_file where
+		projectId=p.projectId
+		and fileType = (SELECT d.dictionaryOptionId FROM
+		dic_system_dictionary d
+		WHERE dictionaryOptionName=#{acceptance})) as
+		checkOpinion,
+		(select COUNT(*) as promise from t_pictures_index pi
+		where
+		pi.projectId=p.projectId
+		and pi.pictureType = (SELECT
+		d.dictionaryOptionId FROM
+		dic_system_dictionary d
+		WHERE
+		dictionaryOptionName=#{authenticityCommitment})) as promise
+		from
+		t_project_base_info p, project_meeting pm,project_accept
+		where
+		p.projectId=pm.projectId and pm.meetingId=#{meetingId}
+		and p.projectId
+		= project_accept.projectId
+		<if test="chargePerson !=null and chargePerson !=''">
+			AND project_accept.chargePerson = #{chargePerson}
+		</if>
+	</select>
+
+	<!-- 查询所有已现场考察项目的部分待验收信息 -->
+	<select id="getInspectedProjects" parameterType="ProjectCondition"
+		resultType="ProjectInfoResult">
+		SELECT
+		projectId,projectName,applicant, domain, recordDate,
+		projectFunds,inspectDate
+		FROM
+		v_project_accept_info vpai,
+		dic_system_dictionary dic
+		WHERE
+		vpai. STATUS = dic.dictionaryOptionId
+		AND dic.dictionaryOptionName = #{projectStatus}
+		<if test="projectName!=null">
+			AND projectName LIKE CONCAT(CONCAT('%',
+			#{projectName}),'%')
+		</if>
+		<if test="applicant!=null">
+			and applicant LIKE CONCAT(CONCAT('%', #{applicant}),'%')
+		</if>
+		<if test="domain!=null">
+			AND domain=#{domain}
+		</if>
+		<choose>
+			<when test="projectFunds!=null and projectFunds==1">
+				AND projectFunds>=#{projectStandard}
+			</when>
+			<when test="projectFunds!=null and projectFunds==2">
+				AND projectFunds<![CDATA[<]]>#{projectStandard}
+			</when>
+		</choose>
+		ORDER BY recordDate DESC
+		<if test="pageBegin != null and pageSize != 0">
+			LIMIT #{pageBegin},#{pageSize};
+		</if>
+
+	</select>
+
+
+	<!-- 查询所有已现场考察项目的数量 -->
+	<select id="getInspectedProsCount" parameterType="ProjectCondition"
+		resultType="Integer">
+		SELECT
+		COUNT(*)
+		FROM
+		v_project_accept_info vpai,
+		dic_system_dictionary dic
+		WHERE
+		vpai.STATUS = dic.dictionaryOptionId
+		AND dic.dictionaryOptionName
+		= #{projectStatus}
+		<if test="projectName!=null">
+			AND projectName LIKE CONCAT(CONCAT('%',
+			#{projectName}),'%')
+		</if>
+		<if test="applicant!=null">
+			and applicant LIKE CONCAT(CONCAT('%', #{applicant}),'%')
+		</if>
+		<if test="domain!=null">
+			AND domain=#{domain}
+		</if>
+		<choose>
+			<when test="projectFunds!=null and projectFunds==1">
+				AND projectFunds>=#{projectStandard}
+			</when>
+			<when test="projectFunds!=null and projectFunds==2">
+				AND projectFunds<![CDATA[<]]>#{projectStandard}
+			</when>
+		</choose>
+	</select>
+
+	<!-- 根据项目编号查询项目第一阶段的所有信息 -->
+	<resultMap id="ProjectInfoOfPreparedMap" type="ProjectInfoOfPrepared">
+		<result property="projectId" column="projectId" />
+		<result property="projectName" column="projectName" />
+		<result property="applicant" column="applicant" />
+		<result property="domain" column="domain" />
+		<result property="applicationDate" column="applicationDate" />
+		<result property="projectRecord.recordDate" column="recordDate" />
+		<result property="projectRecord.recordPerson" column="recordPerson" />
+		<result property="projectCharge.chargeUnit" column="chargeUnit" />
+		<result property="projectCharge.chargePerson" column="chargePerson" />
+		<result property="projectReceive.receiveDate" column="receiveDate" />
+		<result property="projectReceive.receivePerson" column="receivePerson" />
+		<result property="projectReceive.receiveResult" column="receiveResult" />
+		<result property="projectCensor.censorDate" column="censorDate" />
+		<result property="projectCensor.censorPerson" column="censorPerson" />
+		<result property="projectCensor.censorResult" column="censorResult" />
+		<result property="enterpriseInspect.inspectPerson" column="inspectPerson" />
+		<result property="enterpriseInspect.inspectDate" column="inspectDate" />
+		<result property="enterpriseInspect.inspectResult" column="inspectResult" />
+		<result property="auditInfo.financeUnit" column="financeUnit" />
+		<result property="auditInfo.auditingPerson" column="auditingPerson" />
+		<result property="auditInfo.auditDate" column="auditDate" />
+
+		<result property="enterpriseInspect.enterpriseReceiver" column="enterpriseReceiver" />
+		<result property="auditInfo.enterpriseReceiver2" column="enterpriseReceiver2" />
+	</resultMap>
+
+	<!-- 针对于人名字的处理太过于复杂，决定改善数据库中的v_project_accept_info视图 将员工编号处理为员工姓名 -->
+	<!-- 但是考虑到一动就好多处都得变，所以决定暂时先这样，以后改善 -->
+	<select id="getProjectInfoByProjectId" parameterType="String"
+		resultMap="ProjectInfoOfPreparedMap">
+		SELECT
+		projectId,projectName,applicant,applicationDate,domain,name
+		recordPerson,
+		recordDate,chargeUnit,chargePerson,receiveDate,receivePerson,receiveResult,
+		censorDate,censorPerson,censorResult,inspectPerson,inspectDate,inspectResult,financeUnit,auditingPerson,
+		auditDate,enterpriseReceiver,enterpriseReceiver2
+		FROM
+		t_user_base_info
+		user,
+		(
+		SELECT
+		projectId,projectName,applicant,applicationDate,domain,
+		recordPerson,recordDate,
+		chargeUnit,(select name from t_user_base_info
+		where userId =
+		v_project_accept_info.chargePerson) AS chargePerson,
+		receiveDate,(select name from t_user_base_info where userId =
+		v_project_accept_info.receivePerson) AS receivePerson, receiveResult,
+		censorDate,(select name from t_user_base_info where userId =
+		v_project_accept_info.censorPerson) AS censorPerson,
+		censorResult,inspectPerson,
+		inspectDate,inspectResult,
+		financeUnit,auditDate,auditingPerson,enterpriseReceiver,enterpriseReceiver2
+		FROM
+		v_project_accept_info,
+		t_user_base_info
+		WHERE
+		projectId =
+		#{projectId}
+		AND v_project_accept_info.chargePerson =
+		t_user_base_info.userId
+		) project
+		WHERE
+		user .userId =
+		project.recordPerson
+
+
+	</select>
+
+	<!-- END BY HaoShaSha -->
+
+	<!-- Start by yachao -->
+	<!-- 根据会议编号查询当前会议中分配的项目 -->
+	<select id="getProjectsByMeetingId" parameterType="String"
+		resultType="map">
+		select p.projectId, projectName, applicant,
+		(select name
+		from t_user_base_info u where u.userId=pa.chargePerson) as name,
+		domain, projectFunds, dictionaryOptionName as projectStatus
+		from
+		t_project_base_info p, project_accept pa, dic_system_dictionary dic
+		where p.projectId=pa.projectId
+		and p.status=dic.dictionaryOptionId
+		and
+		p.projectId in (select projectId from project_meeting where
+		meetingId=#{meetingId})
+	</select>
+
+	<!-- 根据专家编号查询当前专家已经评审过的项目基本信息 -->
+	<select id="getPastProjectsBySpecialistId" parameterType="String"
+		resultType="map">
+		select t.projectId, projectName, applicant, domain,
+		reviewInfo.reviewSuggestion
+		from t_project_base_info t, (select
+		projectId, reviewSuggestion from
+		specialist_evaluation
+		where
+		specialistId=#{specialistId} and reviewSuggestion IS NOT NULL)
+		reviewInfo
+		where t.projectId=reviewInfo.projectId
+	</select>
+
+	<!-- 根据项目编号查询项目的部分信息 -->
+	<select id="getProjectPartByProjectId" parameterType="String"
+		resultType="map">
+		select p.projectId, projectName, applicant, name,
+		projectFunds
+		from t_project_base_info p, project_accept pa,
+		t_user_base_info u
+		where p.projectId=pa.projectId and
+		pa.chargePerson=u.userId
+		and p.projectId=#{projectId}
+	</select>
+
+	<sql id="issueProjectInfo">
+		select p.projectId, projectName, applicant, domain,
+		DATE_FORMAT(pa.recordDate, '%Y-%m-%d') as recordDate,
+		(select
+		DATE_FORMAT(checkDate, '%Y-%m-%d') from evaluation_result er where
+		er.projectId=p.projectId) as checkDate,
+		if(p.certificate=1, '是', '否')
+		as certificate,
+		(select u.name from t_user_base_info u where
+		u.userId=m.hostId) as name,
+		dictionaryOptionName as projectStatus
+		from
+		t_project_base_info p,
+		project_accept pa, project_meeting pm,
+		t_meeting_base_info m,
+		dic_system_dictionary dic
+		<where>
+			p.projectId=pm.projectId
+			and pa.projectId=p.projectId
+			and
+			pm.meetingId=m.meetingId
+			and p.status=dic.dictionaryOptionId
+			and status
+			>= (SELECT dictionaryOptionId from dic_system_dictionary where
+			dictionaryOptionName = #{status})
+			<if test="projectName!=null and projectName!=''">
+				and projectName LIKE CONCAT(CONCAT('%',
+				#{projectName}),'%')
+			</if>
+			<if test="applicant!=null and applicant!=''">
+				and applicant LIKE CONCAT(CONCAT('%', #{applicant}),'%')
+			</if>
+			<if test="domain!=null and domain!=''">
+				and domain=#{domain}
+			</if>
+			<if test="chargePerson!=null and chargePerson!=''">
+				and pa.chargePerson=#{chargePerson}
+			</if>
+
+			<choose>
+				<when test="projectStandard!=null and projectStandard==1">
+					AND projectFunds>=#{projectFunds}
+				</when>
+				<when test="projectStandard!=null and projectStandard==2">
+					AND projectFunds<![CDATA[<]]>#{projectFunds}
+				</when>
+			</choose>
+		</where>
+	</sql>
+	<!-- 导出表格：项目信息 -->
+	<select id="getAllProjectsNoPaging" parameterType="map"
+		resultType="map">
+		<include refid="issueProjectInfo" />
+	</select>
+
+	<!-- 发放证书：组合条件查询项目信息：（项目名称、申请单位、所属领域、项目经费） -->
+	<select id="getAllProjectByConditionWithPaging" parameterType="map"
+		resultType="map">
+		<include refid="issueProjectInfo" />
+		ORDER BY recordDate DESC
+		LIMIT #{pageBegin},#{pageSize}
+	</select>
+
+	<!-- 发放证书：组合条件查询项目时获取全部记录数 -->
+	<select id="getAllProjectsCountWithPaging" parameterType="map"
+		resultType="Integer">
+		select COUNT(*)
+		from t_project_base_info p, project_accept pa,
+		evaluation_result er, project_meeting pm, t_meeting_base_info m,
+		t_user_base_info u
+		<where>
+			p.projectId=pa.projectId and p.projectId=er.projectId and
+			p.projectId=pm.projectId and pm.meetingId=m.meetingId and
+			m.hostId=u.userId and status >= (SELECT dictionaryOptionId from
+			dic_system_dictionary where
+			dictionaryOptionName = #{status})
+			<if test="projectName!=null">
+				and projectName LIKE CONCAT(CONCAT('%',
+				#{projectName}),'%')
+			</if>
+			<if test="applicant!=null">
+				and applicant LIKE CONCAT(CONCAT('%', #{applicant}),'%')
+			</if>
+			<if test="domain!=null">
+				and domain=#{domain}
+			</if>
+			<choose>
+				<when test="projectStandard!=null and projectStandard==1">
+					AND projectFunds>=#{projectFunds}
+				</when>
+				<when test="projectStandard!=null and projectStandard==2">
+					AND projectFunds<![CDATA[<]]>#{projectFunds}
+				</when>
+			</choose>
+		</where>
+		ORDER BY recordDate DESC
+	</select>
+
+	<!-- 发放证书:针对某一项目发放证书 -->
+	<insert id="insertIssueCertificate" parameterType="IssueCertificate">
+		<selectKey keyProperty="issueId" order="BEFORE" resultType="String">
+			select uuid()
+		</selectKey>
+		insert into issue_certificate(issueId, projectId, issuePerson,
+		issueDate, holder, holderPhone, holdDate, remark)
+		values(#{issueId},
+		#{projectId}, #{issuePerson}, DATE_FORMAT(#{issueDate}, '%Y-%m-%d'),
+		#{holder}, #{holderPhone}, DATE_FORMAT(#{holdDate}, '%Y-%m-%d'),
+		#{remark})
+	</insert>
+
+	<update id="updateProjectCertificate" parameterType="map">
+		update
+		t_project_base_info
+		set certificate=#{certificate}
+		where
+		projectId=#{projectId}
+	</update>
+
+	<!-- 发放证书:针对某一要发放证书的项目查询信息 -->
+	<select id="getIssueProjectInfoByProjectId" parameterType="map"
+		resultType="map">
+		select p.projectId, projectName, applicant, u.name as
+		chargePerson, projectFunds, DATE_FORMAT(meetingTime, '%Y-%m-%d
+		%H:%i:%S') as meetingTime, meetingPlace
+		from t_project_base_info p,
+		project_meeting pm, t_meeting_base_info m,
+		project_accept pa,
+		t_user_base_info u
+		where p.projectId=pm.projectId and
+		p.projectId=pa.projectId
+		and pm.meetingId=m.meetingId and
+		pa.chargePerson=u.userId
+		and status >= (SELECT dictionaryOptionId from
+		dic_system_dictionary where
+		dictionaryOptionName = #{status}) and
+		p.projectId=#{projectId}
+	</select>
+
+	<!-- 根据项目编号查询项目的审核信息 -->
+	<select id="getVerifyInfoByProjectId" parameterType="String"
+		resultType="map">
+		select u.name as verifyPerson, DATE_FORMAT(verifyDate, '%Y-%m-%d') as verifyDate, verifyResult, 
+			completeDescription, verifyFileNum
+		from project_verify pv, t_user_base_info u,
+			(select MAX(verifyId) as verifyId
+			 from project_verify
+			 group by projectId
+			 having projectId=#{projectId}) t
+		where pv.verifyPerson=u.userId and pv.verifyId=t.verifyId
+	</select>
+
+	<!-- 切换版专用的信息查询 -->
+	<!-- 根据项目编号 to 查询切换板一中需要的 to 项目基本信息结果 -->
+	<select id="getBIProjectByProjectId" parameterType="String"
+		resultType="map">
+		select projectName, applicant, domain,
+		DATE_FORMAT(applicationDate, '%Y-%m-%d') as applicationDate,
+		(select
+		name from t_user_base_info where userId=v.recordPerson ) as
+		recordPerson, DATE_FORMAT(recordDate, '%Y-%m-%d') as recordDate,
+		chargeUnit, (select name from t_user_base_info where
+		userId=v.chargePerson) as chargePerson,
+		(select name from
+		t_user_base_info where userId=v.receivePerson) as
+		receivePerson,
+		DATE_FORMAT(receiveDate, '%Y-%m-%d') as receiveDate,
+		(select name from
+		t_user_base_info where userId=v.censorPerson) as
+		censorPerson,
+		DATE_FORMAT(censorDate, '%Y-%m-%d') as censorDate,
+		censorResult
+		from
+		v_project_accept_info v
+		where v.projectId=#{projectId}
+	</select>
+
+	<!-- 根据项目编号 to 查询切换版二中需要的 to 现场考察相关信息 -->
+	<select id="getBIEInspectByProjectId" parameterType="String"
+		resultType="EnterpriseInspect">
+		select inspectId, inspectPerson,
+		DATE_FORMAT(inspectDate,
+		'%Y-%m-%d') as inspectDate, inspectResult, isAudit
+		from
+		enterprise_inspect
+		where projectId=#{projectId}
+	</select>
+
+	<!-- 根据企业考察编号获取审计信息 -->
+	<select id="getBIAuditByInspectId" parameterType="String"
+		resultType="map">
+		select financeUnit, DATE_FORMAT(auditDate, '%Y-%m-%d') as
+		auditDate
+		from inspect_audit
+		where inspectId=#{inspectId}
+	</select>
+
+	<!-- 根据项目编号获取项目证书发放信息 -->
+	<select id="getIssueCertificateByProjectId" parameterType="String"
+		resultType="map">
+		select u.name as issuePerson, DATE_FORMAT(issueDate, '%Y-%m-%d') as issueDate,
+			holder, DATE_FORMAT(holdDate, '%Y-%m-%d') as holdDate, ic.remark
+		from issue_certificate ic, t_user_base_info u
+		where ic.issuePerson=u.userId and projectId=#{projectId}
+	</select>
+
+	<!-- 通过projectId查询考察Id -->
+	<select id="getInspectIdByProjectId" parameterType="String"
+		resultType="String">
+		select inspectId from enterprise_inspect where
+		projectId=#{projectId}
+	</select>
+
+	<!-- 更新企业考察信息，通过projectId -->
+	<update id="updateEnterPriseInspect" parameterType="EnterpriseInspect">
+		UPDATE
+		enterprise_inspect SET inspectPerson=#{inspectPerson},
+		inspectDate=#{inspectDate},inspectResult=#{inspectResult},
+		enterpriseReceiver=#{enterpriseReceiver}
+		WHERE projectId=#{projectId};
+	</update>
+
+	<!-- 更新审计信息，通过inspectId -->
+	<update id="updateInspectInfo" parameterType="AuditInfo">
+		UPDATE
+		inspect_audit SET financeUnit=#{financeUnit},
+		auditingPerson=#{auditingPerson},auditDate=#{auditDate},
+		enterpriseReceiver2=#{enterpriseReceiver2}
+		WHERE inspectId=#{inspectId}
+	</update>
+
+
+	<!-- by yachao 2016/8/18 -->
+	<!-- 更新项目状态 -->
+	<update id="updateProjectCurrentStatus" parameterType="map">
+		<selectKey keyProperty="status" order="BEFORE" resultType="String">
+			select dictionaryOptionId from dic_system_dictionary where
+			dictionaryOptionName=#{projectStatus}
+		</selectKey>
+		update t_project_base_info set status=#{status} where
+		projectId=#{projectId}
+	</update>
+
+	<!-- by yachao 2016/8/22 at 02:35 -->
+	<!-- 根据项目编号获取到项目当前所处的状态 -->
+	<select id="getProjectCurrentStatusById" parameterType="String"
+		resultType="String">
+		select dictionaryOptionName as projectStatus
+		from
+		t_project_base_info p, dic_system_dictionary dic
+		where
+		p.status=dic.dictionaryOptionId and projectId=#{projectId}
+	</select>
+
+	<!-- by yachao 2016/9/25 at 15:23 -->
+	<!-- 根据会议编号查询会议安排的全部项目名称 -->
+	<select id="getMeetingProjectNames" parameterType="String"
+		resultType="String">
+		select projectName
+		from t_project_base_info
+		where projectId
+		in (
+		select projectId
+		from project_meeting
+		where meetingId=#{meetingId}
+		)
+	</select>
+
+	<!-- 
+		2017/3/15 新增角色，用户可以查询到所有项目的信息
+	 -->
+	<select id="getAllProjectInfo" parameterType="ProjectQuery"
+		resultType="map">
+			
+			SELECT p.projectName AS projectName, p.projectId AS projectId, 
+				 p.applicant AS applicant, p.domain AS domain,
+				(SELECT NAME
+					FROM t_user_base_info
+					WHERE userId = pa.chargePerson
+				) AS chargePerson,
+				(SELECT u.NAME
+					FROM t_user_base_info u, t_meeting_base_info m
+					WHERE u.userId=m.hostId AND m.meetingId=pm.meetingId
+				) hostPerson,
+				p.projectFunds AS projectFunds,
+				(
+					SELECT dictionaryOptionName
+					FROM dic_system_dictionary
+					WHERE p.`status` = dictionaryOptionId
+				) AS `status`
+			FROM t_project_base_info p 
+				LEFT JOIN project_accept pa ON p.projectId=pa.projectId
+				LEFT JOIN project_meeting pm ON p.projectId=pm.projectId
+			<where>
+				<if test="projectId!=null and projectId!=''">
+					p.projectId=#{projectId}
+				</if>
+				<if test="projectName!=null and projectName!=''">
+					AND p.projectName LIKE CONCAT(CONCAT('%', #{projectName}),'%')
+				</if>
+				<choose>
+					<when test="startDate!=null and startDate!='' and endDate!=null and endDate!=''">
+						AND p.applicationDate BETWEEN DATE_FORMAT(#{startDate}, '%Y-%m-%d')
+							 AND DATE_FORMAT(#{endDate}, '%Y-%m-%d')
+					</when>
+					<when test="startDate!=null and startDate!=''">
+						AND p.applicationDate >= DATE_FORMAT(#{startDate}, '%Y-%m-%d')
+					</when>
+					<when test="endDate!=null and endDate!=''">
+						AND p.applicationDate<![CDATA[<]]>DATE_FORMAT(#{endDate}, '%Y-%m-%d')
+					</when>
+				</choose>
+				
+				<if test="applicant!=null and applicant!=''">
+					AND p.applicant LIKE CONCAT(CONCAT('%', #{applicant}),'%')
+				</if>
+				<if test="status!=null and status!=''">
+					AND p.`status`=#{status}
+				</if>
+				<if test="domain!=null and domain!=''">
+					AND p.domain=#{domain}
+				</if>
+				<choose>
+					<when test="projectFunds!=null and projectFunds==1">
+						AND projectFunds>=50
+					</when>
+					<when test="projectFunds!=null and projectFunds==2">
+						AND projectFunds<![CDATA[<]]>50
+					</when>
+				</choose>
+			</where>
+				<if test="pageBegin!=null and pageSize!=0">
+					LIMIT #{pageBegin},#{pageSize};
+				</if>
+
+
+			
+	</select>
+	
+	<select id="getAllProjectNum" parameterType="projectQuery" resultType="int">
+			
+			SELECT count(*)
+			FROM t_project_base_info p 
+			<where>
+				<if test="projectId!=null and projectId!=''">
+					p.projectId=#{projectId}
+				</if>
+				<if test="projectName!=null and projectName!=''">
+					AND p.projectName LIKE CONCAT(CONCAT('%', #{projectName}),'%')
+				</if>
+				<choose>
+					<when test="startDate!=null and startDate!='' and endDate!=null and endDate!=''">
+						AND p.applicationDate BETWEEN DATE_FORMAT(#{startDate}, '%Y-%m-%d')
+							 AND DATE_FORMAT(#{endDate}, '%Y-%m-%d')
+					</when>
+					<when test="startDate!=null and startDate!=''">
+						AND p.applicationDate >= DATE_FORMAT(#{startDate}, '%Y-%m-%d')
+					</when>
+					<when test="endDate!=null and endDate!=''">
+						AND p.applicationDate<![CDATA[<]]>DATE_FORMAT(#{endDate}, '%Y-%m-%d')
+					</when>
+				</choose>
+				
+				<if test="applicant!=null and applicant!=''">
+					AND p.applicant LIKE CONCAT(CONCAT('%', #{applicant}),'%')
+				</if>
+				<if test="status!=null and status!=''">
+					AND p.`status`=#{status}
+				</if>
+				<if test="domain!=null and domain!=''">
+					AND p.domain=#{domain}
+				</if>
+				<choose>
+					<when test="projectFunds!=null and projectFunds==1">
+						AND projectFunds>=50
+					</when>
+					<when test="projectFunds!=null and projectFunds==2">
+						AND projectFunds<![CDATA[<]]>50
+					</when>
+				</choose>
+			</where>
+			
+	</select>
+</mapper>
+

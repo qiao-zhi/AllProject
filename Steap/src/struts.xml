@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="devMode" value="true"></constant>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+	<constant name="struts.action.extension" value="action" />
+	
+	<include file="strutsConfig/dictionary.xml" />
+	<include file="strutsConfig/evaluation.xml" />
+	<include file="strutsConfig/issue.xml" />
+	<include file="strutsConfig/login.xml" />	
+	<include file="strutsConfig/meetingPrepare.xml" /> 
+	<include file="strutsConfig/module.xml" />
+	<include file="strutsConfig/perfectMaterial.xml" />
+	<include file="strutsConfig/receiveMaterial.xml" />
+	<include file="strutsConfig/role.xml" />
+	<include file="strutsConfig/specialist.xml" />
+	<include file="strutsConfig/unit.xml" />
+	<include file="strutsConfig/user.xml" />
+	<include file="strutsConfig/opinion.xml" />
+	
+</struts>    

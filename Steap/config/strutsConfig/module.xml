@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="module" extends="json-default">
+	
+		<action name="searchModuleByCondition"
+			class="com.thinkPro.steap.action.module.ModuleAction"
+			method="searchModuleByCondition">
+			<result type="json">
+				<param name="root">searchResult</param>
+			</result>
+		</action>
+		
+		<action name="searchTree"
+			class="com.thinkPro.steap.action.module.ModuleAction" method="searchTree">
+			<result type="json">
+				<param name="root">moduleTree</param>
+			</result>
+		</action>
+		
+		<action name="searchModuleByModuleId"
+			class="com.thinkPro.steap.action.module.ModuleAction"
+			method="searchModuleByModuleId">
+			<result type="json">
+				<param name="root">searchResult</param>
+			</result>
+		</action>
+		
+		<action name="searchNextId"
+			class="com.thinkPro.steap.action.module.ModuleAction"
+			method="searchNextId">
+			<result type="json">
+				<param name="root">nextId</param>
+			</result>
+		</action>
+		
+		<action name="searchOneNextId"
+			class="com.thinkPro.steap.action.module.ModuleAction"
+			method="searchOneNextId">
+			<result type="json">
+				<param name="root">nextId</param>
+			</result>
+		</action>
+		
+		<action name="deleteModule"
+			class="com.thinkPro.steap.action.module.ModuleAction"
+			method="deleteModule">
+			<result type="json">
+				<param name="root">str</param>
+			</result>
+		</action>
+		
+		<action name="deleteSingleModule" class="com.thinkPro.steap.action.module.ModuleAction" 
+			method="deleteSingleModule">
+			<result type="json">
+				<param name="root">deleteSingleResult</param>
+			</result>
+		</action>
+		
+		<action name="addModule"
+			class="com.thinkPro.steap.action.module.ModuleAction"
+			method="addModule">
+			<result type="json">
+				<param name="root">addResult</param>
+			</result>
+		</action>
+		
+		<action name="getUpdateModule"
+			class="com.thinkPro.steap.action.module.ModuleAction"
+			method="getUpdateModule">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="updateModule"
+			class="com.thinkPro.steap.action.module.ModuleAction"
+			method="updateModule">
+			<result type="json">
+				<param name="root">updateResult</param>
+			</result>
+		</action>
+	</package>
+</struts>

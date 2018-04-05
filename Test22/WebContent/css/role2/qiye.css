@@ -1,0 +1,44 @@
+.block{
+	padding-left:8%;
+}
+.block .label_left{
+	width:40%;
+}
+.block .label_right{
+	width:50%;
+}
+.mytable{
+	width:84%;
+	margin:0 auto;
+}
+
+.inform_info{
+	
+}
+.inform_info .show_info_group{
+	border-right: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	border-left: 1px solid #CCCCCC;
+	text-align: center;
+}
+.inform_info .show_info_group .group_left{
+	width: 190px;
+	background-color: #EEEEEE;
+}
+.inform_info .show_info_group .group_right{
+	width: 319px;
+}
+.inform_info .input_info_group{
+	margin-bottom: 10px;
+}
+.inform_info .input_info_group .group_left{
+	width: 190px;
+	text-align: right;
+	padding-right: 20px;
+}
+.inform_info .input_info_group .group_right{
+	width: 289px;
+}
+.inform_info .input_info_group .group_right span{
+	margin-right: 15px;
+}

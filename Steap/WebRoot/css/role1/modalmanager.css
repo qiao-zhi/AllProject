@@ -1,0 +1,36 @@
+.container ul {
+	list-style:none;
+	background:#266097;
+} 
+ .container .floatL ul{
+	margin-top:2%;
+	 background:#5CA7BA;
+} 
+.container .floatL >ul li a{
+	text-decoration:none;
+	display: inline-block;
+	line-height:30px;
+	text-align: center;
+	width:50%;
+	font-family:"微软雅黑";
+	color:#FFFFFF;
+}
+.container .floatL ul li a:hover{
+	color:red;
+}
+.container .floatL #second{
+	display:block;
+	margin-left:10%;
+}
+.xuanxiang{
+	width:15%;
+	margin-top: 50px;
+}
+.chuangjian{
+	width:74%;
+}
+.chuangjian button{
+	width:110px;
+	margin-left:4px;
+	margin-bottom:2px;
+}

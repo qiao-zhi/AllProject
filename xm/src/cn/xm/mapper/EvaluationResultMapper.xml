@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.xm.mapper.EvaluationResultMapper" >
+  <resultMap id="BaseResultMap" type="cn.xm.pojo.EvaluationResult" >
+    <id column="evaluateResultId" property="evaluateresultid" jdbcType="VARCHAR" />
+    <result column="projectId" property="projectid" jdbcType="VARCHAR" />
+    <result column="specialistId" property="specialistid" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="checkDate" property="checkdate" jdbcType="DATE" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.xm.pojo.EvaluationResult" extends="BaseResultMap" >
+    <result column="evaluateResult" property="evaluateresult" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    evaluateResultId, projectId, specialistId, remark, checkDate
+  </sql>
+  <sql id="Blob_Column_List" >
+    evaluateResult
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="cn.xm.pojo.EvaluationResultExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from evaluation_result
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.xm.pojo.EvaluationResultExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from evaluation_result
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from evaluation_result
+    where evaluateResultId = #{evaluateresultid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from evaluation_result
+    where evaluateResultId = #{evaluateresultid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.xm.pojo.EvaluationResultExample" >
+    delete from evaluation_result
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.xm.pojo.EvaluationResult" >
+    insert into evaluation_result (evaluateResultId, projectId, specialistId, 
+      remark, checkDate, evaluateResult
+      )
+    values (#{evaluateresultid,jdbcType=VARCHAR}, #{projectid,jdbcType=VARCHAR}, #{specialistid,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{checkdate,jdbcType=DATE}, #{evaluateresult,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xm.pojo.EvaluationResult" >
+    insert into evaluation_result
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="evaluateresultid != null" >
+        evaluateResultId,
+      </if>
+      <if test="projectid != null" >
+        projectId,
+      </if>
+      <if test="specialistid != null" >
+        specialistId,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="checkdate != null" >
+        checkDate,
+      </if>
+      <if test="evaluateresult != null" >
+        evaluateResult,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="evaluateresultid != null" >
+        #{evaluateresultid,jdbcType=VARCHAR},
+      </if>
+      <if test="projectid != null" >
+        #{projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="specialistid != null" >
+        #{specialistid,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="checkdate != null" >
+        #{checkdate,jdbcType=DATE},
+      </if>
+      <if test="evaluateresult != null" >
+        #{evaluateresult,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.xm.pojo.EvaluationResultExample" resultType="java.lang.Integer" >
+    select count(*) from evaluation_result
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update evaluation_result
+    <set >
+      <if test="record.evaluateresultid != null" >
+        evaluateResultId = #{record.evaluateresultid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectid != null" >
+        projectId = #{record.projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialistid != null" >
+        specialistId = #{record.specialistid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkdate != null" >
+        checkDate = #{record.checkdate,jdbcType=DATE},
+      </if>
+      <if test="record.evaluateresult != null" >
+        evaluateResult = #{record.evaluateresult,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update evaluation_result
+    set evaluateResultId = #{record.evaluateresultid,jdbcType=VARCHAR},
+      projectId = #{record.projectid,jdbcType=VARCHAR},
+      specialistId = #{record.specialistid,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      checkDate = #{record.checkdate,jdbcType=DATE},
+      evaluateResult = #{record.evaluateresult,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update evaluation_result
+    set evaluateResultId = #{record.evaluateresultid,jdbcType=VARCHAR},
+      projectId = #{record.projectid,jdbcType=VARCHAR},
+      specialistId = #{record.specialistid,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      checkDate = #{record.checkdate,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xm.pojo.EvaluationResult" >
+    update evaluation_result
+    <set >
+      <if test="projectid != null" >
+        projectId = #{projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="specialistid != null" >
+        specialistId = #{specialistid,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="checkdate != null" >
+        checkDate = #{checkdate,jdbcType=DATE},
+      </if>
+      <if test="evaluateresult != null" >
+        evaluateResult = #{evaluateresult,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where evaluateResultId = #{evaluateresultid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.xm.pojo.EvaluationResult" >
+    update evaluation_result
+    set projectId = #{projectid,jdbcType=VARCHAR},
+      specialistId = #{specialistid,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      checkDate = #{checkdate,jdbcType=DATE},
+      evaluateResult = #{evaluateresult,jdbcType=LONGVARCHAR}
+    where evaluateResultId = #{evaluateresultid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xm.pojo.EvaluationResult" >
+    update evaluation_result
+    set projectId = #{projectid,jdbcType=VARCHAR},
+      specialistId = #{specialistid,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      checkDate = #{checkdate,jdbcType=DATE}
+    where evaluateResultId = #{evaluateresultid,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.xm.mapper.EnterpriseInspectMapper" >
+  <resultMap id="BaseResultMap" type="cn.xm.pojo.EnterpriseInspect" >
+    <id column="inspectId" property="inspectid" jdbcType="VARCHAR" />
+    <result column="projectId" property="projectid" jdbcType="VARCHAR" />
+    <result column="inspectPerson" property="inspectperson" jdbcType="VARCHAR" />
+    <result column="inspectDate" property="inspectdate" jdbcType="DATE" />
+    <result column="isAudit" property="isaudit" jdbcType="BIT" />
+    <result column="inspectStatus" property="inspectstatus" jdbcType="VARCHAR" />
+    <result column="enterpriseReceiver" property="enterprisereceiver" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.xm.pojo.EnterpriseInspect" extends="BaseResultMap" >
+    <result column="inspectResult" property="inspectresult" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    inspectId, projectId, inspectPerson, inspectDate, isAudit, inspectStatus, enterpriseReceiver
+  </sql>
+  <sql id="Blob_Column_List" >
+    inspectResult
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="cn.xm.pojo.EnterpriseInspectExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from enterprise_inspect
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.xm.pojo.EnterpriseInspectExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from enterprise_inspect
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from enterprise_inspect
+    where inspectId = #{inspectid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from enterprise_inspect
+    where inspectId = #{inspectid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.xm.pojo.EnterpriseInspectExample" >
+    delete from enterprise_inspect
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.xm.pojo.EnterpriseInspect" >
+    insert into enterprise_inspect (inspectId, projectId, inspectPerson, 
+      inspectDate, isAudit, inspectStatus, 
+      enterpriseReceiver, inspectResult)
+    values (#{inspectid,jdbcType=VARCHAR}, #{projectid,jdbcType=VARCHAR}, #{inspectperson,jdbcType=VARCHAR}, 
+      #{inspectdate,jdbcType=DATE}, #{isaudit,jdbcType=BIT}, #{inspectstatus,jdbcType=VARCHAR}, 
+      #{enterprisereceiver,jdbcType=VARCHAR}, #{inspectresult,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xm.pojo.EnterpriseInspect" >
+    insert into enterprise_inspect
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="inspectid != null" >
+        inspectId,
+      </if>
+      <if test="projectid != null" >
+        projectId,
+      </if>
+      <if test="inspectperson != null" >
+        inspectPerson,
+      </if>
+      <if test="inspectdate != null" >
+        inspectDate,
+      </if>
+      <if test="isaudit != null" >
+        isAudit,
+      </if>
+      <if test="inspectstatus != null" >
+        inspectStatus,
+      </if>
+      <if test="enterprisereceiver != null" >
+        enterpriseReceiver,
+      </if>
+      <if test="inspectresult != null" >
+        inspectResult,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="inspectid != null" >
+        #{inspectid,jdbcType=VARCHAR},
+      </if>
+      <if test="projectid != null" >
+        #{projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectperson != null" >
+        #{inspectperson,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectdate != null" >
+        #{inspectdate,jdbcType=DATE},
+      </if>
+      <if test="isaudit != null" >
+        #{isaudit,jdbcType=BIT},
+      </if>
+      <if test="inspectstatus != null" >
+        #{inspectstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisereceiver != null" >
+        #{enterprisereceiver,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectresult != null" >
+        #{inspectresult,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.xm.pojo.EnterpriseInspectExample" resultType="java.lang.Integer" >
+    select count(*) from enterprise_inspect
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update enterprise_inspect
+    <set >
+      <if test="record.inspectid != null" >
+        inspectId = #{record.inspectid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectid != null" >
+        projectId = #{record.projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inspectperson != null" >
+        inspectPerson = #{record.inspectperson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inspectdate != null" >
+        inspectDate = #{record.inspectdate,jdbcType=DATE},
+      </if>
+      <if test="record.isaudit != null" >
+        isAudit = #{record.isaudit,jdbcType=BIT},
+      </if>
+      <if test="record.inspectstatus != null" >
+        inspectStatus = #{record.inspectstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enterprisereceiver != null" >
+        enterpriseReceiver = #{record.enterprisereceiver,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inspectresult != null" >
+        inspectResult = #{record.inspectresult,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update enterprise_inspect
+    set inspectId = #{record.inspectid,jdbcType=VARCHAR},
+      projectId = #{record.projectid,jdbcType=VARCHAR},
+      inspectPerson = #{record.inspectperson,jdbcType=VARCHAR},
+      inspectDate = #{record.inspectdate,jdbcType=DATE},
+      isAudit = #{record.isaudit,jdbcType=BIT},
+      inspectStatus = #{record.inspectstatus,jdbcType=VARCHAR},
+      enterpriseReceiver = #{record.enterprisereceiver,jdbcType=VARCHAR},
+      inspectResult = #{record.inspectresult,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update enterprise_inspect
+    set inspectId = #{record.inspectid,jdbcType=VARCHAR},
+      projectId = #{record.projectid,jdbcType=VARCHAR},
+      inspectPerson = #{record.inspectperson,jdbcType=VARCHAR},
+      inspectDate = #{record.inspectdate,jdbcType=DATE},
+      isAudit = #{record.isaudit,jdbcType=BIT},
+      inspectStatus = #{record.inspectstatus,jdbcType=VARCHAR},
+      enterpriseReceiver = #{record.enterprisereceiver,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xm.pojo.EnterpriseInspect" >
+    update enterprise_inspect
+    <set >
+      <if test="projectid != null" >
+        projectId = #{projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectperson != null" >
+        inspectPerson = #{inspectperson,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectdate != null" >
+        inspectDate = #{inspectdate,jdbcType=DATE},
+      </if>
+      <if test="isaudit != null" >
+        isAudit = #{isaudit,jdbcType=BIT},
+      </if>
+      <if test="inspectstatus != null" >
+        inspectStatus = #{inspectstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="enterprisereceiver != null" >
+        enterpriseReceiver = #{enterprisereceiver,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectresult != null" >
+        inspectResult = #{inspectresult,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where inspectId = #{inspectid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.xm.pojo.EnterpriseInspect" >
+    update enterprise_inspect
+    set projectId = #{projectid,jdbcType=VARCHAR},
+      inspectPerson = #{inspectperson,jdbcType=VARCHAR},
+      inspectDate = #{inspectdate,jdbcType=DATE},
+      isAudit = #{isaudit,jdbcType=BIT},
+      inspectStatus = #{inspectstatus,jdbcType=VARCHAR},
+      enterpriseReceiver = #{enterprisereceiver,jdbcType=VARCHAR},
+      inspectResult = #{inspectresult,jdbcType=LONGVARCHAR}
+    where inspectId = #{inspectid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xm.pojo.EnterpriseInspect" >
+    update enterprise_inspect
+    set projectId = #{projectid,jdbcType=VARCHAR},
+      inspectPerson = #{inspectperson,jdbcType=VARCHAR},
+      inspectDate = #{inspectdate,jdbcType=DATE},
+      isAudit = #{isaudit,jdbcType=BIT},
+      inspectStatus = #{inspectstatus,jdbcType=VARCHAR},
+      enterpriseReceiver = #{enterprisereceiver,jdbcType=VARCHAR}
+    where inspectId = #{inspectid,jdbcType=VARCHAR}
+  </update>
+</mapper>

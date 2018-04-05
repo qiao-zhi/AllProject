@@ -1,0 +1,17 @@
+.block{
+	padding-left:8%;
+}
+.block .label_left{
+	width:40%;
+}
+.block .label_right{
+	width:50%;
+}
+.control button{
+	width:110px;
+	margin-left:4px;
+	margin-bottom:4px;
+}
+.control select{
+	width:12%;
+}

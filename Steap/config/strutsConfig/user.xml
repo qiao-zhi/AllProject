@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+		<package name="user" extends="json-default">
+		<action name="selectAccountById" class="com.thinkPro.steap.action.sys.user.SelectAccountByIdAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	
+		<action name="deleteAccount" class="com.thinkPro.steap.action.sys.user.DeleteAccountAction">
+        	<result type="json">
+        		<param name="root">result</param>
+        	</result>
+        </action>
+	
+        <action name="createAccount" class="com.thinkPro.steap.action.sys.user.CreateAccountAction">
+        	<result type="json">
+        		<param name="root">result</param>
+        	</result>
+        </action>
+	
+		<action name="findRoleSetAction" class="com.thinkPro.steap.action.sys.user.FindRoleSetAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="saveUserRoleAction" class="com.thinkPro.steap.action.sys.user.SaveUserRoleAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<!-- 添加用户 -->
+		<action name="addUser" class="com.thinkPro.steap.action.sys.user.AddUserAction"
+			method="addUser">
+			<result type="json">
+				<param name="root">userId</param>
+			</result>
+		</action>
+		
+		<!-- 添加用户角色 -->
+		<action name="addUserRole" class="com.thinkPro.steap.action.sys.user.AddUserRoleAction"
+			method="addUserRole">
+			<result type="json">
+				<param name="root">result
+				</param>
+			</result>
+		</action>
+
+		<!-- 通过用户编号删除用户信息(批量) -->
+		<action name="deleteUserById" class="com.thinkPro.steap.action.sys.user.DeleteUserAction"
+			method="deleteUserById">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	
+		<!-- 删除用户角色  -->
+		<action name="deleteRoleFromUser"
+			class="com.thinkPro.steap.action.sys.user.DeleteUserRoleAction" method="deleteRoleFromUser">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<!-- 查询部门树 -->
+		<action name="searchUnitTree"
+			class="com.thinkPro.steap.action.sys.user.SearchUnitTreeAction" method="searchTree">
+			<result type="json">
+				<param name="root">treeList2</param>
+			</result>
+		</action>
+	
+		<!-- 根据用户编号查询用户信息 -->
+		<action name="searchUserByUserId" class="com.thinkPro.steap.action.sys.user.SearchUserAction"
+			method="searchUserByUserId">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	
+		<!-- 根据用户电话查询用户信息 -->
+		<action name="searchUserByTelephone" class="com.thinkPro.steap.action.sys.user.SearchUserAction"
+			method="searchUserByTelephone">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<!-- 根据部门编号查询用户信息 -->
+		<action name="searchUserByUnitId" class="com.thinkPro.steap.action.sys.user.SearchUserAction"
+			method="searchUserByUnitId">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="ifExistsUserAction" class="com.thinkPro.steap.action.sys.user.IfExistsUserAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<!-- 根据查询条件查询用户（姓名，职务，部门编号，起始记录数，所需要返回的记录数） -->
+		<action name="searchUserByCondition" class="com.thinkPro.steap.action.sys.user.SearchUserAction"
+			method="searchUserByCondition">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<!-- 查询满足条件的用户的总数量（姓名，职务，部门编号） -->
+		<action name="getUserCountByCondition" class="com.thinkPro.steap.action.sys.user.SearchUserAction"
+			method="getUserCountByCondition">
+			<result type="json">
+				<param name="root">totalPage</param>
+			</result>
+		</action>
+		
+		<!-- 根据用户编号查询用户分配到的角色 -->
+		<action name="searchRoleByUserId"
+			class="com.thinkPro.steap.action.sys.user.SearchUserRoleAction" method="searchRoleByUserId">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<!-- 根据用户编号查询用户没有分配到的角色 -->
+		<!-- 这部分可能需要删除  -->
+		<action name="searchLeftRoleByUserId"
+			class="com.thinkPro.steap.action.sys.user.SearchUserRoleAction" method="searchLeftRoleByUserId">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<!-- 获得需要修改的用户的原始信息 -->
+		<!-- 目前不需要 性能更好 -->
+		<action name="getUpdateUserInfo" class="com.thinkPro.steap.action.sys.user.UpdateUserAction"
+			method="getUpdateUserInfo">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<!-- 更新/修改用户的信息 -->
+		<action name="updateUserInfo" class="com.thinkPro.steap.action.sys.user.UpdateUserAction"
+			method="updateUserInfo">
+			<result type="json">
+				<param name="root">updateResult</param>
+			</result>
+		</action>
+		
+		<!-- 重置密码 -->
+		<action name="updateUserPassword" class="com.thinkPro.steap.action.sys.user.UpdateUserPasswordAction"
+			method="updateUserPassword">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<!-- 用户修改密码 -->
+		<action name="modifyPassW" class="com.thinkPro.steap.action.login.ModifyPassword">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+	</package>
+</struts>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>原生的ajax</title>
+<script type="text/javascript">
+   //1.异步的ajax，客户端可以在服务器处理数据时做其他
+	function fun1(){
+	//1）创建Ajax引擎对象
+	var xmlHttp=new XMLHttpRequest();
+	//2）为Ajax引擎对象绑定监听（监听服务器已将数据响应给引擎）
+	xmlHttp.onreadystatechange=function(){
+	//5）接受响应数据
+	if (xmlHttp.readyState==4 && xmlHttp.status==200)
+		{
+		//接收服务器返回的数据
+		var shuju = xmlHttp.responseText;
+		document.getElementById("span1").innerHTML=shuju;
+	    }
+	}
+	//3）绑定提交地址,可以传递参数
+	xmlHttp.open("GET","/Ajax/ajaxServlet?name=wangwu",true);
+	//4）发送请求
+	xmlHttp.send();
+	}
+
+
+
+	 //1.异步的ajax，客户端可以在服务器处理数据时做其他
+	function fun2(){
+	//1）创建Ajax引擎对象
+	var xmlHttp=new XMLHttpRequest();
+	//2）为Ajax引擎对象绑定监听（监听服务器已将数据响应给引擎）
+	xmlHttp.onreadystatechange=function(){
+	//5）接受响应数据
+	if (xmlHttp.readyState==4 && xmlHttp.status==200)
+		{
+		//接收服务器返回的数据
+		var shuju = xmlHttp.responseText;
+		document.getElementById("span2").innerHTML=shuju;
+	    }
+	}
+	//3）绑定提交地址,可以传递参数
+	xmlHttp.open("POST","/Ajax/ajaxServlet",false);
+	//Post提交需加下面这句话
+	xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	//4）发送请求
+	xmlHttp.send("name=ZHAOLIU");
+	}
+	   
+
+</script>
+</head>
+<body>
+
+<input type="button" value="异步的Ajax" onclick="fun1();"/><span id="span1"></span>
+<br/>
+<br/>
+<input type="button" value="同步的Ajax" onclick="fun2();"/><span id="span2"></span>
+<br/>
+<br/>
+<input type="button" value="点击" onclick="alert();">
+
+</body>
+</html>

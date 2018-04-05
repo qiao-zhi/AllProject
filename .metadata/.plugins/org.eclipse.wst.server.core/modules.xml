@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modules>
+  <module moduleId="org.eclipse.jst.jee.server:product" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:Struts2FileUpload" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:quanxian" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:myBlog" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:Struts2I18N" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:Oraclefenye" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:kindEditor" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:Struts2Validate" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:load" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:xm" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:SSS" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:Ajax" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:Test22" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:springmvc-mybatis" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:SSM" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:Steap" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:MVCmodel" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:UrlRBAC" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:quanxianguanli" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:TestTomcat" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:page" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:WeatherWS" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:struts2interceptor" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:Struts" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:Servlet2" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:Struts2OGNL" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:FreeMarker" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:TableFenYe" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:Shiro" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:fenye" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:TestXM" serverId="Tomcat v7.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:Servlet" serverId="Tomcat v7.0 Server at localhost"/>
+</modules>

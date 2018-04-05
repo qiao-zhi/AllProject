@@ -1,0 +1,57 @@
+<classpath>
+  <container id="WebShiro!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="E:/EclipseWorkspace/WebShiro/WebContent/WEB-INF/lib/shiro-core-1.2.3.jar">
+      <source-attachment-path>C:/Users/liqiang/Desktop/文件/A开发库/Shiro/shiro-root-1.2.3-source-release.zip</source-attachment-path>
+    </entry>
+    <entry id="E:/EclipseWorkspace/WebShiro/WebContent/WEB-INF/lib/shiro-spring-1.2.3.jar">
+      <source-attachment-path>C:/Users/liqiang/Desktop/文件/A开发库/Shiro/shiro-root-1.2.3-source-release.zip</source-attachment-path>
+    </entry>
+    <entry id="E:/EclipseWorkspace/WebShiro/WebContent/WEB-INF/lib/spring-aop-4.1.3.RELEASE.jar">
+      <source-attachment-path>C:/Users/liqiang/Desktop/文件/A开发库/Shiro/shiro-root-1.2.3-source-release.zip</source-attachment-path>
+    </entry>
+    <entry id="E:/EclipseWorkspace/WebShiro/WebContent/WEB-INF/lib/shiro-web-1.2.3.jar">
+      <source-attachment-path>C:/Users/liqiang/Desktop/文件/A开发库/Shiro/shiro-root-1.2.3-source-release.zip</source-attachment-path>
+    </entry>
+  </container>
+  <container id="MVCmodel!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="E:/EclipseWorkspace/MVCmodel/WebContent/WEB-INF/lib/commons-beanutils-1.9.3.jar">
+      <source-attachment-path>C:/Users/liqiang/.m2/repository/commons-beanutils/commons-beanutils/1.9.3/commons-beanutils-1.9.3-sources.jar</source-attachment-path>
+    </entry>
+  </container>
+  <container id="SSM!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="E:/EclipseWorkspace/SSM/WebContent/WEB-INF/lib/spring-web-4.2.4.RELEASE.jar">
+      <source-attachment-path>C:/Users/liqiang/Desktop/文件/A开发库/Spring/spring-framework-4.2.4.RELEASE/libs/spring-web-4.2.4.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+  </container>
+  <container id="SSMShiro!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="E:/EclipseWorkspace/SSMShiro/WebRoot/WEB-INF/lib/shiro-spring-1.2.3.jar">
+      <source-attachment-path>C:/Users/liqiang/Desktop/文件/A开发库/Shiro/shiro-root-1.2.3-source-release.zip</source-attachment-path>
+    </entry>
+    <entry id="E:/EclipseWorkspace/SSMShiro/WebRoot/WEB-INF/lib/shiro-core-1.2.3.jar">
+      <source-attachment-path>C:/Users/liqiang/Desktop/文件/A开发库/Shiro/shiro-root-1.2.3-source-release.zip</source-attachment-path>
+    </entry>
+    <entry id="E:/EclipseWorkspace/SSMShiro/WebRoot/WEB-INF/lib/shiro-web-1.2.3.jar">
+      <source-attachment-path>C:/Users/liqiang/Desktop/文件/A开发库/Shiro/shiro-root-1.2.3-source-release.zip</source-attachment-path>
+    </entry>
+  </container>
+  <container id="Struts2OGNL!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="E:/EclipseWorkspace/Struts2OGNL/WebContent/WEB-INF/lib/struts2-core-2.3.32.jar">
+      <source-attachment-path>C:/Users/liqiang/Desktop/文件/A开发库/Struts/struts-2.3.32/src</source-attachment-path>
+    </entry>
+  </container>
+  <container id="CXF_server!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="E:/EclipseWorkspace/CXF_server/WebContent/WEB-INF/lib/spring-web-3.2.0.RELEASE.jar">
+      <source-attachment-path>C:/Users/liqiang/Desktop/文件/A开发库/Spring/3.2.0源码/spring-framework-3.2.0.RELEASE.zip</source-attachment-path>
+    </entry>
+  </container>
+  <container id="SpringDay03!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="E:/EclipseWorkspace/SpringDay03/WebContent/WEB-INF/lib/spring-tx-4.2.4.RELEASE.jar">
+      <source-attachment-path>C:/Users/liqiang/Desktop/文件/A开发库/Spring/spring-framework-4.2.4.RELEASE/libs/spring-core-4.2.4.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+  </container>
+  <container id="struts2interceptor!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="E:/EclipseWorkspace/struts2interceptor/WebContent/WEB-INF/lib/commons-beanutils-1.9.3.jar">
+      <source-attachment-path>C:/Users/liqiang/Desktop/文件/A开发库/commons-beanutils-1.9.3(给Bean封装属性)/commons-beanutils-1.9.3-sources.jar</source-attachment-path>
+    </entry>
+  </container>
+</classpath>

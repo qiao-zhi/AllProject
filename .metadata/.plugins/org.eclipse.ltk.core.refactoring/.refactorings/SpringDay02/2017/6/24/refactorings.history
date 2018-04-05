@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;com.springsource.org.aopalliance-1.0.0.jar&apos; to &apos;lib&apos;&#x0D;&#x0A;- Original project: &apos;SpringDay02&apos;&#x0D;&#x0A;- Destination element: &apos;lib&apos;&#x0D;&#x0A;- Original element: &apos;com.springsource.org.aopalliance-1.0.0.jar&apos;" description="Copy file" element1="WebContent/WEB-INF/lib/com.springsource.org.aopalliance-1.0.0.jar" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1497278192408" target="/SpringDay03Tx/WebContent/WEB-INF/lib" units="0" version="1.0"/>
+</session>

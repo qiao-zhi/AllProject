@@ -1,0 +1,55 @@
+package arithmeticTest;
+
+/**
+ * 希尔排序实现
+* @author: qlq
+* @date :  2018年4月2日下午9:10:25
+ */
+public class XierInsert {
+
+	public static void main(String a[]) {
+		int array[] = { 9,8,7,6,5,4,3,2,1,0 };
+		straightInsertImpl(array);
+		// 打印排序后的数组
+		for (int i : array) {
+			System.out.print(i + "   ");
+		}
+	}
+
+	/**
+	 * 主要算法实现
+	 * 
+	 * @param arr
+	 *            需要排序的数组
+	 */
+	public static void straightInsertImpl(int[] arr) {
+		for (int i = 1; i < arr.length; i++) {// 遍历右边的无序区间
+			if (arr[i] >= arr[i - 1]) { // 如果无序区的第一个元素大于或者等于有序区的第一个元素，结束本次循环进行下一次
+				continue;
+			}
+			for (int j = 0; j < i; j++) {// 遍历左边的有序区间，插入合适的位置
+				if (arr[i] < arr[j]) {
+					swap(arr, i, j);
+					break; // 找到合适的位置插入后结束这层循环即可
+				}
+			}
+		}
+	}
+
+	/**
+	 * 交换数组里面两个元素
+	 * 
+	 * @param a
+	 *            数组
+	 * @param i
+	 *            交换的第一个位置
+	 * @param j
+	 *            交换的第二个位置
+	 */
+	public static void swap(int a[], int i, int j) {
+		int temp = a[i];
+		a[i] = a[j];
+		a[j] = temp;
+	}
+
+}

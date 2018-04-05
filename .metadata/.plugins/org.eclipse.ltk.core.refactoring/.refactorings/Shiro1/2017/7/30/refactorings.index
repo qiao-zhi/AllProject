@@ -1,0 +1,4 @@
+1501245944258	Rename package 'cn.qlq.authentication.realm'
+1501291344927	Extract local variable 'permitted'
+1501291419105	Extract local variable 'hasRoles'
+1501298469380	Copy compilation unit

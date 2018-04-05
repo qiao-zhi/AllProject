@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Oraclefenye/WebContent/G动态树.html&apos; to &apos;test.html&apos;" description="Rename resource &apos;G动态树.html&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="WebContent/G动态树.html" name="test.html" stamp="1502165921021" updateReferences="true"/>
+</session>

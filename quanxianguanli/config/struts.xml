@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+   
+    
+    <!-- 第一个package命名空间 -->
+    <package name="user" namespace="/" extends="struts-default">
+
+       <action name="login" class="Action.LoginAction">
+       		<result>/index.jsp</result>
+       		<result name="login">JSP/login.jsp</result>
+       </action>
+       
+       <action name="logout" class="Action.LogoutAction">
+       		<result>/index.jsp</result>
+       </action>
+       
+       
+       
+    </package> 
+    
+    
+ 
+  
+</struts>

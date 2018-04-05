@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ChooseWorkspaceDialogSettings">
+		<item value="160" key="DIALOG_Y_ORIGIN"/>
+		<item value="379" key="DIALOG_X_ORIGIN"/>
+	</section>
+	<section name="org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog">
+		<item value="false" key="FilterByLocation"/>
+		<item value="false" key="ShowDerived"/>
+		<item value="true" key="ShowStatusLine"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;workingSet workingSetName=&quot;&quot;/&gt;" key="WorkingSet"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History&gt;&#x0D;&#x0A;&lt;historyRootNode&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/Servlet2/src/duanxinyanzheng/HttpClientUtil.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/SSMShiro/src/cn/qlq/mapper/SysPermissionMapperCustom.xml&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/Java基础/src/Visitor/TimeVisitor.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;/historyRootNode&gt;&#x0D;&#x0A;&lt;/History&gt;" key="History"/>
+		<section name="DialogBoundsSettings">
+			<item value="600" key="DIALOG_WIDTH"/>
+			<item value="39" key="DIALOG_Y_ORIGIN"/>
+			<item value="391" key="DIALOG_X_ORIGIN"/>
+			<item value="500" key="DIALOG_HEIGHT"/>
+			<item value="1|Microsoft YaHei UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Microsoft YaHei UI" key="DIALOG_FONT_NAME"/>
+		</section>
+	</section>
+	<section name="ExternalProjectImportWizard">
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\liqiang\Desktop\文件\A学习\案例学习(公共部分)\Steap"/>
+			<item value="G:\SSM"/>
+			<item value="C:\Users\liqiang\Desktop\新建文件夹 (2)\IsvDemo"/>
+			<item value="C:\Users\liqiang\Desktop\新建文件夹 (2)"/>
+			<item value="C:\Users\liqiang\Desktop\新建文件夹\vitamio"/>
+			<item value="C:\Users\liqiang\Desktop\新建文件夹\VoicePlayer"/>
+			<item value="C:\Users\liqiang\Desktop\新建文件夹\vitamio-sample"/>
+			<item value="C:\Users\liqiang\Desktop\page"/>
+			<item value="C:\Users\liqiang\Desktop\文件\语音识别\MscInvisibleDemo"/>
+			<item value="C:\Users\liqiang\Desktop\文件\语音识别\MscDemo"/>
+			<item value="C:\Users\liqiang\Desktop\文件\语音识别\IsvDemo"/>
+			<item value="C:\Users\liqiang\Desktop\新建文件夹\MscDemo"/>
+			<item value="C:\Users\liqiang\Desktop\新建文件夹\MscInvisibleDemo"/>
+			<item value="E:\program files (x86)\SoftConstruct"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+	</section>
+	<section name="ResourceNavigator">
+		<item value="Aggregate for window 1480309891975" key="ResourceWorkingSetFilter.STORE_WORKING_SET"/>
+		<item value="2" key="ResourceViewer.STORE_SORT_TYPE"/>
+	</section>
+	<section name="SaveAsDialogSettings">
+		<item value="525" key="DIALOG_WIDTH"/>
+		<item value="8" key="DIALOG_Y_ORIGIN"/>
+		<item value="599" key="DIALOG_HEIGHT"/>
+		<item value="429" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Microsoft YaHei UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Microsoft YaHei UI" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="CleanDialogSettings">
+		<item value="500" key="DIALOG_WIDTH"/>
+		<item value="144" key="DIALOG_Y_ORIGIN"/>
+		<item value="391" key="DIALOG_HEIGHT"/>
+		<item value="433" key="DIALOG_X_ORIGIN"/>
+		<item value="false" key="TOGGLE_SELECTED"/>
+	</section>
+	<section name="NewWizardAction">
+		<item value="org.eclipse.jst.servlet.ui.project.facet.WebProjectWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.jdt.ui.java"/>
+			<item value="org.eclipse.jst.j2ee.internal"/>
+			<item value="org.eclipse.wst.web.ui"/>
+		</list>
+	</section>
+</section>

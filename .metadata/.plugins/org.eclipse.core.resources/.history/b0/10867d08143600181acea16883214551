@@ -1,0 +1,14 @@
+package ConstructorTest;
+
+public class Parent {
+	private String str;
+
+	public String getStr() {
+		return string;
+	}
+
+	public void setString(String string) {
+		this.string = string;
+	}
+	
+}

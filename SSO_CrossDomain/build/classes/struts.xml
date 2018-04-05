@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 配置常量 -->
+	<!-- 字符集 -->
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<!-- 开发模式 -->
+	<constant name="struts.devMode" value="true"></constant>
+	<!-- 主题 -->
+	<constant name="struts.ui.theme" value="simple"></constant>
+	<!-- 扩展名 -->
+	<constant name="struts.action.extension" value="action"></constant>
+
+	<!-- 通用package -->
+	<package name="sso" namespace="/sso" extends="struts-default">
+		<!-- 只是验证，没有返回值 -->
+		<action name="doLogin" class="www.x.com.LoginAction" method="doLogin">
+		</action>
+		<action name="checkCookie" class="www.x.com.LoginAction"
+			method="checkCookie">
+		</action>
+	</package>
+
+	<package name="demo1" namespace="/demo1" extends="struts-default">
+		<action name="doLogin" class="www.a.com.Demo1Action" method="doLogin">
+			<result name="success">/Demo1Index.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+		<action name="main" class="www.a.com.Demo1Action">
+			<result name="success">/Demo1Index.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+		<action name="addCookie" class="www.a.com.Demo1Action" method="addCookie">
+		</action>
+
+	</package>
+
+	<package name="demo2" namespace="/demo2" extends="struts-default">
+		<action name="doLogin" class="www.b.com.Demo2Action" method="doLogin">
+			<result name="success">/Demo2Index.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+		<action name="main" class="www.b.com.Demo2Action">
+			<result name="success">/Demo2Index.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+		<action name="addCookie" class="www.b.com.Demo2Action" method="addCookie">
+		</action>
+	</package>
+</struts>

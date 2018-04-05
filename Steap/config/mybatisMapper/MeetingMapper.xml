@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkPro.steap.db.mapper.meeting.IMeetingMapper">
+
+	<!-- 获取下一个会议Id -->
+	<select id="getNextMeetingId" resultType="String">
+		SELECT CONCAT(SUBSTR(MAX(meetingId),1,1),SUBSTR(MAX(meetingId), 2) + 1) FROM
+			t_meeting_base_info;
+	</select>
+	<!-- 插入新创建的会议信息 -->
+	<insert id="addMeeting" parameterType="Meeting">
+		INSERT t_meeting_base_info(meetingId, meetingName,meetingPlace,meetingTime,hostId,remark)
+		VALUES
+		(#{meetingId}, #{meetingName},#{meetingPlace},DATE_FORMAT(#{meetingTime},'%Y-%m-%d %H:%i:%S'),#{hostId}, #{remark})
+	</insert>
+
+	<!-- 插入新创建的会议对应的项目信息 -->
+	<insert id="addProjectMeeting" parameterType="map">
+		INSERT project_meeting(meetingId,projectId)
+		VALUES
+		<foreach collection="projectIds" item="projectId" index="index"
+			separator=",">
+			(#{meetingId},#{projectId})
+		</foreach>
+	</insert>
+	
+	<!-- 删除会议(Delete) 级联删除会议项目信息 -->
+	<delete id="deleteMeeting" parameterType="String">
+		DELETE FROM
+		t_meeting_base_info WHERE
+		meetingId=#{meetingId};
+	</delete>
+	
+	<!-- 修改会议的状态 -->
+	<update id="updateMeetingStatus" parameterType="map">
+		UPDATE t_meeting_base_info
+		SET
+		meetingStatus=#{meetingStatus}
+		WHERE meetingId=#{meetingId};
+	</update>
+	
+	<!-- 修改会议的通知 -->
+	<update id="updateMeetingNotice" parameterType="map">
+		UPDATE t_meeting_base_info
+		SET
+		meetingNotice=#{meetingNotice}
+		WHERE meetingId=#{meetingId};
+	</update>
+	
+	<!-- 按条件分页查询会议的基本信息 -->
+	<select id="getMeetingInfos" parameterType="MeetingCondition"
+		resultType="Meeting">
+		SELECT meetingId,meetingName,meetingPlace,meetingTime,dsd.dictionaryOptionName meetingStatus
+		FROM
+		dic_system_dictionary dsd, t_meeting_base_info m
+		WHERE dsd.dictionaryOptionId=m.meetingStatus
+		<if test="meetingStatus != null">
+			AND dictionaryOptionName = #{meetingStatus}
+		</if>
+		<if test="meetingTime != null">
+			AND meetingTime >= DATE_FORMAT(#{meetingTime},'%Y-%m-%d %H:%i:%S')
+		</if>
+		order by meetingTime desc
+		<if test="pageBegin != null and pageSize != 0">
+			LIMIT ${pageBegin},#{pageSize}
+		</if>
+	</select>
+	
+	<!-- 查询满足条件的会议的数量  -->
+	<select id="getMeetingCount" parameterType="MeetingCondition"
+		resultType="Integer">
+		SELECT COUNT(*)
+		FROM
+		dic_system_dictionary dsd, t_meeting_base_info m
+		WHERE dsd.dictionaryOptionId=m.meetingStatus
+		<if test="meetingStatus != null">
+			AND dictionaryOptionName = #{meetingStatus}
+		</if>
+		<if test="meetingTime != null">
+			AND meetingTime >= DATE_FORMAT(#{meetingTime},'%Y-%m-%d %H:%i:%S')
+		</if>
+	</select>
+	
+	<!-- 根据meetingId查询某一个会议涉及到的项目的信息 主要是针对项目信息+通知企业日期+通知企业方式  -->
+	<select id="getEnterpriseNotify" parameterType="String"
+		resultType="EnterpriseNotify">
+		SELECT vpmn.projectId,projectName,applicant,domain,projectFunds,notifyDate,notifyMethod,name chargePerson 
+		FROM v_project_meeting_notify vpmn,project_accept pa,t_user_base_info user 
+		WHERE vpmn.projectId=pa.projectId
+		AND meetingId=#{meetingId}
+		AND user.userId=pa.chargePerson;
+	</select>
+	
+	<!-- 根据meetingId查询某一个会议涉及到的项目的信息 主要是针对项目信息+通知企业日期+通知企业方式  -->
+	<select id="getProjectInEnterpriseNotify" parameterType="map"
+		resultType="EnterpriseNotify">
+		SELECT vpmn.projectId,projectName,applicant,domain,projectFunds,notifyDate,notifyMethod,name chargePerson 
+		FROM v_project_meeting_notify vpmn,project_accept pa,t_user_base_info user 
+		WHERE vpmn.projectId=pa.projectId
+		AND meetingId=#{meetingId}
+		AND user.userId=#{chargePerson}
+		<if test="chargePerson !=null and chargePerson !=''">
+			AND pa.chargePerson = #{chargePerson}
+		</if>
+	</select>
+	
+	
+	<!-- 批量更新通知企业的信息 -->
+	<update id="updateProjectMeeting" parameterType="list">
+		<foreach collection="list" item="map" index="index" open=""
+			close="" separator=";">
+			UPDATE project_meeting
+			<set>
+				<if test="map.notifyDate != null">notifyDate=DATE_FORMAT(#{map.notifyDate}, '%Y-%m-%d'),</if>
+				<if test="map.notifyMethod != null">notifyMethod=#{map.notifyMethod}</if>
+			</set>
+			WHERE meetingId=#{map.meetingId} and projectId=#{map.projectId}
+		</foreach>
+	</update>
+	
+	<sql id="InstitutionNotifyColumns">notifyId,meetingId,institutionName,contactPerson,notifier,notifyDate,notifyMethod,notifyResult</sql>
+	
+	<!-- 查询通知相关人员的基本情况 -->
+	<select id="getInstitutionNotify" parameterType="String"
+		resultType="InstitutionNotify">
+		SELECT notifyId,meetingId,institutionName,contactPerson,userId,name notifier,notifyDate,notifyMethod,notifyResult
+		FROM
+		institution_notify, t_user_base_info user 
+		WHERE meetingId=#{meetingId}
+		AND user.userId=institution_notify.notifier;
+	</select>
+	
+	
+	<!-- 批量插入通知相关人员的基本情况 -->
+	<insert id="addInstitutionNotify" parameterType="list">
+		INSERT INTO institution_notify (notifyId,meetingId,institutionName,contactPerson,notifier,notifyDate,notifyMethod,notifyResult)
+		VALUES
+		<foreach collection="list" item="institutionNotify" index="index"
+			separator=",">
+			(uuid(),#{institutionNotify.meetingId},#{institutionNotify.institutionName},
+			#{institutionNotify.contactPerson},#{institutionNotify.notifier},
+			DATE_FORMAT(#{institutionNotify.notifyDate}, '%Y-%m-%d'),#{institutionNotify.notifyMethod},#{institutionNotify.notifyResult})
+		</foreach>
+	</insert>
+	
+	<!-- 删除通知相关人员 -->
+	<delete id="deleteNotifyById" parameterType="String">
+		DELETE FROM institution_notify WHERE notifyId=#{deleteNotifyId};
+	</delete>
+	
+	<!-- 这部分暂时用不上 -->
+	<!-- 批量更新通知相关人员的基本情况 -->
+	<update id="updateInstitutionNotify" parameterType="list">
+		<foreach collection="list" item="map" index="index" open=""
+			close="" separator=";">
+			UPDATE institution_notify
+			<set>
+				<if test="map.notifyDate != null">notifyDate=DATE_FORMAT(#{map.notifyDate}, '%Y-%m-%d'),</if>
+				<if test="map.notifyMethod != null">notifyMethod=#{map.notifyMethod},</if>
+				<if test="map.notifyResult != null">notifyResult=#{map.notifyResult}</if>
+			</set>
+			WHERE notifyId=#{map.notifyId}
+		</foreach>
+	</update>
+
+	<!-- 修改会议基本信息(Update) 暂时不需要 -->
+
+	<update id="updateMeeting" parameterType="Meeting"> 
+		update t_meeting_base_info 
+		<set> 
+			<if test="meetingName!=null"> meetingName=#{meetingName}, </if> 
+			<if	test="meetingPlace!=null">meetingPlace=#{meetingPlace}, </if> 
+			<if test="meetingTime!=null"> meetingTime=DATE_FORMAT(#{meetingTime},'%Y-%m-%d %H:%i:%S'), </if> 
+			<if test="hostId!=null"> hostId=#{hostId}, 	</if> 
+			<if test="remark!=null"> remark=#{remark}, </if> 
+			<if test="meetingStatus!=null"> meetingStatus=#{meetingStatus},</if>
+		</set> 
+		where meetingId=#{meetingId} 
+	</update> 
+
+	
+	<!-- by yachao 2016/7/23 21:31 -->
+	
+	<resultMap type="Meeting" id="meetingMap">
+		<id property="meetingId" column="meetingId" />
+		<result property="meetingName" column="meetingName" />
+		<result property="meetingTime" column="meetingTime" />
+		<result property="meetingPlace" column="meetingPlace"/>
+		<result property="meetingStatus" column="meetingStatus" />
+		<result property="hostId" column="hostId" />
+		<result property="remark" column="remark" />
+	</resultMap>
+	
+	<!-- 根据专家编号和会议状态查询会议信息 -->
+	<select id="getMeetingByMapInfo" parameterType="map" resultType="map">
+		select sa.meetingId, DATE_FORMAT(meetingTime,'%Y-%m-%d %H:%i:%S') as meetingTime, meetingPlace 
+		from t_meeting_base_info m, specialist_arrangement sa
+		where m.meetingId=sa.meetingId 
+			 and sa.specialistId=#{specialistId}
+			 and m.meetingStatus=(select dictionaryOptionId from dic_system_dictionary where dictionaryOptionName=#{meetingStatus});  
+	</select>
+	
+	<!-- 根据会议主持人编号和会议状态查询已经主持过的会议信息集合 -->
+	<sql id="meetingInfo">meetingId, meetingName, DATE_FORMAT(meetingTime,'%Y-%m-%d %H:%i:%S') as meetingTime, meetingPlace, meetingStatus, hostId, remark</sql>
+	<select id="getMeetingListByHostId" parameterType="map" resultType="Meeting">
+		select <include refid="meetingInfo" />
+		from t_meeting_base_info m
+		where m.meetingStatus=(select dictionaryOptionId from dic_system_dictionary dic where dic.dictionaryOptionName=#{meetingStatus}) 
+		and hostId=#{hostId} 
+	</select>
+	
+	<!-- 根据会议主持人编号和会议状态查询会议主持人当前要主持的会议 -->
+	<select id="getMeetingByHostId" parameterType="map" resultType="Meeting">
+		select <include refid="meetingInfo" />
+		from t_meeting_base_info m
+		where m.meetingStatus=(select dictionaryOptionId from dic_system_dictionary dic where dic.dictionaryOptionName=#{meetingStatus}) 
+			  and hostId=#{hostId}
+	</select>
+	
+	<!-- 根据会议编号获取当前会议基本信息 -->
+	<select id="getMeetingById" parameterType="String" resultType="map">
+		SELECT (select name from t_user_base_info where userId = m.hostId) as hostId,meetingName,meetingPlace,meetingTime,dsd.dictionaryOptionName meetingStatus,remark
+		FROM
+		dic_system_dictionary dsd, t_meeting_base_info m
+		WHERE dsd.dictionaryOptionId=m.meetingStatus
+		and meetingId = #{meetingId}
+	</select>
+	
+	<!-- by yachao at 2016/8/10 20:29-->
+	<!-- 根据项目编号查询企业通知方式和通知日期 -->
+	<select id="getProjectNotifyByProjectId" parameterType="String" resultType="map">
+		select DATE_FORMAT(notifyDate, '%Y-%m-%d') as notifyDate, notifyMethod
+		from project_meeting
+		where projectId=#{projectId}
+	</select>
+	
+	<!-- 根据项目编号查询会议信息 -->
+	<select id="getMeetingByProjectId" parameterType="map" resultType="map">
+		select pm.meetingId, meetingName, DATE_FORMAT(meetingTime,'%Y-%m-%d %H:%i:%S') as meetingTime, meetingPlace
+		from t_meeting_base_info m, project_meeting pm, dic_system_dictionary dic
+		where m.meetingId=pm.meetingId and m.meetingStatus=dic.dictionaryOptionId
+			and pm.projectId=#{projectId} and dic.dictionaryOptionName=#{meetingStatus}
+	</select>
+	
+	<!-- by yachao at 2016/8/21 10:52 -->
+	<!-- 更新会议的当前状态 -->
+	<update id="updateMeetingCurrentStatus" parameterType="map">
+		<selectKey keyProperty="status" order="BEFORE" resultType="String">
+			select dictionaryOptionId from dic_system_dictionary where dictionaryOptionName=#{meetingStatus}
+		</selectKey>	
+		update t_meeting_base_info set meetingStatus=#{status} where meetingId=#{meetingId}
+	</update>
+	
+	<select id="getAllMeetingsCountWithPaging" parameterType="map" resultType="Integer">
+		select COUNT(*)
+		from t_meeting_base_info m, dic_system_dictionary dic 
+		<where>
+			m.meetingStatus=dic.dictionaryOptionId and dic.dictionaryOptionName=#{meetingStatus}
+		</where>
+		<if test="hostId!=null">
+			and m.hostId=#{hostId}
+		</if>
+	</select>
+	
+	<select id="getAllMeetingsWithPaging" parameterType="map" resultType="Meeting">
+		select meetingId, meetingName, DATE_FORMAT(meetingTime, "%Y-%m-%d %H:%i:%S") as meetingTime, meetingPlace, dictionaryOptionName as meetingStatus
+		from t_meeting_base_info m, dic_system_dictionary dic
+		<where>
+			m.meetingStatus=dic.dictionaryOptionId and dic.dictionaryOptionName=#{meetingStatus}
+		</where>
+		<if test="hostId!=null">
+			and m.hostId=#{hostId}
+		</if>
+		ORDER BY meetingTime DESC
+	</select>
+	
+	<!-- <select id="getReveneMeetingCountByHostId" parameterType="map" resultType="Integer">
+		select COUNT(*)
+		from t_meeting_base_info m, dic_system_dictionary dic 
+		<where>
+			m.meetingStatus=dic.dictionaryOptionId and dic.dictionaryOptionName=#{meetingStatus}
+		</where>
+		<if test="hostId!=null">
+			and m.hostId=#{hostId}
+		</if>
+	</select> -->
+	
+	<!-- 临时把这个查询语句放在该处，是为了避免冲突 -->
+	<select id="getProjectListByMStatus" parameterType="map" resultType="map">
+		SELECT p.projectId, p.projectName, p.applicant, p.domain, p.contactPerson, dic.dictionaryOptionName as status
+		FROM t_project_base_info p, dic_system_dictionary dic
+		WHERE p.status = dic.dictionaryOptionId AND p.projectId IN (
+			SELECT projectId 
+			FROM project_meeting pm, t_meeting_base_info m, dic_system_dictionary
+			WHERE pm.meetingId = m.meetingId AND m.meetingStatus = dictionaryOptionId
+					AND dictionaryOptionName = #{meetingStatus}
+		)
+	</select>
+</mapper>
+		

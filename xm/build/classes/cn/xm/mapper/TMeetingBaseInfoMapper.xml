@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.xm.mapper.TMeetingBaseInfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.xm.pojo.TMeetingBaseInfo" >
+    <id column="meetingId" property="meetingid" jdbcType="VARCHAR" />
+    <result column="hostId" property="hostid" jdbcType="VARCHAR" />
+    <result column="meetingName" property="meetingname" jdbcType="VARCHAR" />
+    <result column="meetingTime" property="meetingtime" jdbcType="TIMESTAMP" />
+    <result column="meetingPlace" property="meetingplace" jdbcType="VARCHAR" />
+    <result column="meetingNotice" property="meetingnotice" jdbcType="VARCHAR" />
+    <result column="meetingStatus" property="meetingstatus" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    meetingId, hostId, meetingName, meetingTime, meetingPlace, meetingNotice, meetingStatus, 
+    remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.xm.pojo.TMeetingBaseInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_meeting_base_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_meeting_base_info
+    where meetingId = #{meetingid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_meeting_base_info
+    where meetingId = #{meetingid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.xm.pojo.TMeetingBaseInfoExample" >
+    delete from t_meeting_base_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.xm.pojo.TMeetingBaseInfo" >
+    insert into t_meeting_base_info (meetingId, hostId, meetingName, 
+      meetingTime, meetingPlace, meetingNotice, 
+      meetingStatus, remark)
+    values (#{meetingid,jdbcType=VARCHAR}, #{hostid,jdbcType=VARCHAR}, #{meetingname,jdbcType=VARCHAR}, 
+      #{meetingtime,jdbcType=TIMESTAMP}, #{meetingplace,jdbcType=VARCHAR}, #{meetingnotice,jdbcType=VARCHAR}, 
+      #{meetingstatus,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xm.pojo.TMeetingBaseInfo" >
+    insert into t_meeting_base_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="meetingid != null" >
+        meetingId,
+      </if>
+      <if test="hostid != null" >
+        hostId,
+      </if>
+      <if test="meetingname != null" >
+        meetingName,
+      </if>
+      <if test="meetingtime != null" >
+        meetingTime,
+      </if>
+      <if test="meetingplace != null" >
+        meetingPlace,
+      </if>
+      <if test="meetingnotice != null" >
+        meetingNotice,
+      </if>
+      <if test="meetingstatus != null" >
+        meetingStatus,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="meetingid != null" >
+        #{meetingid,jdbcType=VARCHAR},
+      </if>
+      <if test="hostid != null" >
+        #{hostid,jdbcType=VARCHAR},
+      </if>
+      <if test="meetingname != null" >
+        #{meetingname,jdbcType=VARCHAR},
+      </if>
+      <if test="meetingtime != null" >
+        #{meetingtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="meetingplace != null" >
+        #{meetingplace,jdbcType=VARCHAR},
+      </if>
+      <if test="meetingnotice != null" >
+        #{meetingnotice,jdbcType=VARCHAR},
+      </if>
+      <if test="meetingstatus != null" >
+        #{meetingstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.xm.pojo.TMeetingBaseInfoExample" resultType="java.lang.Integer" >
+    select count(*) from t_meeting_base_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_meeting_base_info
+    <set >
+      <if test="record.meetingid != null" >
+        meetingId = #{record.meetingid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hostid != null" >
+        hostId = #{record.hostid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.meetingname != null" >
+        meetingName = #{record.meetingname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.meetingtime != null" >
+        meetingTime = #{record.meetingtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.meetingplace != null" >
+        meetingPlace = #{record.meetingplace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.meetingnotice != null" >
+        meetingNotice = #{record.meetingnotice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.meetingstatus != null" >
+        meetingStatus = #{record.meetingstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_meeting_base_info
+    set meetingId = #{record.meetingid,jdbcType=VARCHAR},
+      hostId = #{record.hostid,jdbcType=VARCHAR},
+      meetingName = #{record.meetingname,jdbcType=VARCHAR},
+      meetingTime = #{record.meetingtime,jdbcType=TIMESTAMP},
+      meetingPlace = #{record.meetingplace,jdbcType=VARCHAR},
+      meetingNotice = #{record.meetingnotice,jdbcType=VARCHAR},
+      meetingStatus = #{record.meetingstatus,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xm.pojo.TMeetingBaseInfo" >
+    update t_meeting_base_info
+    <set >
+      <if test="hostid != null" >
+        hostId = #{hostid,jdbcType=VARCHAR},
+      </if>
+      <if test="meetingname != null" >
+        meetingName = #{meetingname,jdbcType=VARCHAR},
+      </if>
+      <if test="meetingtime != null" >
+        meetingTime = #{meetingtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="meetingplace != null" >
+        meetingPlace = #{meetingplace,jdbcType=VARCHAR},
+      </if>
+      <if test="meetingnotice != null" >
+        meetingNotice = #{meetingnotice,jdbcType=VARCHAR},
+      </if>
+      <if test="meetingstatus != null" >
+        meetingStatus = #{meetingstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where meetingId = #{meetingid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xm.pojo.TMeetingBaseInfo" >
+    update t_meeting_base_info
+    set hostId = #{hostid,jdbcType=VARCHAR},
+      meetingName = #{meetingname,jdbcType=VARCHAR},
+      meetingTime = #{meetingtime,jdbcType=TIMESTAMP},
+      meetingPlace = #{meetingplace,jdbcType=VARCHAR},
+      meetingNotice = #{meetingnotice,jdbcType=VARCHAR},
+      meetingStatus = #{meetingstatus,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where meetingId = #{meetingid,jdbcType=VARCHAR}
+  </update>
+</mapper>

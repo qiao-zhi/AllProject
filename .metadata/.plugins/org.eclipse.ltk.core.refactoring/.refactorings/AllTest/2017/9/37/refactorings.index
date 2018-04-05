@@ -1,0 +1,22 @@
+1505530103551	Extract local variable 'value'
+1505531021591	Copy package
+1505531029637	Delete element
+1505531037941	Move compilation unit
+1505531041343	Move compilation unit
+1505531045192	Delete element
+1505531063509	Move compilation unit
+1505531066503	Move compilation unit
+1505531103051	Move compilation unit
+1505531117803	Rename type 'ValidateCheck'
+1505531129033	Rename type 'ValidateCheckUtil'
+1505531186174	Extract local variable 'notNull'
+1505532312783	Copy package
+1505532317003	Delete element
+1505532532963	Copy compilation units
+1505533510133	Rename type 'Snippet'
+1505533550357	Copy compilation unit
+1505534190218	Delete element
+1505551372294	Delete element
+1505551452415	Extract local variable 'currentTimeMillis'
+1505551556793	Extract local variable 'currentTimeMillis2'
+1505551576473	Extract local variable 'currentTimeMillis2'

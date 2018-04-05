@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.xm.mapper.IssueCertificateMapper" >
+  <resultMap id="BaseResultMap" type="cn.xm.pojo.IssueCertificate" >
+    <id column="issueId" property="issueid" jdbcType="VARCHAR" />
+    <result column="projectId" property="projectid" jdbcType="VARCHAR" />
+    <result column="issuePerson" property="issueperson" jdbcType="VARCHAR" />
+    <result column="issueDate" property="issuedate" jdbcType="DATE" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="holder" property="holder" jdbcType="VARCHAR" />
+    <result column="holderPhone" property="holderphone" jdbcType="VARCHAR" />
+    <result column="holdDate" property="holddate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    issueId, projectId, issuePerson, issueDate, remark, holder, holderPhone, holdDate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.xm.pojo.IssueCertificateExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from issue_certificate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from issue_certificate
+    where issueId = #{issueid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from issue_certificate
+    where issueId = #{issueid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.xm.pojo.IssueCertificateExample" >
+    delete from issue_certificate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.xm.pojo.IssueCertificate" >
+    insert into issue_certificate (issueId, projectId, issuePerson, 
+      issueDate, remark, holder, 
+      holderPhone, holdDate)
+    values (#{issueid,jdbcType=VARCHAR}, #{projectid,jdbcType=VARCHAR}, #{issueperson,jdbcType=VARCHAR}, 
+      #{issuedate,jdbcType=DATE}, #{remark,jdbcType=VARCHAR}, #{holder,jdbcType=VARCHAR}, 
+      #{holderphone,jdbcType=VARCHAR}, #{holddate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xm.pojo.IssueCertificate" >
+    insert into issue_certificate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="issueid != null" >
+        issueId,
+      </if>
+      <if test="projectid != null" >
+        projectId,
+      </if>
+      <if test="issueperson != null" >
+        issuePerson,
+      </if>
+      <if test="issuedate != null" >
+        issueDate,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="holder != null" >
+        holder,
+      </if>
+      <if test="holderphone != null" >
+        holderPhone,
+      </if>
+      <if test="holddate != null" >
+        holdDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="issueid != null" >
+        #{issueid,jdbcType=VARCHAR},
+      </if>
+      <if test="projectid != null" >
+        #{projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="issueperson != null" >
+        #{issueperson,jdbcType=VARCHAR},
+      </if>
+      <if test="issuedate != null" >
+        #{issuedate,jdbcType=DATE},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="holder != null" >
+        #{holder,jdbcType=VARCHAR},
+      </if>
+      <if test="holderphone != null" >
+        #{holderphone,jdbcType=VARCHAR},
+      </if>
+      <if test="holddate != null" >
+        #{holddate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.xm.pojo.IssueCertificateExample" resultType="java.lang.Integer" >
+    select count(*) from issue_certificate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update issue_certificate
+    <set >
+      <if test="record.issueid != null" >
+        issueId = #{record.issueid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectid != null" >
+        projectId = #{record.projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.issueperson != null" >
+        issuePerson = #{record.issueperson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.issuedate != null" >
+        issueDate = #{record.issuedate,jdbcType=DATE},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holder != null" >
+        holder = #{record.holder,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holderphone != null" >
+        holderPhone = #{record.holderphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holddate != null" >
+        holdDate = #{record.holddate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update issue_certificate
+    set issueId = #{record.issueid,jdbcType=VARCHAR},
+      projectId = #{record.projectid,jdbcType=VARCHAR},
+      issuePerson = #{record.issueperson,jdbcType=VARCHAR},
+      issueDate = #{record.issuedate,jdbcType=DATE},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      holder = #{record.holder,jdbcType=VARCHAR},
+      holderPhone = #{record.holderphone,jdbcType=VARCHAR},
+      holdDate = #{record.holddate,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xm.pojo.IssueCertificate" >
+    update issue_certificate
+    <set >
+      <if test="projectid != null" >
+        projectId = #{projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="issueperson != null" >
+        issuePerson = #{issueperson,jdbcType=VARCHAR},
+      </if>
+      <if test="issuedate != null" >
+        issueDate = #{issuedate,jdbcType=DATE},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="holder != null" >
+        holder = #{holder,jdbcType=VARCHAR},
+      </if>
+      <if test="holderphone != null" >
+        holderPhone = #{holderphone,jdbcType=VARCHAR},
+      </if>
+      <if test="holddate != null" >
+        holdDate = #{holddate,jdbcType=DATE},
+      </if>
+    </set>
+    where issueId = #{issueid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xm.pojo.IssueCertificate" >
+    update issue_certificate
+    set projectId = #{projectid,jdbcType=VARCHAR},
+      issuePerson = #{issueperson,jdbcType=VARCHAR},
+      issueDate = #{issuedate,jdbcType=DATE},
+      remark = #{remark,jdbcType=VARCHAR},
+      holder = #{holder,jdbcType=VARCHAR},
+      holderPhone = #{holderphone,jdbcType=VARCHAR},
+      holdDate = #{holddate,jdbcType=DATE}
+    where issueId = #{issueid,jdbcType=VARCHAR}
+  </update>
+</mapper>

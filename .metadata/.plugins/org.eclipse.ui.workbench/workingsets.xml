@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSetManager>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1501164550761_1" label="Test" name="Test">
+<item elementID="=WebShiro" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=Shiro" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=quanxian" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=SSMShiro" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=Shiro1" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1501589179158_3" label="JavaTest" name="JavaTest">
+<item elementID="=AllTest" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1502501529694_4" label="lucene&amp;solr" name="lucene&amp;solr">
+<item elementID="=lucene_solr_websolr" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=lucene&amp;solrJ" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=lucene&amp;solr_01" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1503975061461_5" label="examples" name="examples">
+<item elementID="=CXF_server" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=CXF_Client" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=SSO_SameDomain" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=WeatherWS" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=WebClient" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=SSO_SamaFatherDomain" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=SSO_CrossDomain" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=WebService" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1480309891975_0" label="Window Working Set" name="Aggregate for window 1480309891975"/>
+<mruList name="JavaTest"/>
+<mruList name="Test"/>
+</workingSetManager>

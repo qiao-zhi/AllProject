@@ -1,0 +1,2 @@
+#在specialist_arrangement表中设置字段isAgree默认值为0
+ALTER TABLE specialist_arrangement ALTER COLUMN isAgree SET DEFAULT 0;

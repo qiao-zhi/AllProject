@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="opinion" extends="json-default">
+
+		<!-- 按照上级字典编号查询字典信息 -->
+		<action name="getProjectListByMStatus" class="com.thinkPro.steap.action.sys.opinion.OpinionAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="getSpecialistOpinionListByPId" class="com.thinkPro.steap.action.sys.opinion.OpinionAction" method="getSpecialistOpinionListByPId">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="updateOpinionStatus" class="com.thinkPro.steap.action.sys.opinion.OpinionAction" method="updateOpinionStatus">
+			<result type="json">
+				<param name="root">resp</param>
+			</result>
+		</action>
+	</package>
+</struts>

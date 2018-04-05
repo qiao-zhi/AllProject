@@ -1,0 +1,12 @@
+1492954091500	Rename resource 'DBconfig.properties'
+1492955387828	Move file
+1492955805795	Move file
+1492955823623	Delete element
+1492957265596	Rename type 'pager'
+1492957628583	Move compilation unit
+1493019017429	Rename package 'it.qlq.model'
+1493019036990	Rename package 'service'
+1493019056400	Rename package 'Controller'
+1493019081209	Rename package 'dao'
+1493019098102	Rename package 'com.imooc.page.util'
+1493019476233	Rename type 'SublistStudentDaoImpl'

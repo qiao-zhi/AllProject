@@ -1,0 +1,75 @@
+/*一级框架页面*/
+/*header_info*/
+.header_pic{
+	height: 80px;
+	background-color: #FBFBFB;
+	background: url(../../img/titleBanner.jpg) center no-repeat;
+	background-size:100% 100%;
+}
+.header_user{
+	height: 36px;
+	line-height: 36px;
+	background-color: #FFFFFF; /*//缺颜色*/
+}
+/*section_info*/
+.section_left{
+	width: 10%;
+	/*background-color: #266097;*/
+	background-color: #337AB7;
+	float: left;
+	height: 700px;
+	color: #FFFFFF;
+	
+}
+.section_left a{
+	text-decoration: none;
+	color: #FFFFFF;
+}
+.section_right{
+	float: right;
+	width: 90%;
+	height: 700px;
+}
+/*footer info*/
+footer{
+	background-color: #EEEEEE;
+	text-align: center;
+	padding: 50px 0;
+}
+
+
+
+/*0802*/
+#sidebar_btn_show ,#sidebar_btn_hide{
+	width: 30px;
+	height: 30px;
+	background: rgba(0,0,0,0.3);
+	line-height: 32px;
+	font-size: 20px;
+	text-align: center;
+	position: fixed;
+}
+#sidebar_btn_show {
+	display: none;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	/*color: white;*/
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto 0;
+}
+#sidebar_btn_hide{
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	color: white;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto 0;
+}
+#sidebar_btn_hide :hover{
+	
+}

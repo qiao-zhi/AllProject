@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.xm.mapper.SpecialistEvaluationMapper" >
+  <resultMap id="BaseResultMap" type="cn.xm.pojo.SpecialistEvaluation" >
+    <id column="specialistId" property="specialistid" jdbcType="VARCHAR" />
+    <id column="projectId" property="projectid" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.xm.pojo.SpecialistEvaluationWithBLOBs" extends="BaseResultMap" >
+    <result column="reviewSuggestion" property="reviewsuggestion" jdbcType="LONGVARCHAR" />
+    <result column="opinion" property="opinion" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    specialistId, projectId, remark
+  </sql>
+  <sql id="Blob_Column_List" >
+    reviewSuggestion, opinion
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="cn.xm.pojo.SpecialistEvaluationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from specialist_evaluation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.xm.pojo.SpecialistEvaluationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from specialist_evaluation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="cn.xm.pojo.SpecialistEvaluationKey" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from specialist_evaluation
+    where specialistId = #{specialistid,jdbcType=VARCHAR}
+      and projectId = #{projectid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="cn.xm.pojo.SpecialistEvaluationKey" >
+    delete from specialist_evaluation
+    where specialistId = #{specialistid,jdbcType=VARCHAR}
+      and projectId = #{projectid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.xm.pojo.SpecialistEvaluationExample" >
+    delete from specialist_evaluation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.xm.pojo.SpecialistEvaluationWithBLOBs" >
+    insert into specialist_evaluation (specialistId, projectId, remark, 
+      reviewSuggestion, opinion)
+    values (#{specialistid,jdbcType=VARCHAR}, #{projectid,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{reviewsuggestion,jdbcType=LONGVARCHAR}, #{opinion,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xm.pojo.SpecialistEvaluationWithBLOBs" >
+    insert into specialist_evaluation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="specialistid != null" >
+        specialistId,
+      </if>
+      <if test="projectid != null" >
+        projectId,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="reviewsuggestion != null" >
+        reviewSuggestion,
+      </if>
+      <if test="opinion != null" >
+        opinion,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="specialistid != null" >
+        #{specialistid,jdbcType=VARCHAR},
+      </if>
+      <if test="projectid != null" >
+        #{projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewsuggestion != null" >
+        #{reviewsuggestion,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="opinion != null" >
+        #{opinion,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.xm.pojo.SpecialistEvaluationExample" resultType="java.lang.Integer" >
+    select count(*) from specialist_evaluation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update specialist_evaluation
+    <set >
+      <if test="record.specialistid != null" >
+        specialistId = #{record.specialistid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectid != null" >
+        projectId = #{record.projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewsuggestion != null" >
+        reviewSuggestion = #{record.reviewsuggestion,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.opinion != null" >
+        opinion = #{record.opinion,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update specialist_evaluation
+    set specialistId = #{record.specialistid,jdbcType=VARCHAR},
+      projectId = #{record.projectid,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      reviewSuggestion = #{record.reviewsuggestion,jdbcType=LONGVARCHAR},
+      opinion = #{record.opinion,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update specialist_evaluation
+    set specialistId = #{record.specialistid,jdbcType=VARCHAR},
+      projectId = #{record.projectid,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xm.pojo.SpecialistEvaluationWithBLOBs" >
+    update specialist_evaluation
+    <set >
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewsuggestion != null" >
+        reviewSuggestion = #{reviewsuggestion,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="opinion != null" >
+        opinion = #{opinion,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where specialistId = #{specialistid,jdbcType=VARCHAR}
+      and projectId = #{projectid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.xm.pojo.SpecialistEvaluationWithBLOBs" >
+    update specialist_evaluation
+    set remark = #{remark,jdbcType=VARCHAR},
+      reviewSuggestion = #{reviewsuggestion,jdbcType=LONGVARCHAR},
+      opinion = #{opinion,jdbcType=LONGVARCHAR}
+    where specialistId = #{specialistid,jdbcType=VARCHAR}
+      and projectId = #{projectid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xm.pojo.SpecialistEvaluation" >
+    update specialist_evaluation
+    set remark = #{remark,jdbcType=VARCHAR}
+    where specialistId = #{specialistid,jdbcType=VARCHAR}
+      and projectId = #{projectid,jdbcType=VARCHAR}
+  </update>
+</mapper>

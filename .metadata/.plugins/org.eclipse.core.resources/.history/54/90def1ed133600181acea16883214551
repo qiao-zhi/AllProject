@@ -1,0 +1,8 @@
+package ConstructorTest;
+
+public class Test {
+	public static void main(String[] args) {
+		Children children = new Children("children");
+		System.out.println(children.getString());
+	}
+}

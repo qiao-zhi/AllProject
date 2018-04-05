@@ -1,0 +1,70 @@
+@CHARSET "UTF-8";
+
+.reviewed_search{
+	position: relative;
+	width: 730px;
+	height: 60px;
+	padding: 5px 15px;
+	margin: 10px auto;
+	/*background: rgba(0,0,0,0.7);*/
+}
+.reviewed_search input{
+	width: 550px;
+	height: 50px;
+	line-height: 50px;
+	padding-left: 10px;
+	padding-right: 50px;
+	overflow: hidden;
+	background: ;
+	float: left;
+}
+.reviewed_search button{
+	background-color: #5CA7BA;
+	width: 150px;
+	height: 50px;
+	line-height: 50px;
+	border: 2px solid transparent;
+	float: left;
+}
+.reviewed_search button:hover{
+	background-color: #1B7DB2;
+	color: white;
+}
+.reviewed_search i{
+	font-size: 24px;
+	position: absolute;
+	left: 520px;
+	top: 20px;
+	cursor: pointer;
+}
+
+
+/**************hosted_meetings****************/
+
+
+.reviewed_table ,.hosted_meeting_table{
+	width: 940px;
+	padding: 30px 20px;
+	margin: 0 auto;
+}
+.reviewed_table table thead{
+	background-color: #5CA7BA;
+	color: white;
+}
+.reviewed_table table tbody{
+	background-color: white;
+}
+.reviewed_table table {
+	/*box-shadow: 0 1px 3px rgba(0,0,0,0.35);*/
+}
+.hosted_meeting_table{
+/*	background-color: #1081C1;*/
+}
+.hosted_meeting_table table thead{
+	/*background-color: #1081C1;*/
+	background-color: #5CA7BA;
+	color: white;
+}
+.hosted_meeting_table table tbody{
+	background-color: white;	
+}

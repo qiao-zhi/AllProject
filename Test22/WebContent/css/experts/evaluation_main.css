@@ -1,0 +1,35 @@
+@CHARSET "UTF-8";
+
+.pdfobject {
+	border: 3px solid #666;
+}
+/* 全屏问题 */
+.pdfobject-container {
+	height: 100%;
+	width: 100%;
+}
+
+.pdfContainer {
+	height: 700px;
+}
+
+.file_pic {
+	position: relative;
+	height: 630px;
+}
+
+#fullScreenView {
+	position: absolute;
+	top: 3px;
+	right: 48px;
+	z-index: 99;
+	border-radius: 0;
+	width:150px;
+	height: 32px;
+	font-size: 12px;
+	font-family: 宋体;
+	background: #484848;
+	color: #DEDEDE;
+	border: none;
+	border-top: #666666;
+}

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkPro.steap.db.mapper.sys.user.IRoleMapper">
+	
+	<!-- 查看角色信息 -->
+	<select id="getRoleInfos" parameterType="String" resultType="TBaseRoleInfo">
+		select roleId,roleName,isUse,description,remark from t_role_base_info
+		<where>
+			<if test="_parameter">
+				roleName=#{_parameter}
+			</if>
+		</where>; 
+	</select>
+	
+	<!-- 获取全部角色部分信息 -->
+	<select id="getAllRolePartInfoByUserId" parameterType="String" resultType="map">
+		select t.roleId, roleName, own
+		from t_role_base_info t
+		left join 
+		(select roleId, true as own from user_role where userId=#{userId}) s
+		on t.roleId=s.roleId
+		where isUse=true
+	</select>
+	
+	<!-- 根据用户编号获取该用户角色信息 -->
+	<select id="getRolesByUserId" parameterType="String" resultType="map">
+		select roleId, roleName
+		from t_role_base_info
+		where roleId in ( select roleId from user_role where userId=#{userId})
+	</select>
+	
+	<!-- 添加角色信息 -->
+	<insert id="addRoleInfo" parameterType="TBaseRoleInfo">
+		<selectKey keyProperty="roleId" order="BEFORE" resultType="String">
+	     	select uuid();
+		</selectKey>
+		insert into t_role_base_info(roleId,roleName,isUse,description,remark)
+		values(#{roleId},#{roleName},#{isUse},#{description},#{remark});
+	</insert>
+	
+	<!-- 修改角色信息 -->
+	<update id="updateRoleInfo" parameterType="TBaseRoleInfo">
+		update t_role_base_info set
+		roleName=#{roleName},isUse=#{isUse},description=#{description},remark=#{remark}
+		where roleId=#{roleId}
+	</update>
+	
+	<!-- 删除角色信息 -->
+	<delete id="deleteRoleInfo" parameterType="String">
+		delete from t_role_base_info where roleId=#{roleId}
+	</delete>
+	
+	<!-- 给角色分配权限 -->
+	<insert id="addRoleModule" parameterType="Map">
+		insert into role_module(roleId,moduleId)
+		values(#{roleId},#{moduleId})
+	</insert>
+	
+	<!-- 收回角色的权限 -->
+	<delete id="deleteRoleModule" parameterType="Map">
+		delete from role_module where roleId=#{roleId} and moduleId=#{moduleId};
+	</delete>
+	
+	<!-- 查看角色拥有的权限 -->
+	<select id="getRoleModule" parameterType="String" resultType="String">
+		select moduleId from role_module
+		where roleId=#{roleId}
+	</select>
+	
+	<!-- 查看启用中的所有模块 -->
+	<select id="getModuleTree"  parameterType="String" resultType="Map">
+		select moduleId,moduleName,menuClass from t_base_defined_url 
+		where inUse = #{inUse}
+		order by moduleId;
+	</select>
+	
+	<!-- 根据角色Id删除拥有的所以权限 -->
+	<delete id="deleteModuleById" parameterType="String">
+		delete from role_module where roleId=#{roleId};
+	</delete>
+</mapper>

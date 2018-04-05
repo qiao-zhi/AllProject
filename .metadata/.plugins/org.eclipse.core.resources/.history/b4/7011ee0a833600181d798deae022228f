@@ -1,0 +1,18 @@
+package arithmeticTest;
+
+/**
+ * 快速排序
+ * 
+ * @author: qlq
+ * @date : 2018年4月2日下午10:33:22
+ */
+public class KuaisuSort {
+
+	public static void main(String[] args) {
+		
+	}
+	public void quickSort(int arr[]){
+		
+	}
+	
+}

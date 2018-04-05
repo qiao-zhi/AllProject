@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;UploadServlet.java&apos; to &apos;Struts2FileUpload/src/(default package)&apos;&#x0D;&#x0A;- Original project: &apos;Servlet&apos;&#x0D;&#x0A;- Destination element: &apos;Struts2FileUpload/src/(default package)&apos;&#x0D;&#x0A;- Original element: &apos;FileUploadAndDown.UploadServlet.java&apos;" description="Copy compilation unit" destination="=Struts2FileUpload/src&lt;" element1="/src&lt;FileUploadAndDown{UploadServlet.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1499838980012" units="1" version="1.0"/>
+</session>

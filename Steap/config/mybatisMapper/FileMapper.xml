@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkPro.steap.db.mapper.material.IFileMapper">
+
+	<!-- START BY HaoShaSha -->
+
+	<!-- 插入文件 -->
+	<insert id="addFile" useGeneratedKeys="true" keyProperty="fileId"
+		parameterType="Material">
+		INSERT INTO t_files_index(fileType,originalName,currentName,uploadTime,fileSize, opinionContent)
+		VALUES (#{fileType}, #{originalName}, #{currentName}, 
+				DATE_FORMAT(#{uploadTime}, '%Y-%m-%d %H:%i:%S'),
+				#{fileSize}, #{opinionContent})
+	</insert>
+
+	<!-- 插入项目资料表 -->
+	<insert id="addProjectMaterial" parameterType="map">
+		INSERT INTO
+		project_material(materialId,projectId,fileId)
+		VALUES
+		(uuid(),#{projectId},#{fileId})
+	</insert>
+
+	<!-- 根据文件编号删除文件, 级联删除项目材料信息 -->
+	<delete id="deleteFile" parameterType="String">
+		DELETE FROM
+		t_files_index
+		WHERE
+		fileId=#{fileId};
+	</delete>
+
+	<!-- 根据文件类型和项目编号查询项目中文件资料 -->
+	<select id="getFile" parameterType="Map" resultType="Material">
+		SELECT
+		projectId, fileId, fileType, originalName, currentName,
+		DATE_FORMAT(uploadTime,'%Y-%m-%d %H:%i:%S') as uploadTime, fileSize,
+		remark,
+		opinionContent
+		FROM v_project_material_file
+		WHERE projectId = #{projectId}
+		AND fileType = (select dictionaryOptionId from dic_system_dictionary where dictionaryOptionName=#{fileType})
+	</select>
+
+	<!-- END BY HaoShaSha -->
+
+
+	<!-- Start by yachao -->
+
+	<resultMap type="Material" id="materialMap">
+		<id property="fileId" column="fileId" />
+		<result property="projectId" column="projectId" />
+		<result property="fileType" column="fileType" />
+		<result property="originalName" column="originalName" />
+		<result property="currentName" column="currentName" />
+		<result property="uploadTime" column="uploadTime" />
+		<result property="fileSize" column="fileSize" />
+		<result property="remark" column="remark" />
+		<result property="opinionContent" column="opinionContent" />
+	</resultMap>
+
+	<!-- 根据项目编号获取项目原始资料信息 -->
+	<!-- 提供于专家评审用，用于在进行专家评审时候进行查看当前项目的全部原始资料信息 -->
+	<select id="getOriginalMaterialsBy" parameterType="String"
+		resultMap="materialMap">
+		SELECT fileId, projectId, dictionaryOptionName as fileType,
+		originalName, currentName, DATE_FORMAT(uploadTime,'%Y-%m-%d %H:%i:%S')
+		as uploadTime, fileSize, remark
+		FROM v_project_material_file,
+		dic_system_dictionary
+		WHERE projectId=#{projectId} AND fileType between
+		'300002' and '300008'
+		AND fileType=dictionaryOptionId
+		ORDER BY dictionaryOptionId;
+	</select>
+
+	<!-- 根据项目编号获取项目全部原始资料 -->
+	<select id="getOriginalMaterialSet" parameterType="String"
+		resultType="map">
+		select dictionaryOptionName as fileType, originalName,
+		currentName,
+		DATE_FORMAT(uploadTime, '%Y-%m-%d %H:%i:%S') as uploadTime, fileSize
+		from
+		v_project_material_file, dic_system_dictionary
+		where
+		projectId=#{projectId} and fileType=dictionaryOptionId
+		and fileType between '300002' and '300008'
+		order by dictionaryOptionId
+	</select>
+
+	<!-- 根据项目编号获取项目原始材料树 -->
+	<select id="getOriginalMaterialsTree" parameterType="String"
+		resultType="map">
+		SELECT dictionaryOptionId, dictionaryOptionName,
+		originalName, currentName
+		FROM v_project_material_file pmf, dic_system_dictionary dic
+		WHERE
+		pmf.fileType=dic.dictionaryOptionId
+		and (pmf.fileType between '300002' and '300008')
+		and pmf.projectId=#{projectId}
+		ORDER BY dictionaryOptionId;
+	</select>
+
+	<!-- 获取文件类型名称集合 :7份文件 -->
+	<select id="getMaterialTypeList" resultType="map">
+		select
+		dictionaryOptionId, dictionaryOptionName
+		from dic_system_dictionary
+		where dictionaryOptionId between '300002' and '300008'
+		order by dictionaryOptionId
+	</select>
+
+	<!-- 根据项目编号和完善文件数获取审核文件 -->
+	<select id="getCompleteMaterials" parameterType="map"
+		resultType="map">
+		select fileId, dictionaryOptionName as fileType,
+		originalName, currentName, DATE_FORMAT(uploadTime, '%Y-%m-%d
+		%H:%i:%S') as uploadTime, fileSize
+		from v_complete_material_file v,
+		dic_system_dictionary dic
+		where v.fileType=dic.dictionaryOptionId and
+		v.projectId=#{projectId}
+		ORDER BY fileId
+		LIMIT #{verifyFileNum}
+	</select>
+
+	<!-- 根据文件编号删除项目完善资料中的信息 -->
+	<delete id="deletePerfectFile" parameterType="String">
+		DELETE FROM
+		complete_material
+		WHERE fileId=#{fileId}
+	</delete>
+
+	<!-- 完善项目资料上传 -->
+	<insert id="addPerfectExplain" parameterType="hashmap" useGeneratedKeys="true" keyProperty="verifyId">
+		insert into
+		project_verify(projectId,completeDescription,verifyFileNum)
+		values(#{projectId},#{completeDescription},#{verifyFileNum});
+	</insert>
+	
+	<!-- 通过项目Id查询出当前的verifyID -->
+	<select id="findNowVerifyId" parameterType="String" resultType="String">
+		select verifyId
+		from project_verify
+		where projectId=#{projectId}
+		order by verifyId desc
+		limit 1
+	</select>
+	
+	<!-- 插入complete_verify表数据 -->
+	<insert id="addCompleteVerify" parameterType="hashMap">
+		insert into complete_verify
+		(verifyId,completeId) values (#{verifyId}, #{completeId})
+	</insert>
+
+	<select id="getPerfectMaterial" parameterType="hashmap"
+		resultType="Material">
+
+		select originalName,currentName,uploadTime,fileSize,fileId,remark
+		(select
+		dictionaryOptionName) as fileType from
+		v_complete_material_file
+		vcmf,dic_system_dictionary dsd
+		where projectId = #{projectId}
+		and dsd.dictionaryOptionId=vcmf.fileType
+		order by fileId desc
+	</select>
+
+	<insert id="addCompleteTable" parameterType="hashmap">
+		insert into
+		complete_material
+		(completeId,projectId,fileId) VALUES
+		(#{completeId},#{projectId},#{fileId});
+	</insert>
+	
+	<!-- 
+		@author Zychaowill
+		@description 
+	 -->
+	<select id="getAllPerfectMaterialsByPId" parameterType="String" resultType="Material">
+		 select fileId, originalName, currentName, uploadTime, fileSize, dic.dictionaryOptionName as fileType, remark
+		 from v_complete_material_file f, dic_system_dictionary dic
+		 where projectId=#{projectId}
+		 	and f.fileType=dic.dictionaryOptionId
+	</select>
+	
+	<update id="updateFileVerifyRemark" parameterType="Map">
+		update t_files_index set remark=#{remark} where fileId=#{fileId};
+	</update>
+</mapper>

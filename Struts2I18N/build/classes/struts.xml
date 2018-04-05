@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+     <!-- 
+     package的名字必须唯一！只能拦截.action请求
+        默认值:class:com.opensymphony.xwork2.ActionSupport
+         method:execute         
+         result的name属性:success   方法中返回success即可跳转到结果对应的页面
+        
+        
+ -->
+   <constant name="struts.custom.i18n.resources" value="aa"></constant>
+    
+    
+    <!-- 第一个package命名空间 -->
+    <package name="i18n" namespace="/i18n" extends="struts-default">
+		<action name="i18n" class="Action.I18NAction">
+		    <result>/1.jsp</result>
+		</action>
+    </package>
+    
+    
+ 
+  
+</struts>

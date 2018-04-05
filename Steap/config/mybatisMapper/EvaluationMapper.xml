@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkPro.steap.db.mapper.specialist.IEvaluationMapper">
+
+	<resultMap type="SpecialistEvaluation" id="specialistEvaluationMap">
+		<id property="specialistId" column="specialistId" />
+		<id property="projectId" column="projectId" />
+		<result property="reviewSuggestion" column="reviewSuggestion" />
+		<result property="opinion" column="opinion" />
+		<result property="remark" column="remark" />
+	</resultMap>
+
+	<resultMap type="EvaluationInfo" id="evaluationInfoMap">
+		<result property="specialistId" column="specialistId"/>
+		<result property="name" column="name" />
+		<result property="workUnit" column="workUnit"/>
+		<result property="reviewSuggestion" column="reviewSuggestion" />
+	</resultMap>
+
+	<resultMap type="EvaluationResult" id="evaluationResultMap">
+		<id property="evaluateResultId" column="evaluateResultId" />
+		<result property="projectId" column="projectId" />
+		<result property="specialistId" column="specialistId"/>
+		<result property="evaluateResult" column="evaluateResult" />
+		<result property="checkDate" column="checkDate"/>
+		<result property="remark" column="remark" />
+	</resultMap>
+
+	<!-- 录入专家评审意见信息 -->
+	<insert id="insertSpecialistEvaluation" parameterType="SpecialistEvaluation">
+	 	insert into specialist_evaluation(specialistId, projectId, reviewSuggestion, opinion, remark)
+	 	values(#{specialistId}, #{projectId}, #{reviewSuggestion}, #{opinion}, #{remark})
+	</insert>
+	
+	<!-- 修改专家评审意见信息 -->
+	<update id="updateSpecialistEvaluation" parameterType="SpecialistEvaluation">
+		update specialist_evaluation
+		<set>
+			<if test="reviewSuggestion!=null and reviewSuggestion!=''">
+				reviewSuggestion=#{reviewSuggestion},
+			</if>
+			<if test="opinion!=null and opinion!=''">
+				opinion=#{opinion},
+			</if>
+			<if test="remark!=null and remark!=''">
+				remark=#{remark}
+			</if>		
+		</set>
+		where projectId=#{projectId} and specialistId=#{specialistId}
+	</update>
+	
+	<!-- 录入项目评审结果 -->
+	<insert id="insertEvaluationResult" parameterType="EvaluationResult">
+		<selectKey keyProperty="evaluateResultId" order="BEFORE" resultType="String">
+			select uuid()
+		</selectKey>
+		insert into evaluation_result(evaluateResultId, projectId, specialistId, evaluateResult, checkDate, remark)
+		values(#{evaluateResultId}, #{projectId}, #{specialistId}, #{evaluateResult}, Date_Format(#{checkDate}, '%Y-%m-%d %H:%i:%s'), #{remark})
+	</insert>
+	
+	<!-- 修改项目评审结果 -->
+	<update id="updateEvaluationResult" parameterType="EvaluationResult">
+		update evaluation_result
+		<set>
+			<if test="evaluateResult!=null and evaluateResult!=''">
+				evaluateResult=#{evaluateResult},
+			</if>
+			<if test="checkDate!=null">
+				checkDate=Date_Format(#{checkDate}, '%Y-%m-%d %H:%i:%s'),
+			</if>
+			<if test="remark!=null and remark!=''">
+				remark=#{remark}
+			</if>		
+		</set>
+		where projectId=#{projectId}
+	</update>
+	
+	<!-- 根据项目编号和专家编号查询评审意见 -->
+	<select id="getSpecialistEvaluation" parameterType="map" resultType="String">
+		select reviewSuggestion from specialist_evaluation where projectId=#{projectId} and specialistId=#{specialistId}
+	</select>
+	
+	<!-- 根据项目编号和专家编号获取评审意见+评审意见状态 -->
+	<select id="getEvaluationAndState" parameterType="Map" resultType="Map">
+		select reviewSuggestion, remark
+		from specialist_evaluation
+		where projectId=#{projectId} and specialistId=#{specialistId}
+	</select>
+	
+	<!-- 根据项目编号查询专家评审信息-->
+	<select id="getSpecialistEvaluationList" parameterType="String" resultMap="evaluationInfoMap">
+		select t.specialistId, name, workUnit, se.reviewSuggestion
+		from (select sa.specialistId as specialistId, pm.projectId as projectId, sl.name, sl.workUnit
+			  from project_meeting pm, specialist_arrangement sa, (select specialistId, name, workUnit from specialist_library) sl
+			  where pm.meetingId=sa.meetingId and sa.specialistId=sl.specialistId and projectId=#{projectId}) t LEFT JOIN specialist_evaluation se
+		ON t.specialistId=se.specialistId AND t.projectId=se.projectId
+	</select>
+	
+	<!-- 根据专家编号和会议状态获取要评审的项目数 -->
+	<select id="getEvaluatedProjectCount" parameterType="map" resultType="Integer">
+		select count(distinct pm.projectId)
+	    from specialist_arrangement sa, t_meeting_base_info m, 
+		     project_meeting pm, dic_system_dictionary dic
+	    where m.meetingId=sa.meetingId 
+		  and m.meetingId=pm.meetingId
+		  and m.meetingStatus=dic.dictionaryOptionId 
+		  and sa.specialistId=#{specialistId}
+		  and dic.dictionaryOptionName=#{meetingStatus} 
+	</select>
+	<select id="getEvaluatingProjectCount" parameterType="Map" resultType="Integer">
+		select count(*) 
+		from specialist_evaluation
+		where specialistId=#{specialistId}
+			and remark=#{remark}
+			and projectId in (select pm.projectId 
+							  from t_meeting_base_info m, project_meeting pm, dic_system_dictionary dic
+							  where m.meetingId=pm.meetingId
+								and m.meetingStatus=dic.dictionaryOptionId
+								and dic.dictionaryOptionName=#{meetingStatus})
+	</select>
+	<!-- 根据专家编号和会议状态获取要评审的项目数 -->
+	
+	<!-- 根据项目编号获取项目的评审结果 -->
+	<select id="getEvaluationResultByProjectId" parameterType="String" resultType="Map">
+		select evaluateResult, remark 
+		from evaluation_result where projectId=#{projectId}
+	</select>
+	
+	<!-- by yachao 2016/8/26 at 16:57 -->
+	<!-- 根据项目编号获取已评审记录数 -->
+	<select id="getEntryEvaluationCount" parameterType="Map" resultType="Integer">
+		select COUNT(*) from specialist_evaluation where projectId=#{projectId} and remark=#{remark}
+	</select>
+	
+	<update id="updateOpinionStatus" parameterType="Map">
+		update specialist_evaluation
+		<set>
+			<if test="reviewSuggestion!=null and reviewSuggestion!=''">
+				reviewSuggestion=#{reviewSuggestion},
+			</if>
+			<if test="remark!=null and remark!=''">
+				remark=#{remark}
+			</if>		
+		</set>
+		where projectId=#{projectId} and specialistId=#{specialistId}
+	</update>
+</mapper>

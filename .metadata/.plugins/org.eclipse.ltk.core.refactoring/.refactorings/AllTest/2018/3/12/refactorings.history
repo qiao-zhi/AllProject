@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Extract local variable &apos;forName&apos; from expression &apos;Class.forName(&quot;Test&quot;)&apos;&#x0D;&#x0A;- Original project: &apos;AllTest&apos;&#x0D;&#x0A;- Variable name: &apos;forName&apos;&#x0D;&#x0A;- Destination method: &apos;Test.main()&apos;&#x0D;&#x0A;- Variable expression: &apos;Class.forName(&quot;Test&quot;)&apos;&#x0D;&#x0A;- Replace occurrences of expression with variable" description="Extract local variable &apos;forName&apos;" final="false" id="org.eclipse.jdt.ui.extract.temp" input="/src&lt;{Test.java" name="forName" replace="true" selection="92 0" stamp="1521552533300" version="1.0"/>
+</session>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Layout resource="/Servlet/WebContent/WEB-INF/SimpleTag.tld">
+ <TreeFormPage>
+  <Memento type="">
+   <Memento collapsed="false" type="Properties Editor"/>
+  </Memento>
+  <Memento type="FileTLD_1_2">
+   <Memento type="Tag Library Description"/>
+   <Memento type="Defined Tags"/>
+  </Memento>
+ </TreeFormPage>
+</Layout>

@@ -1,0 +1,19 @@
+1491560780674	Copy package
+1491560831534	Copy package
+1491560836446	Delete element
+1491560871070	Rename package 'cn.itcast.domain.copy'
+1491560933305	Delete element
+1491560939934	Delete element
+1491560946400	Delete element
+1491568704222	Move compilation unit
+1491572483428	Extract interface 'UserDao'
+1491572505846	Move compilation unit
+1491574626121	Move compilation unit
+1491576452771	Move 'JSP' to 'WEB-INF'
+1491648197994	Move 'JSP' to 'WebContent'
+1491648294442	Rename resource '1.CSS'
+1491648495570	Move 'register.CSS' to 'CSS'
+1491648578870	Rename resource 'CSS'
+1491648810031	Rename resource 'CSSTO'
+1491650590508	Rename type 'registerForm'
+1491652815472	Rename type 'Test'

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>测试JSON的页面</title>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+	function fun1() {
+		alert("开始请求数据");
+		$.get("jsontest.action", //请求地址
+		//"name=qlq&password=qlq",   //请求参数
+		{
+			debugger
+			"name" : "qlq",
+			"password" : "nicai"
+		}, //请求传递的参数，也可以是JSON
+		function(data) { //data表示传递回来的数据，只有在成功的时候才有
+			/* 测试json数组 */
+			 alert(data.list[0].name+"  "+data.list[0].password); 
+		/* 测试json对象与单个属性 */
+			 alert(data.obj.name+"  "+data.str); 
+		}, "json" //表示返回内容的格式,json会将传回来的自动解析成json对象
+		);
+	}
+</script>
+</head>
+<body>
+
+	<input type="button" value="请求JSON数据" onclick="fun1()">
+
+
+</body>
+</html>

@@ -1,0 +1,253 @@
+.base_info{
+	width: 100%;
+	/*min-height: 500px;*/
+	background: ;
+}
+.base_info_modal{
+	background-color:;
+	padding: 15px 15px;
+	width: 100%;
+}
+.recommend_expert{
+	width: 100%;
+	/*600也挺合适的,刚好能显示完全*/
+	/*min-height: 300px;*/
+	background-color: ;
+	/*border-top: 1px solid #266097;
+	border-bottom: 1px solid #0287D4;*/
+}
+.recommend_expert_info_modal{
+	/*要不要用渐变呢？*/
+	background-color: ;
+	padding: 15px 15px;
+	width: 100%;
+	/* min-height: 350px; */
+}
+/* .audit_report{
+	width: 100%;
+	min-height: 500px;
+	background-color: ;
+} */
+.audit_report_info_modal{
+	background-color: ;
+	padding: 15px 15px;
+	width: 100%;
+	min-height: 500px;
+}
+/*...*/
+.info_backg{
+	width: 100%;
+	background-color: white;
+	border-radius: 5px;
+	padding-bottom: 10px;
+	/* box-shadow:  0 1px 3px rgba(0,0,0,0.35); */
+	border:1px solid #cccccc;
+	padding-top: 1px;
+}
+.label_box{
+	margin: 6px auto;
+}
+.info_box_inspection{
+	font-size: 24px;
+	margin-left: 20px;
+	margin-bottom: 10px;
+	color: ;
+	padding-top: 10px;
+}
+.input_box{
+	padding-top: 15px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+.input_box span{
+	background-color: #CCCCCC;
+}
+.table_box a{
+	margin-right: 8px;	
+}
+.table_box{
+	border: 1px solid #CCCCCC;
+	margin: 20px;
+	border-radius: 3px;
+	padding: 5px 10px;
+}
+.pic_box{
+	margin: 0px 20px 0 20px;
+	padding-top: 8px;
+}
+.pic_box_img{	
+}
+.pic_box .row{
+	margin: 10px auto;
+}
+.pic_row{
+	margin-top: 10px;
+	/* border:1px solid #cccccc; */
+
+}
+.btn_box{
+	margin: 20px 20px 0px 20px;
+}
+.btn_box button{
+	margin: 0 10px 10px 10px;
+	width: 100px;
+	color: white;
+	background-color: #266097;
+}
+/*...*/
+.info_modal{
+	width: 1000px;
+	margin: 0 auto;
+	background-color: white;
+}
+.insp_name_info_label{
+	width: 175px;
+	height: 22px;
+	line-height: 22px;
+	/*background-color: #D7D7D7;*/
+	text-align: center;	
+	border-radius: 0;
+	border-top: none;
+	border-left: none;
+}
+.insp_base_info_label{
+	width: 240px;
+	height: 22px;
+	line-height: 22px;
+	text-align: center;
+	/*border: 1px solid #EEEEEE;*/
+	border-radius: 0;
+	background-color: white;
+	border-top: none;
+	/*color: gray;*/
+}
+.project_table_box{
+	/* border: 1px solid #D7D7D7;
+	border-right: none;
+	border-bottom: none; */
+	margin: 20px;
+	/*border-radius: 8px;*/
+}
+.table_label_box{
+	margin: 0;
+}
+.name_info_area{
+	/* width: 175px;
+ 	height: 150px; 
+	background-color: ;
+	text-align: center; */
+	margin-top:8px;
+}
+
+.base_info_area{
+	width: 655px;
+	height: 150px;
+}
+.textarea_label{
+	width: 175px;
+	height: 150px;
+	line-height: 150px;
+	float: left;
+	background-color: #EEEEEE;
+	text-align: center;
+	vertical-align: middle;
+	border: 1px solid #CCCCCC;
+	margin-left: 20px;
+	border-right: 20px;
+}
+.base_info_textarea{
+	width: 100%;
+	height: 150px;
+	resize: none;
+	border: 1px solid #CCCCCC;
+	padding: 8px;
+	/* float: left; */
+}
+
+/*图片相关的估计可以共用*/
+
+.box_size{
+	min-width: 190px;
+	border: 2px solid white;
+	margin: 5px;
+	display: inline-block;
+	text-align: center;
+	
+	position: relative;
+}
+.box_size img{
+	width: 180px;
+	height: 180px;
+}
+.box_size img:hover{
+	cursor: pointer;
+}
+.box_size:hover span{display: block;}
+
+.pic_info{
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+	background: rgba(0,0,0,0.8);
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	color: white;
+	padding-left: 5px;
+	display: none;
+	overflow: hidden;
+}
+
+.experts_table_box{
+	border: 1px solid #CCCCCC;
+	margin: 20px;
+	border-radius: 3px;
+	padding: 5px 10px;
+}
+
+.sendCarder_input_info{
+	width: 1000px;
+}
+.sendCarder_input_info .input_info_group{
+	width: 100%;
+}
+.sendCarder_input_info .input_info_group .group_left{
+	border-bottom: 1px solid #CCCCCC;
+	border-left: 1px solid #CCCCCC;
+	border-top: 1px solid #CCCCCC;
+	width: 170px;
+	text-align: center;
+	background-color: #EEEEEE;
+	height: 34px;
+	line-height: 34px;
+}
+.sendCarder_input_info .input_info_group .group_right{
+	width:245px;
+}
+
+
+
+/* 0817 */
+.project_pub_info_show{}
+
+.project_pub_info_show .show_info_group{
+	border-bottom: 1px solid #CCCCCC;
+	border-left:1px solid #CCCCCC ;
+	border-right: 1px solid #CCCCCC;
+	text-align: center;
+}
+.project_pub_info_show .show_info_group .group_left{
+	font-size:15px;
+	width: 18%;
+	background-color: #EEEEEE;
+}
+.project_pub_info_show .show_info_group .group_right{
+	width: 32%;
+}
+.project_base_info_textarea{
+	width:100%;
+	height: 151px;
+	padding: 10px;
+	resize: none;
+	border:1px solid #cccccc;
+}

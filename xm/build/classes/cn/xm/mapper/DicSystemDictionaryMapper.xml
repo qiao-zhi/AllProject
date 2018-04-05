@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.xm.mapper.DicSystemDictionaryMapper" >
+  <resultMap id="BaseResultMap" type="cn.xm.pojo.DicSystemDictionary" >
+    <id column="dictionaryOptionId" property="dictionaryoptionid" jdbcType="VARCHAR" />
+    <result column="dictionaryOptionName" property="dictionaryoptionname" jdbcType="VARCHAR" />
+    <result column="upDictionaryOptionId" property="updictionaryoptionid" jdbcType="VARCHAR" />
+    <result column="isUse" property="isuse" jdbcType="BIT" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="sortNo" property="sortno" jdbcType="INTEGER" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+    <result column="englishName" property="englishname" jdbcType="VARCHAR" />
+    <result column="dataType" property="datatype" jdbcType="VARCHAR" />
+    <result column="remark1" property="remark1" jdbcType="VARCHAR" />
+    <result column="remark2" property="remark2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    dictionaryOptionId, dictionaryOptionName, upDictionaryOptionId, isUse, description, 
+    sortNo, flag, englishName, dataType, remark1, remark2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.xm.pojo.DicSystemDictionaryExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dic_system_dictionary
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from dic_system_dictionary
+    where dictionaryOptionId = #{dictionaryoptionid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dic_system_dictionary
+    where dictionaryOptionId = #{dictionaryoptionid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.xm.pojo.DicSystemDictionaryExample" >
+    delete from dic_system_dictionary
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.xm.pojo.DicSystemDictionary" >
+    insert into dic_system_dictionary (dictionaryOptionId, dictionaryOptionName, 
+      upDictionaryOptionId, isUse, description, 
+      sortNo, flag, englishName, 
+      dataType, remark1, remark2
+      )
+    values (#{dictionaryoptionid,jdbcType=VARCHAR}, #{dictionaryoptionname,jdbcType=VARCHAR}, 
+      #{updictionaryoptionid,jdbcType=VARCHAR}, #{isuse,jdbcType=BIT}, #{description,jdbcType=VARCHAR}, 
+      #{sortno,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER}, #{englishname,jdbcType=VARCHAR}, 
+      #{datatype,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xm.pojo.DicSystemDictionary" >
+    insert into dic_system_dictionary
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dictionaryoptionid != null" >
+        dictionaryOptionId,
+      </if>
+      <if test="dictionaryoptionname != null" >
+        dictionaryOptionName,
+      </if>
+      <if test="updictionaryoptionid != null" >
+        upDictionaryOptionId,
+      </if>
+      <if test="isuse != null" >
+        isUse,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="sortno != null" >
+        sortNo,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="englishname != null" >
+        englishName,
+      </if>
+      <if test="datatype != null" >
+        dataType,
+      </if>
+      <if test="remark1 != null" >
+        remark1,
+      </if>
+      <if test="remark2 != null" >
+        remark2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dictionaryoptionid != null" >
+        #{dictionaryoptionid,jdbcType=VARCHAR},
+      </if>
+      <if test="dictionaryoptionname != null" >
+        #{dictionaryoptionname,jdbcType=VARCHAR},
+      </if>
+      <if test="updictionaryoptionid != null" >
+        #{updictionaryoptionid,jdbcType=VARCHAR},
+      </if>
+      <if test="isuse != null" >
+        #{isuse,jdbcType=BIT},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sortno != null" >
+        #{sortno,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="englishname != null" >
+        #{englishname,jdbcType=VARCHAR},
+      </if>
+      <if test="datatype != null" >
+        #{datatype,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.xm.pojo.DicSystemDictionaryExample" resultType="java.lang.Integer" >
+    select count(*) from dic_system_dictionary
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dic_system_dictionary
+    <set >
+      <if test="record.dictionaryoptionid != null" >
+        dictionaryOptionId = #{record.dictionaryoptionid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictionaryoptionname != null" >
+        dictionaryOptionName = #{record.dictionaryoptionname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updictionaryoptionid != null" >
+        upDictionaryOptionId = #{record.updictionaryoptionid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isuse != null" >
+        isUse = #{record.isuse,jdbcType=BIT},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortno != null" >
+        sortNo = #{record.sortno,jdbcType=INTEGER},
+      </if>
+      <if test="record.flag != null" >
+        flag = #{record.flag,jdbcType=INTEGER},
+      </if>
+      <if test="record.englishname != null" >
+        englishName = #{record.englishname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datatype != null" >
+        dataType = #{record.datatype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null" >
+        remark1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null" >
+        remark2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dic_system_dictionary
+    set dictionaryOptionId = #{record.dictionaryoptionid,jdbcType=VARCHAR},
+      dictionaryOptionName = #{record.dictionaryoptionname,jdbcType=VARCHAR},
+      upDictionaryOptionId = #{record.updictionaryoptionid,jdbcType=VARCHAR},
+      isUse = #{record.isuse,jdbcType=BIT},
+      description = #{record.description,jdbcType=VARCHAR},
+      sortNo = #{record.sortno,jdbcType=INTEGER},
+      flag = #{record.flag,jdbcType=INTEGER},
+      englishName = #{record.englishname,jdbcType=VARCHAR},
+      dataType = #{record.datatype,jdbcType=VARCHAR},
+      remark1 = #{record.remark1,jdbcType=VARCHAR},
+      remark2 = #{record.remark2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xm.pojo.DicSystemDictionary" >
+    update dic_system_dictionary
+    <set >
+      <if test="dictionaryoptionname != null" >
+        dictionaryOptionName = #{dictionaryoptionname,jdbcType=VARCHAR},
+      </if>
+      <if test="updictionaryoptionid != null" >
+        upDictionaryOptionId = #{updictionaryoptionid,jdbcType=VARCHAR},
+      </if>
+      <if test="isuse != null" >
+        isUse = #{isuse,jdbcType=BIT},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sortno != null" >
+        sortNo = #{sortno,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="englishname != null" >
+        englishName = #{englishname,jdbcType=VARCHAR},
+      </if>
+      <if test="datatype != null" >
+        dataType = #{datatype,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null" >
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dictionaryOptionId = #{dictionaryoptionid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xm.pojo.DicSystemDictionary" >
+    update dic_system_dictionary
+    set dictionaryOptionName = #{dictionaryoptionname,jdbcType=VARCHAR},
+      upDictionaryOptionId = #{updictionaryoptionid,jdbcType=VARCHAR},
+      isUse = #{isuse,jdbcType=BIT},
+      description = #{description,jdbcType=VARCHAR},
+      sortNo = #{sortno,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=INTEGER},
+      englishName = #{englishname,jdbcType=VARCHAR},
+      dataType = #{datatype,jdbcType=VARCHAR},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR}
+    where dictionaryOptionId = #{dictionaryoptionid,jdbcType=VARCHAR}
+  </update>
+</mapper>

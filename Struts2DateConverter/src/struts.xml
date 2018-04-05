@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+     <!-- 
+     package的名字必须唯一！只能拦截.action请求
+        默认值:class:com.opensymphony.xwork2.ActionSupport
+         method:execute         
+         result的name属性:success   方法中返回success即可跳转到结果对应的页面
+        
+        
+ -->
+ 
+     <include file="user.xml"></include>
+     
+     <!-- 关闭第二种带！的动态调用方法(actionName!funName.action方法被关闭) -->
+    <constant name="struts.enable.DynamicMethodInvocation" value="falses" />
+    <!-- 改变Struts拦截的请求 -->
+    <constant name="struts.action.extension" value="do,action" />
+  <!--    <constant name="struts.devMode" value="false" />   -->
+    <package name="user" extends="struts-default" namespace="/user">
+        
+        <!--全局页面Action(必须定义到开始)  -->
+        <global-results>
+            <result name="message">/Global.jsp</result>
+        </global-results>
+        
+        
+                
+        
+        <!--跳到全局页面的Action，只有Action，Result没有  -->
+        <action name="global1" class="ss.global1"></action>
+        
+        
+        <!--全局页面的Action，自己定义的优先级高于全局的  -->
+        <action name="global2" class="ss.global2">
+            <result name="message">/2.jsp</result>
+        </action>
+        
+        
+        <!-- 第一个入门Struts案例，地址栏中:http://localhost:8080/Struts/user/helloword.action -->
+        <action name="helloword" class="ss.hellowordAction" method="execute">
+          <result name="AAA">/1.jsp</result> 
+        </action>
+        
+        
+        <!-- 在访问demo1.action时跳到2.jsp(默认跳转，啥都不写)-->
+        <action name="demo1">
+          <result>/2.jsp</result> 
+        </action> 
+        
+        
+        
+        <!-- type=dispatcher的转发,可以去WEB/INF下的页面 -->
+        <action name="forward" class="ss.forwardAction" method="forward">
+          <result type="dispatcher" name="forwardAction">/WEB-INF/JSP/1.jsp</result> 
+        </action>  
+        
+        
+        <!-- type=redirect的转发,不能去WEB/INF下的页面,只能去项目目录下的页面 -->
+        <action name="redirect">
+          <result type="redirect">/2.jsp</result> 
+        </action>
+        
+        <!-- type=redirectAction的转发,重定向到本命名空间的Action -->
+        <action name="redirectAction1">
+          <result type="redirectAction">forward</result> 
+        </action>        
+        
+        
+
+        <!-- type=redirectAction的转发,转发到另一个命名空间下的Action -->        
+        <action name="redirectAction2">
+            <result type="redirectAction">
+                <param name="actionName">product</param>
+                <param name="namespace">/test</param>
+            </result>
+        </action>        
+        
+        
+        
+        <!-- 查看页面源码的信息，查看页面1.jsp的页面源代码 -->        
+        <action name="source">
+            <result type="plainText">
+                <param name="charSet">utf-8</param>
+                <param name="location">/1.jsp</param>
+            </result>
+        </action>        
+                
+       
+    </package>
+    
+    
+    
+    <!-- 第二个package命名空间 -->
+    <package name="test" namespace="/test" extends="struts-default">
+        <action name="product">
+            <result>/product.jsp</result>
+        </action>
+    </package>
+    
+    
+ 
+  
+</struts>

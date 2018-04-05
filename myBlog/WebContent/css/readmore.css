@@ -1,0 +1,17 @@
+body{
+				margin: 0px auto;
+				padding: 0px;
+				font-size: 12px;  /****字体一般是9,14或者12**/
+				color: #364f56;  /****字体颜色**/
+				background-color: #FFFFFF;   /**背景色*****/
+				text-align: center;
+				
+							}
+#container{
+				margin: 0px auto;
+				text-align: left;/****设置网页中的内容居左**/
+				width: 90%;   /*****   1024-1440现在流行的电脑宽度;***/
+				/*height: 630px;*/
+				overflow: hidden;
+				/*border:1px solid green;*/
+			}

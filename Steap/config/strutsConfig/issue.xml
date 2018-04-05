@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+	<package name="issue" namespace="/" extends="json-default">
+	    <action name="findDomainSetAction" class="com.thinkPro.steap.action.issue.FindDomainSetAction">
+	     	<result type="json">
+	     		<param name="root">result</param>
+	     	</result>
+	    </action>
+	    
+		<action name="findProjectSetAction" class="com.thinkPro.steap.action.issue.FindProjectSetAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="findIssueProjectInfoAction" class="com.thinkPro.steap.action.issue.FindIssueProjectInfoAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="findVerifyInfoAction" class="com.thinkPro.steap.action.issue.FindVerifyInfoAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+ 		<action name="entryIssueCertificateAction" class="com.thinkPro.steap.action.issue.EntryIssueCertificateAction">
+			<result>admin/issue/issue_certificate.jsp</result>
+		</action>
+		
+		<action name="findUserInfoAction" class="com.thinkPro.steap.action.issue.FindUserInfoAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="selectAccountById" class="com.thinkPro.steap.action.issue.FindUserInfoAction" 
+			method="selectAccountById">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="detail" namespace="/" extends="json-default">
+		<action name="findBIProjectAction" class="com.thinkPro.steap.action.issue.detail.FindBIProjectAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="findBIEInspectAction" class="com.thinkPro.steap.action.issue.detail.FindBIEInspectAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="getPictureSetAction" class="com.thinkPro.steap.action.issue.detail.FindBIEInspectAction"
+			method="getPictureSet">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="findBIProjectMeetingAction" class="com.thinkPro.steap.action.issue.detail.FindBIProjectMeetingAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="findBIProjectMaterialAction" class="com.thinkPro.steap.action.issue.detail.FindBIProjectMaterialAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="findBIProjectCheckAction" class="com.thinkPro.steap.action.issue.detail.FindBIProjectCheckAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="findBIProjectCompleteAction" class="com.thinkPro.steap.action.issue.detail.FindBIProjectCompleteAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="findBICompleteVerifyAction" class="com.thinkPro.steap.action.issue.detail.FindBICompleteVerifyAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="findBIIssueInfoAction" class="com.thinkPro.steap.action.issue.detail.FindBIIssueInfoAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>.org.eclipse.jdt.core.external.folders</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>.link0</name>
+			<type>2</type>
+			<location>C:/Users/liqiang/Desktop/文件/A开发库/Struts/struts-2.3.32/src</location>
+		</link>
+	</linkedResources>
+</projectDescription>

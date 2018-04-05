@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<!-- 设置热加载，即修改配置文件后不用重启 -->
+	<constant name="struts.devMode" value="false"></constant>
+
+
+	<!-- 配置国际化资源文件 -->
+	<constant name="struts.custom.i18n.resources" value="i18n"></constant>
+
+	<!-- 第二个package命名空间 -->
+	<package name="test" namespace="/" extends="struts-default">
+
+
+
+
+		<!-- Excel试题上传 -->
+		<action name="importWebExcel" class="Action.Excel.ImportWebExcel">
+			<result>/message.jsp</result>
+		</action>
+		
+		<!-- Excel试题上传2 -->
+		<action name="importWebExcel2" class="Action.Excel2.ImportWebExcel2">
+			<result>/message.jsp</result>
+		</action>
+		
+		<!-- Word试题上传 -->
+		<action name="importWebWord" class="Action.Word.ImportWebWord">
+			<result>/message.jsp</result>
+		</action>
+		
+		
+		<!-- Word试题上传 -->
+		<action name="importTxtData" class="Action.txt.ImportTxtData">
+			<result>/message.jsp</result>
+		</action>
+
+
+
+
+
+		<!-- 上传多个文件 -->
+		<!-- <action name="filesUp" class="FileUpload.FilesUpload"> <result>/message.jsp</result> 
+			</action> -->
+
+		<!-- 文件Excel模板下载 -->
+		<action name="exportWebExcel" class="Action.Excel.ExportWebExcel">
+			<result type="stream">
+				<!-- 其他的参数在类中设置或者使用默认 -->
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">8192</param>
+			</result>
+		</action>
+		
+		<!-- 文件Excel模板下载2 -->
+		<action name="exportWebExcel2" class="Action.Excel2.ExportWebExcel2">
+			<result type="stream">
+				<!-- 其他的参数在类中设置或者使用默认 -->
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">8192</param>
+			</result>
+		</action>
+		
+		<!-- 文件Excel试卷下载2 -->
+		<action name="exportExcelPaper" class="Action.Excel2.ExportExcelPaper">
+			<result type="stream">
+				<!-- 其他的参数在类中设置或者使用默认 -->
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">8192</param>
+			</result>
+		</action>
+		
+		
+
+		<!-- 文件Word模板下载 -->
+		<action name="exporWebWord" class="Action.Word.ExporWebWord">
+			<result type="stream">
+				<!-- 其他的参数在类中设置或者使用默认 -->
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">8192</param>
+			</result>
+		</action>
+		
+		
+		<!-- 文件Word试卷下载 -->
+		<action name="exportWebExamPaper" class="Action.FreemarkerExportWordPicture.ExportWebExamPaper">
+			<result type="stream">
+				<!-- 其他的参数在类中设置或者使用默认 -->
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">8192</param>
+			</result>
+		</action>
+		
+		
+		<!-- 文件txt模板下载 -->
+		<action name="exportTxtTemplate" class="Action.txt.ExportTxtPemplate">
+			<result type="stream">
+				<!-- 其他的参数在类中设置或者使用默认 -->
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">8192</param>
+			</result>
+		</action>
+		
+		<!-- 文件txt试题下载 -->
+		<action name="exportTxtPaper" class="Action.txt.ExportTxtPaper">
+			<result type="stream">
+				<!-- 其他的参数在类中设置或者使用默认 -->
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">8192</param>
+			</result>
+		</action>
+
+
+
+
+
+
+	</package>
+
+</struts>

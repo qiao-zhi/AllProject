@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<excel id="student" code="student" name="多选题">
+    <colgroup>
+        <col index="A" width='20em'></col>
+        <col index="B" width='10em'></col>
+        <col index="C" width='20em'></col>
+        <col index="D" width='20em'></col>
+        <col index="E" width='20em'></col>
+        <col index="F" width='20em'></col>        
+        <col index="G" width='10em'></col>        
+        <col index="H" width='20em'></col>        
+    </colgroup>
+    <title>
+        <tr height="16px">
+            <td rowspan="1" colspan="8" value="多选题导入" />
+        </tr>
+    </title>
+    <thead>
+        <tr height="16px">
+        	<th value="题干" />
+            <th value="类型" />
+            <th value="A选项" />
+            <th value="B选项" />
+            <th value="C选项" />
+            <th value="D选项" />   
+            <th value="答案" />   
+            <th value="解析" />   
+        </tr>
+    </thead>
+    <tbody>
+        <tr height="16px" firstrow="2" firstcol="0" repeat="5">
+            <td type="string" isnullable="false" maxlength="200" /><!--题干 -->
+            <td type="String" isnullable="false" value="多选"/><!--类型 -->
+            <td type="string"  isnullable="true" /><!--A选项 -->
+            <td type="string"  isnullable="false" /><!--B选项 -->
+            <td type="string"  isnullable="false" /><!--C选项 -->
+            <td type="string"  isnullable="false" /><!--D选项 -->
+            <td type="String"  isnullable="true" /><!--答案 -->
+            <td type="String"  isnullable="false" /><!--解析 -->
+        </tr>
+    </tbody>
+</excel>

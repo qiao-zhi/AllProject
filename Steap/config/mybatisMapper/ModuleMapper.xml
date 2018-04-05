@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkPro.steap.db.mapper.sys.module.IModuleMapper">
+	
+	<sql id="moduleColumns"> id,moduleId,moduleName,moduleURL,memo1,momo2,inUse,sortNo,menuClass,flag</sql>
+	
+	<!-- 查询模块树信息 -->
+	<select id="getModuleTree2" resultType="Map">
+		select moduleId,moduleName,menuClass from t_base_defined_url order by moduleId asc
+	</select>
+	
+	<!-- 添加模块 -->
+	<insert id="addModule" parameterType="Module">
+		INSERT INTO
+		t_base_defined_url(<include refid="moduleColumns"/>)
+		VALUES(uuid(),#{moduleId},#{moduleName},#{moduleURL},#{memo1},
+		#{momo2},#{inUse},#{sortNo},#{menuClass},#{flag})
+	</insert>
+	
+	<!-- 根据模块id删除模块 -->
+	<delete id="deleteModule" parameterType="String">
+		DELETE FROM
+		t_base_defined_url WHERE moduleId=#{moduleId}
+	</delete>
+	
+	<!-- 修改模块信息 -->
+	<update id="updateModule" parameterType="Module">
+	update t_base_defined_url
+		<set>
+			<if test="moduleName!=null">
+				moduleName=#{moduleName},
+			</if>
+			<if test="moduleURL!=null">
+				moduleURL=#{moduleURL},
+			</if>
+			<if test="memo1!=null">
+				memo1=#{memo1},
+			</if>
+			<if test="momo2!=null">
+				momo2=#{momo2},
+			</if>
+			<if test="inUse!=null">
+				inUse=#{inUse},
+			</if>
+			<if test="sortNo!=null">
+				sortNo=#{sortNo},
+			</if>
+			<if test="menuClass!=null">
+				menuClass=#{menuClass},
+			</if>
+			<if test="flag!=null">
+				flag=#{flag},
+			</if>
+			</set>
+				where moduleId=#{moduleId}
+	</update>
+	
+	<!-- 查询模块信息列表 -->
+	<!-- <select id="getAllModule" resultType="Module">
+		SELECT <include refid="moduleColumns"/> FROM t_base_defined_url
+	</select> -->
+	
+	<!-- 根据moduleId查询模块信息 -->
+	<select id="getModuleByModuleId" parameterType="String" resultType="Module">
+		SELECT moduleId,moduleName,moduleURL,memo1,momo2,inUse,sortNo,menuClass,flag
+		 FROM t_base_defined_url 
+		where moduleId=#{moduleId}
+	</select>
+
+	<!-- 按条件查询模块 moduleId, moduleName-->
+	<select id="getModuleByCondition" parameterType="map" resultType="Module">
+		SELECT moduleId,moduleName,moduleURL,memo1,momo2,inUse,sortNo,menuClass,flag
+		 FROM t_base_defined_url
+		<where>
+			<if test="moduleId!=null &amp;&amp; moduleId !='' ">
+				moduleId=#{moduleId}
+			</if>
+			<if test="moduleName!=null &amp;&amp; moduleName!=''">
+				AND moduleName LIKE concat(concat('%',#{moduleName}),'%');
+			</if>
+		</where>
+		order by moduleId asc
+	</select>
+	
+	<!--根据模块id查询下一级所有模块信息  -->
+	<select id="getNextModuleByModuleId" parameterType="String" resultType="Module">
+		SELECT moduleId,moduleName,moduleURL,memo1,momo2,inUse,sortNo,menuClass,flag
+		 FROM t_base_defined_url 
+		WHERE moduleId LIKE concat(concat(#{moduleId}),'___')
+		order by moduleId asc
+	</select>
+	
+	<!-- 根据模块id查询下一个要插入的模块id（二级） -->
+	<select id="getNextId" parameterType="String" resultType="String">
+		SELECT MAX( moduleId )+1  FROM t_base_defined_url WHERE
+		moduleId LIKE concat(concat(#{moduleId}),'___')
+	</select>
+	
+	<!-- 根据模块id查询下一个要插入的模块id（一级） -->
+	<select id="getOneNextId" parameterType="String" resultType="String">
+		SELECT SUBSTR(MAX(moduleId),1,2)+1 FROM t_base_defined_url;
+	</select>
+	
+</mapper>

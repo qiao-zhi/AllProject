@@ -1,0 +1,8 @@
+# by yachao at 23:55
+#修改系统字典记录
+update dic_system_dictionary 
+set dictionaryOptionName='已审查', description='已审查' 
+where dictionaryOptionId='100004';
+
+update dic_system_dictionary
+set dataType='字符型';

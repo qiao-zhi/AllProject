@@ -1,0 +1,17 @@
+1500553314653	Rename package 'com.itheima.springmvc'
+1500553402897	Delete elements
+1500553609827	Move compilation unit
+1500553613768	Delete element
+1500554074485	Delete elements
+1500554374085	Rename package 'com.qlq.springmvc.controller'
+1500554384290	Rename package 'com.qlq.springmvc.service'
+1500555487360	Delete element
+1500555494320	Delete element
+1500559535603	Extract local variable 'items'
+1500559761047	Extract local variable 'items'
+1500646454362	Copy file
+1500686714749	Delete element
+1500688762699	Extract local variable 'ext'
+1500697351904	Copy compilation unit
+1500698856494	Extract local variable 'requestURI'
+1500698984765	Extract local variable 'attribute'

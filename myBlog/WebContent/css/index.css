@@ -1,0 +1,130 @@
+/*背景点点*/
+
+.snow-container {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	max-width: 100%;
+	top: 0;
+	overflow: hidden;
+	z-index: -2;
+	pointer-events: none;
+	/*background-color: green;*/
+	background: -webkit-linear-gradient(#ADD8E6, #912CEE);
+	/* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(#ADD8E6, #912CEE);
+	/* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(#ADD8E6, #912CEE);
+	/* Firefox 3.6 - 15 */
+	background: linear-gradient(#ADD8E6, #912CEE);
+	/* 标准的语法（必须放在最后） */
+}
+
+.snow {
+	display: block;
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	pointer-events: none;
+	-webkit-transform: translate3d(0, -100%, 0);
+	transform: translate3d(0, -100%, 0);
+	-webkit-animation: snow linear infinite;
+	animation: snow linear infinite;
+}
+
+.snow.foreground {
+	background-image: url("https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-large-075d267ecbc42e3564c8ed43516dd557.png");
+	-webkit-animation-duration: 15s;
+	animation-duration: 15s;
+}
+
+.snow.foreground.layered {
+	-webkit-animation-delay: 7.5s;
+	animation-delay: 7.5s;
+}
+
+.snow.middleground {
+	background-image: url(https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-medium-0b8a5e0732315b68e1f54185be7a1ad9.png);
+	-webkit-animation-duration: 20s;
+	animation-duration: 20s;
+}
+
+.snow.middleground.layered {
+	-webkit-animation-delay: 10s;
+	animation-delay: 10s;
+}
+
+.snow.background {
+	background-image: url(https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-small-1ecd03b1fce08c24e064ff8c0a72c519.png);
+	-webkit-animation-duration: 30s;
+	animation-duration: 30s;
+}
+
+.snow.background.layered {
+	-webkit-animation-delay: 15s;
+	animation-delay: 15s;
+}
+
+@-webkit-keyframes snow {
+	0% {
+		-webkit-transform: translate3d(0, -100%, 0);
+		transform: translate3d(0, -100%, 0);
+	}
+	100% {
+		-webkit-transform: translate3d(15%, 100%, 0);
+		transform: translate3d(15%, 100%, 0);
+	}
+}
+
+@keyframes snow {
+	0% {
+		-webkit-transform: translate3d(0, -100%, 0);
+		transform: translate3d(0, -100%, 0);
+	}
+	100% {
+		-webkit-transform: translate3d(15%, 100%, 0);
+		transform: translate3d(15%, 100%, 0);
+	}
+}
+
+
+/*欢迎跑马灯*/
+
+#welcome {
+	display: block;
+	width: 100%;
+	text-align: right;
+	overflow: hidden;
+	-webkit-animation: marquee 20s linear infinite;
+	animation: marquee 20s linear infinite;
+}
+
+@-webkit-keyframes marquee {
+	0% {
+		transform: translateX(15%);
+	}
+	100% {
+		transform: translateX(-100%); // 每行高50
+	}
+}
+
+@keyframes marquee {
+	0% {
+		transform: translateX(15%);
+	}
+	100% {
+		transform: translateX(-100%); // 每行高50
+	}
+}
+
+@-webkit-keyframes marquee {
+	0% {
+		transform: translateX(15%);
+	}
+	100% {
+		transform: translateX(-100%); // 每行高50
+	}
+}

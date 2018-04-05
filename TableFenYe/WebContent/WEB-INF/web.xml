@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>TableFenYe</display-name>
+  <welcome-file-list>
+
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>sublistServlet</display-name>
+    <servlet-name>sublistServlet</servlet-name>
+    <servlet-class>it.qlq.controller.sublistServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SS</servlet-name>
+    <servlet-class>SS</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>sublistServlet</servlet-name>
+    <url-pattern>/sublist/SublistServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SS</servlet-name>
+    <url-pattern>/servlet/SS</url-pattern>
+  </servlet-mapping>
+</web-app>

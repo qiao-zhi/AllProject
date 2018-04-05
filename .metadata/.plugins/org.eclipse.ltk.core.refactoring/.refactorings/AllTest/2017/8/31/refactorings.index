@@ -1,0 +1,36 @@
+1501592171578	Rename package 'TestJson'
+1501592193705	Copy package
+1501593018911	Move compilation unit
+1501593026318	Copy compilation unit
+1501597246792	Delete element
+1501598188198	Delete element
+1501598209752	Copy source folders
+1501636787771	Rename resource 'test.ini'
+1501636808607	Rename package 'db.ini'
+1501636940716	Extract local variable 'resourceAsStream'
+1501637996718	Extract local variable 'read'
+1501638580024	Copy file
+1501638743862	Rename type 'Ex9_3_FileAppendStream'
+1501638795269	Rename type 'Ex9_4_1_BuffereStream'
+1501638985761	Rename type 'Ex9_5_DataInputOutputStream'
+1501640082311	Rename type 'Ex9_7_ObjectStream'
+1501640653436	Copy file
+1501642046144	Extract method 'test4'
+1501645870719	Copy compilation unit
+1501647407646	Extract local variable 'user'
+1501678471792	Rename type 'JVMtest'
+1501683774958	Copy compilation unit
+1501724288756	Move compilation units
+1501724304687	Rename package 'Java_Test'
+1501725352291	Copy compilation unit
+1501725765749	Copy compilation unit
+1501726651688	Copy compilation unit
+1501726906074	Rename type 'book'
+1501727230225	Extract local variable 'listBeanHandler'
+1501727350459	Extract local variable 'list'
+1501731595427	Rename package 'XMLParse'
+1501732512426	Extract local variable 'attribute'
+1501733846498	Copy compilation unit
+1501736141535	Extract local variable 'list'
+1501747968981	Extract local variable 'selectNodes'
+1501901430432	Delete element

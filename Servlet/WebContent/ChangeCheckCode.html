@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function change(img){
+	//点击图片时换一张图片
+	img.src=img.src+"?"+new Date().getTime;
+	}
+</script>
+<style type="text/css">
+img:hover{cursor: hand;}
+</style>
+
+
+</head>
+<body>
+<form id="form-1" action="/Servlet/GetCheckCode" method="post">
+	名字<input type="text" value="Submit" id="button-1"/><br/>
+	密码<input id="input-1"  type="password" ><br/>
+	验证码<input type="text" name="checkcode">
+	<img  alt="" src="/Servlet/checkCode" onclick="change(this)" style="cursor:hand;"  />
+	<input type="submit">
+</form>
+</body>
+</html>

@@ -1,0 +1,175 @@
+
+
+/*.btn_left_margin{
+	margin-left: 20px;
+}*/
+/*登记模块*/
+.register_modal_body .input_info_group {
+	margin: 8px auto;
+}
+.register_modal_body .input_info_group .group_left{
+	text-align: right;
+	width: 130px;
+	margin-right: 15px;
+}
+.register_modal_body .input_info_group .group_right{
+	width: 330px;
+}
+
+/*确定部门*/
+.destribution_modal_body{
+	border-top: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+	border-left: 1px solid #CCCCCC;
+}
+.destribution_modal_body .show_info_group{
+	border-bottom: 1px solid #CCCCCC;
+	text-align: center;
+}
+.destribution_modal_body .show_info_group .group_left{
+	background-color: #EEEEEE;
+	width: 200px;
+	text-align: center;
+}
+.destribution_modal_body .show_info_group .group_right{
+	width: 450px;
+}
+.destribution_table{
+	margin-top: 20px;
+}
+.destribution_table .show_info_group{
+	text-align: center;
+	width: 50%;
+	border: 1px solid #cccccc;
+	float: left;
+	margin: 5px 0;
+}
+.destribution_table .show_info_group .group_left{
+	width: 117px;
+	background-color: #EEEEEE;
+}
+.destribution_table .show_info_group .group_right{
+	width: 200px;
+}
+.destribution_table_left{
+	width: 200px;
+	height: 220px;
+	background-color: #CCCCCC;
+	padding: 2px;
+	/*border-radius: 5px;*/
+}
+.destribution_table_right{
+	width: 465px;
+	height: 220px;
+	overflow-y: auto;
+	padding: 0 2px;
+	/*border: 1px solid #EEEEEE;
+	border-radius: 5px;*/
+}
+
+/****************************************/
+/*验收,审查资料*/
+/****************************************/
+
+/*领取验收资料*/
+.receive_modal_show_body{
+	border: 1px solid #CCCCCC;
+	border-radius: 4px;
+}
+.receive_modal_show_body .show_info_group {
+	text-align: center;	
+}
+.receive_modal_show_body .show_info_group .group_left{
+	background-color: #EEEEEE;
+	width: 200px;
+}
+.receive_modal_show_body .show_info_group .group_right{
+	width: 350px;
+}
+/*审查资料*/
+.censor_modal_textarea{
+	height: 100px;
+}
+.censor_modal_textarea textarea{	
+	height: 100px;
+	resize: none;	
+}
+/*查看modal*/
+.check_modal_body{
+	
+}
+.check_modal_body .show_info_group {
+	text-align: center;
+	border: 1px solid #CCCCCC;
+	margin: 0 auto;
+	border-bottom: none;
+}
+.check_modal_body .show_info_group .group_left{
+	width: 150px;
+	background-color: #EEEEEE;
+	/*word-break: break-all;
+	word-wrap: break-word; 超出之后怎么办？！ */
+}
+.check_modal_body .show_info_group .group_right{
+	width: 280px;
+}
+.modal_textarea{
+	width: 866px;
+	height: 100px;
+	resize: none;
+	border: 1px solid #CCCCCC;
+}
+
+
+/*register_check_modal_*/
+
+.register_check_modal_body{
+	border-top: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+	border-left: 1px solid #CCCCCC;
+}
+.register_check_modal_body .show_info_group{
+	border-bottom: 1px solid #CCCCCC;
+	text-align: center;
+}
+.register_check_modal_body .show_info_group .group_left{
+	background-color: #EEEEEE;
+	width: 200px;
+	text-align: center;
+}
+.register_check_modal_body .show_info_group .group_right{
+	width: 350px;
+}
+
+/*user_manage*/
+/*0809*/
+/*user_add_modal*/
+.sex_label{
+	margin: 0 25px 0 5px;
+}
+/*user_roles_manage*/
+.roles_choose{
+	padding: 10px 20px;
+	
+}
+.roles_choose label{
+	height: 28px;
+	line-height: 28px;
+}
+.roles_choose_tip{
+	font-size: 18px;
+	margin-left: -10px;
+}
+
+
+
+/*user_left*/
+.user_left_tree_info{
+	width: 17%;height: 620px;background-color: #FFFFFF; float: left;margin: 20px -10px 20px 1%;
+}
+.user_left_tree_info_title{
+	font-size: 18px; font-weight: 500 ;padding: 10px 0 0 10px;margin-bottom: -10px;
+}
+/*.right_table_show{
+	width: 82%; background-color: #FBFBFB;padding: 0 10px;border: 1px solid #CCCCCC;float: left;
+}*/

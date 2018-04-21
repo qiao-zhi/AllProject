@@ -1,7 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<typeInfoHistroy>
-<typeInfo handle="=SSO_SameDomain/E:\/EclipseWorkspace\/SSO_SameDomain\/WebRoot\/WEB-INF\/lib\/xwork-core-2.3.32.jar&lt;com.opensymphony.xwork2(ActionSupport.class[ActionSupport" modifiers="33" timestamp="1503975247591"/>
-<typeInfo handle="=ProxyTest/src&lt;staticProxy{UserDao.java[UserDao" modifiers="513" timestamp="1505789703244"/>
-<typeInfo handle="=AllTest/src&lt;ReflectTest{IUserDao.java[IUserDao" modifiers="513" timestamp="1520582260976"/>
-<typeInfo handle="=AllTest/C:\/Program Files\/Java2\/jdk1.7.0_80\/jre\/lib\/rt.jar&lt;javax.swing.plaf.metal(MetalLookAndFeel$AATextListener.class[AATextListener" modifiers="8" timestamp="1499679612829"/>
-</typeInfoHistroy>
+<typeInfoHistroy/>

@@ -2,19 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="370" key="DIALOG_WIDTH"/>
-		<item value="252" key="DIALOG_Y_ORIGIN"/>
-		<item value="929" key="DIALOG_X_ORIGIN"/>
-		<item value="484" key="DIALOG_HEIGHT"/>
+		<item value="90" key="DIALOG_Y_ORIGIN"/>
+		<item value="539" key="DIALOG_HEIGHT"/>
+		<item value="10" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Microsoft YaHei UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Microsoft YaHei UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="THRESHOLD" key="selection"/>
+		<item value="CacheKey" key="selection"/>
 		<list key="findhistory">
+			<item value="cacheKey"/>
 			<item value="MAX_VALUE"/>
 			<item value="threshold"/>
 			<item value="resize"/>
@@ -22,7 +23,6 @@
 			<item value="pleaFileRecordInfo"/>
 			<item value="graDesignCheckGroup"/>
 			<item value="&quot;pleaFileRecordInfo&quot;"/>
-			<item value="courseDesign"/>
 		</list>
 		<list key="replacehistory">
 			<item value="outGraduateDesignApply"/>
@@ -38,8 +38,8 @@
 	<section name="org.eclipse.jst.jsp.ui.internal.preferences.ui.JSPTemplatePreferencePage$JSPEditTemplateDialog_dialogBounds">
 		<item value="617" key="DIALOG_WIDTH"/>
 		<item value="52" key="DIALOG_Y_ORIGIN"/>
-		<item value="50" key="DIALOG_X_ORIGIN"/>
 		<item value="362" key="DIALOG_HEIGHT"/>
+		<item value="50" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Microsoft YaHei UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Microsoft YaHei UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">

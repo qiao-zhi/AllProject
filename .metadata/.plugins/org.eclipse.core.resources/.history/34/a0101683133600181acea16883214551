@@ -1,5 +1,0 @@
-package ConstructorTest;
-
-public class chidren extends Parent {
-
-}

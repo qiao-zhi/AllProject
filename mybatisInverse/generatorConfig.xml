@@ -11,7 +11,7 @@
 		</commentGenerator>
 		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://localhost:3306/jwxt" userId="root"
+			connectionURL="jdbc:mysql://localhost:3306/exam9" userId="root"
 			password="123456">
 		</jdbcConnection>
 		<!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver"
@@ -27,7 +27,7 @@
 		</javaTypeResolver>
 
 		<!-- targetProject:生成PO类的位置 -->
-		<javaModelGenerator targetPackage="cn.xm.jwxt.bean.outGraduateDesignApply"
+		<javaModelGenerator targetPackage="cn.xm.exam.bean.log"
 			targetProject=".\src">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
@@ -35,28 +35,20 @@
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
         <!-- targetProject:mapper映射文件生成的位置 -->
-		<sqlMapGenerator targetPackage="cn.xm.jwxt.mapper.outGraduateDesignApply" 
+		<sqlMapGenerator targetPackage="cn.xm.exam.mapper.log" 
 			targetProject=".\src">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
 		</sqlMapGenerator>
 		<!-- targetPackage：mapper接口生成的位置 -->
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage="cn.xm.jwxt.mapper.outGraduateDesignApply" 
+			targetPackage="cn.xm.exam.mapper.log" 
 			targetProject=".\src">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 		<!-- 指定数据库表 -->
-		<table tableName="outsideGraDesignAttachment"></table>
-		<table tableName="checkLeave"></table>
-		<table tableName="projectCheck"></table>
-		<table tableName="outGraDesignTitleApply"></table>
-		<table tableName="cancelLeave"></table>
-		<table tableName="graDesignLeaveApply"></table>
-		<table tableName="checkOutGraDesignInfo"></table>
-		<table tableName="outsideGraDesignAgreemen"></table>
-		<table tableName="outGraDesignInfo"></table>
+		<table tableName="logtable"></table>
 
 
 		

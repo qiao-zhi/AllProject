@@ -1,5 +1,0 @@
-package ConstructorTest;
-
-public class B extends Parent {
-
-}

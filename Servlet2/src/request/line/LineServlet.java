@@ -8,7 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+/**
+ * 获取请求行信息
+* @author: qlq
+* @date :  2018年4月21日上午11:26:12
+ */
 @WebServlet("/huoqu")
 public class LineServlet extends HttpServlet {
 

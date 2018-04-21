@@ -19,8 +19,8 @@ public class SpringXMLAopTest {
 	private UserService us;
 	
 	@Test
-	public void fun1(){
-		us.save();
+	public void fun1() throws Exception{
+		us.save("111");
 	}
 	
 }

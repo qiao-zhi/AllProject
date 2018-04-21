@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd ">
 	<!-- 1.首先导入aop约束，在beans元素添加命名空间 -->
-	<!-- 2.配置目标对象 -->
-	<bean name="userService" class="cn.qlq.service.UserServiceImpl"></bean>
+	<context:component-scan base-package="cn.qlq.service"></context:component-scan>
 	<!-- 3.配置通知对象 -->
 	<bean name="advice" class="cn.qlq.XMLaspect.MyAdvice"></bean>
 	<!-- 4.通知对象织入目标对象 .expression:切入点表达式。id：切入点名字
@@ -12,10 +11,12 @@
 	* cn.qlq.service.UserServiceImpl.*()        对返回类型不做要求，对方法名字不做要求
 	* cn.qlq.service.UserServiceImpl.*(..)        对返回类型不做要求，对方法名字不做要求,对参数也不做要求
 	* cn.qlq.service.*ServiceImpl.*(..)        对service包下所有以ServiceImpl结尾的类中的任意参数的任意方法增强
+	* cn.qlq.service.*ServiceImpl.*(..) throws java.sql.SQLException;     对service包下所有以ServiceImpl结尾的类中的任意参数的任意方法且抛出的异常类型是SQLException的方法增强
 	* cn.qlq.service..*ServiceImpl.*(..)        与上面不同的是对service包的子包也要进行增强(一般不用)	-->
 <aop:config>
+	<!-- 配置切点 -->
    <aop:pointcut expression="execution(* cn.qlq.service.*ServiceImpl.*(..))" id="pc"/>
-   <!-- 将通知织入切点 -->
+   <!-- 将通知织入切点形成切面 -->
    <aop:aspect ref="advice">
    		<aop:before method="before" pointcut-ref="pc"/>
    		<aop:after-returning method="afterRunning" pointcut-ref="pc"/>

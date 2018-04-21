@@ -16,14 +16,14 @@ public class UserSeviceProxyFactoryTest {
 
 	@Test
 //	测试JDK动态代理
-	public void test() {
-		
+	public void test() throws Exception {
+		System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles","true" );
 		UserServiceImpl us = new UserServiceImpl();   
 		UserSeviceProxyFactory usProxyFactory = new UserSeviceProxyFactory(us);
 //		调用动态代理对象工厂产生动态代理对象
 		UserService usProxy = usProxyFactory.getUserServiceImpl();
 //		调用动态代理对象的方法，已经进行过增强事务处理
-		usProxy.save();
+		usProxy.save("1");
 	}
 	
 	@Test

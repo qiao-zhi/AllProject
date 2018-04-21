@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workingSetManager>
 <workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1501164550761_1" label="Test" name="Test">
-<item elementID="=WebShiro" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=Shiro" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=quanxian" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=SSMShiro" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=Shiro1" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/WebShiro" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Shiro" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/quanxian" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/SSMShiro" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Shiro1" type="4"/>
 </workingSet>
 <workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1501589179158_3" label="JavaTest" name="JavaTest">
 <item elementID="=AllTest" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSet>
 <workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1502501529694_4" label="lucene&amp;solr" name="lucene&amp;solr">
-<item elementID="=lucene_solr_websolr" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=lucene&amp;solrJ" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=lucene&amp;solr_01" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/lucene_solr_websolr" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/lucene&amp;solrJ" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/lucene&amp;solr_01" type="4"/>
 </workingSet>
 <workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1503975061461_5" label="examples" name="examples">
-<item elementID="=CXF_server" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=CXF_Client" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=SSO_SameDomain" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=WeatherWS" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=WebClient" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=SSO_SamaFatherDomain" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=SSO_CrossDomain" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=WebService" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/CXF_Client" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/CXF_server" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/SSO_SameDomain" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/WeatherWS" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/WebClient" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/SSO_SamaFatherDomain" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/SSO_CrossDomain" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/WebService" type="4"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1480309891975_0" label="Window Working Set" name="Aggregate for window 1480309891975"/>
 <mruList name="JavaTest"/>

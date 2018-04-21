@@ -24,10 +24,10 @@
     </entry>
   </container>
   <container id="SSMShiro!org.eclipse.jst.j2ee.internal.web.container">
-    <entry id="E:/EclipseWorkspace/SSMShiro/WebRoot/WEB-INF/lib/shiro-spring-1.2.3.jar">
+    <entry id="E:/EclipseWorkspace/SSMShiro/WebRoot/WEB-INF/lib/shiro-core-1.2.3.jar">
       <source-attachment-path>C:/Users/liqiang/Desktop/文件/A开发库/Shiro/shiro-root-1.2.3-source-release.zip</source-attachment-path>
     </entry>
-    <entry id="E:/EclipseWorkspace/SSMShiro/WebRoot/WEB-INF/lib/shiro-core-1.2.3.jar">
+    <entry id="E:/EclipseWorkspace/SSMShiro/WebRoot/WEB-INF/lib/shiro-spring-1.2.3.jar">
       <source-attachment-path>C:/Users/liqiang/Desktop/文件/A开发库/Shiro/shiro-root-1.2.3-source-release.zip</source-attachment-path>
     </entry>
     <entry id="E:/EclipseWorkspace/SSMShiro/WebRoot/WEB-INF/lib/shiro-web-1.2.3.jar">
@@ -42,6 +42,28 @@
   <container id="CXF_server!org.eclipse.jst.j2ee.internal.web.container">
     <entry id="E:/EclipseWorkspace/CXF_server/WebContent/WEB-INF/lib/spring-web-3.2.0.RELEASE.jar">
       <source-attachment-path>C:/Users/liqiang/Desktop/文件/A开发库/Spring/3.2.0源码/spring-framework-3.2.0.RELEASE.zip</source-attachment-path>
+    </entry>
+  </container>
+  <container id="SpringDay02!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="E:/EclipseWorkspace/SpringDay02/WebContent/WEB-INF/lib/com.springsource.org.aspectj.tools-1.6.6.RELEASE.jar">
+      <source-attachment-path>C:/Users/liqiang/AppData/Local/Temp/.org.sf.feeling.decompiler1523150184700/source/com.springsource.org.aspectj.tools-1.6.6.RELEASE-sources-1523150365485.jar</source-attachment-path>
+    </entry>
+    <entry id="E:/EclipseWorkspace/SpringDay02/WebContent/WEB-INF/lib/spring-context-3.2.0.RELEASE.jar">
+      <source-attachment-path>C:/Users/liqiang/AppData/Local/Temp/.org.sf.feeling.decompiler1523150184700/source/spring-context-3.2.0.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+    <entry id="E:/EclipseWorkspace/SpringDay02/WebContent/WEB-INF/lib/com.springsource.org.aopalliance-1.0.0.jar">
+      <source-attachment-path>C:/Users/liqiang/AppData/Local/Temp/.org.sf.feeling.decompiler1523070887000/source/com.springsource.org.aopalliance-1.0.0-sources.jar</source-attachment-path>
+    </entry>
+    <entry id="E:/EclipseWorkspace/SpringDay02/WebContent/WEB-INF/lib/spring-aop-3.2.0.RELEASE.jar">
+      <source-attachment-path>C:/Users/liqiang/AppData/Local/Temp/.org.sf.feeling.decompiler1523150184700/source/spring-aop-3.2.0.RELEASE-sources-1523178954539.jar</source-attachment-path>
+    </entry>
+  </container>
+  <container id="SpringDay03Tx!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="E:/EclipseWorkspace/SpringDay03Tx/WebContent/WEB-INF/lib/spring-tx-4.2.4.RELEASE.jar">
+      <source-attachment-path>C:/Users/liqiang/AppData/Local/Temp/.org.sf.feeling.decompiler1523844704173/source/spring-tx-4.2.4.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+    <entry id="E:/EclipseWorkspace/SpringDay03Tx/WebContent/WEB-INF/lib/spring-core-4.2.4.RELEASE.jar">
+      <source-attachment-path>C:/Users/liqiang/AppData/Local/Temp/.org.sf.feeling.decompiler1523844704173/source/spring-core-4.2.4.RELEASE-sources.jar</source-attachment-path>
     </entry>
   </container>
   <container id="SpringDay03!org.eclipse.jst.j2ee.internal.web.container">
